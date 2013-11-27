@@ -76,7 +76,7 @@
 				</li>
 				<li>
 					<i class="fa fa-book"></i>
-					<a href="asdocs/index.html">ActionScript documentation</a>
+					<a href="asdocs/index.html" target="asdocs">ActionScript documentation</a>
 				</li>
 			</ul>
 		</div>
@@ -143,7 +143,7 @@
 		
 		<p>
 			Now our Task Manager based implementation looks a lot smaller than the alternative thanks to the use of
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/CompositeTask.html" target="_blank">CompositeTask</a>.
+			<a href="asdocs/com/rosettastone/library/taskmanager/CompositeTask.html" target="asdocs">CompositeTask</a>.
 			As the name suggests, CompositeTask is a task comprised of other tasks.
 			These other tasks can be run in parallel or in serial; (in this example they are run in serial).
 			In the non-Task Manager implementation above we are forced to handle errors dispatched from both Sound and URLLoader objects, but in the second example we only listen for an error on the CompositeTask.
@@ -225,12 +225,12 @@
 		
 		<p>
 			To implement the dependencies introduced by the latest round of requirements we made use of an additional Task Manager component:
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/EventHandlingTask.html" target="_blank">EventHandlingTask</a>. EventHandlingTask listens for 2 categories of events- success/completion and failure/error. If a completion event type is dispatched EventHandlingTask will complete itself. If an error type is dispatched it will error. In our case we are only concerned with a single event type, EffectEvent.EFFECT_END, so we do not need to provide any error types.
+			<a href="asdocs/com/rosettastone/library/taskmanager/EventHandlingTask.html" target="asdocs">EventHandlingTask</a>. EventHandlingTask listens for 2 categories of events- success/completion and failure/error. If a completion event type is dispatched EventHandlingTask will complete itself. If an error type is dispatched it will error. In our case we are only concerned with a single event type, EffectEvent.EFFECT_END, so we do not need to provide any error types.
 		</p>
 		
 		<p>
 			Alternately, we could have achieved this same result using the
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/TaskManager.html" target="_blank">TaskManager class</a> (see below).
+			<a href="asdocs/com/rosettastone/library/taskmanager/TaskManager.html" target="asdocs">TaskManager class</a> (see below).
 			TaskManager is a composite task capable of handling complex task dependencies.
 			It can be configured to execute an arbitrary sequence of child tasks.
 			Each of its children can have dependencies on other children.
@@ -267,7 +267,7 @@
 			From there it may enter an errored state or a completed state.
 			(Some tasks may also enter an interrupted state but we'll talk more about that later.)
 			As a task changes state it notifies external code by dispatching a
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/events/TaskEvent.html" target="_blank">TaskEvent</a>.
+			<a href="asdocs/com/rosettastone/library/taskmanager/events/TaskEvent.html" target="asdocs">TaskEvent</a>.
 			<a href="#event_handlers_and_closures">Closures</a> may be used in place of Events if you prefer.
 		</p>
 		
@@ -288,7 +288,7 @@
 		
 		<dl class="dl-horizontal">
 			<dt>
-				<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html">ITask</a>
+				<a href="asdocs/com/rosettastone/library/taskmanager/ITask.html" target="asdocs">ITask</a>
 			</dt>
 			<dd>
 				This is the highest-level interface.
@@ -296,30 +296,30 @@
 				All tasks must implement this interface.
 			</dd>
 			<dt>
-				<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ISynchronousTask.html">ISynchronousTask</a>
+				<a href="asdocs/com/rosettastone/library/taskmanager/ISynchronousTask.html" target="asdocs">ISynchronousTask</a>
 			</dt>
 			<dd>
 				Tasks that complete immediately after being run should implement this interface.
 				These tasks are still executed in the same way and dispatch all of the same TaskEvents.
 			</dd>
 			<dt>
-				<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/IInterruptibleTask.html">IInterruptibleTask</a>
+				<a href="asdocs/com/rosettastone/library/taskmanager/IInterruptibleTask.html" target="asdocs">IInterruptibleTask</a>
 			</dt>
 			<dd>
 				This type of task can be safely paused and resumed.
-				To pause a running task use the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/IInterruptibleTask.html#interrupt()">interrupt()</a> method.
-				To resume it once it has been interrupted invoke the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html#run()">run()</a> method again.
+				To pause a running task use the <a href="asdocs/com/rosettastone/library/taskmanager/IInterruptibleTask.html#interrupt()" target="asdocs">interrupt()</a> method.
+				To resume it once it has been interrupted invoke the <a href="asdocs/com/rosettastone/library/taskmanager/ITask.html#run()" target="asdocs">run()</a> method again.
 			</dd>
 		</dl>
 		
 		<p>
 			In addition to dispatching events a Task also exposes several properties that can be used to determine which state it is currently in.
 			These include:
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#isComplete" target="_blank">isComplete</a>,
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#isErrored" target="_blank">isErrored</a>,
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#isInterrupted" target="_blank">isInterrupted</a>,
+			<a href="asdocs/com/rosettastone/library/taskmanager/Task.html#isComplete" target="asdocs">isComplete</a>,
+			<a href="asdocs/com/rosettastone/library/taskmanager/Task.html#isErrored" target="asdocs">isErrored</a>,
+			<a href="asdocs/com/rosettastone/library/taskmanager/Task.html#isInterrupted" target="asdocs">isInterrupted</a>,
 			and
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#running" target="_blank">running</a>.
+			<a href="asdocs/com/rosettastone/library/taskmanager/Task.html#running" target="asdocs">running</a>.
 		</p>
 		
 		<hr />
@@ -341,7 +341,7 @@
 		</h4>
 		
 		<p>
-			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/FactoryTask.html" target="_blank">FactoryTask</a> is typically used within a larger composite task.
+			The <a href="asdocs/com/rosettastone/library/taskmanager/FactoryTask.html" target="asdocs">FactoryTask</a> is typically used within a larger composite task.
 			It serves as as placeholder in the event that we do not yet know which type of task to create <i>or</i> when the task creation relies on an object that has not yet been initialized. For example:
 		</p>
 		
@@ -360,7 +360,7 @@
 		</h4>
 		
 		<p>
-			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ObserverTask.html" target="_blank">ObserverTask</a> can be used to monitor a set of tasks and record their completion. Tasks can be added to or removed from the observer at runtime. It can be useful when an application needs to monitor a queue of tasks for completion. It is particularly helpful in the case of task interruptions. Tasks can be interrupted and resumed manually (using the interrupt() and run() methods). They can also be interrupted <i>for</i> other tasks. In that event the task that is being interrupted listens to the interrupting task for completion and then automatically resumes itself.
+			The <a href="asdocs/com/rosettastone/library/taskmanager/ObserverTask.html" target="asdocs">ObserverTask</a> can be used to monitor a set of tasks and record their completion. Tasks can be added to or removed from the observer at runtime. It can be useful when an application needs to monitor a queue of tasks for completion. It is particularly helpful in the case of task interruptions. Tasks can be interrupted and resumed manually (using the interrupt() and run() methods). They can also be interrupted <i>for</i> other tasks. In that event the task that is being interrupted listens to the interrupting task for completion and then automatically resumes itself.
 		</p>
 		
 		<p>
@@ -378,7 +378,7 @@
 		</h4>
 		
 		<p>
-			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/PlaySoundTask.html">PlaySoundTask</a> can be used to play a sound and notify of its completion.
+			The <a href="asdocs/com/rosettastone/library/taskmanager/PlaySoundTask.html" target="asdocs">PlaySoundTask</a> can be used to play a sound and notify of its completion.
 			This tasks supports interruptibility- meaning that sound playback can be paused and resumed.
 		</p>
 		
@@ -387,7 +387,7 @@
 		</h4>
 		
 		<p>
-			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/RetryOnFailureDecoratorTask.html">RetryOnFailureDecoratorTask</a> is a special decorator task.
+			The <a href="asdocs/com/rosettastone/library/taskmanager/RetryOnFailureDecoratorTask.html" target="asdocs">RetryOnFailureDecoratorTask</a> is a special decorator task.
 			It can be used to decorate other tasks and retry them in the event of a failure.
 			(This can be useful for Tasks that rely on an internet connection in order to complete.)
 			This task allows its decorated Task to fail a couple of times before bubbling the error.
@@ -400,7 +400,7 @@
 		</h4>
 		
 		<p>
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/SleepTask.html" target="_blank">SleepTask</a> can be useful when a place holder of indeterminate time is required within a composite task. A SleepTask will never complete unless manually instructed to by external code. For example if our application needs to display a EULA and wait for the user to click "accept" before proceeding, we could use a SleepTask.
+			<a href="asdocs/com/rosettastone/library/taskmanager/SleepTask.html" target="asdocs">SleepTask</a> can be useful when a place holder of indeterminate time is required within a composite task. A SleepTask will never complete unless manually instructed to by external code. For example if our application needs to display a EULA and wait for the user to click "accept" before proceeding, we could use a SleepTask.
 		</p>
 		
 		<h4>
@@ -408,7 +408,7 @@
 		</h4>
 
 		<p>
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/StubTask.html" target="_blank">StubTask</a> is primarily intended for automated tests but can also be useful in factory situations when a default behavior of nothing is desired. StubTasks do not do anything on their own. They can be configured to complete immediately upon execution <i>or</i> to wait for external code to instruct them to complete. For example:
+			<a href="asdocs/com/rosettastone/library/taskmanager/StubTask.html" target="asdocs">StubTask</a> is primarily intended for automated tests but can also be useful in factory situations when a default behavior of nothing is desired. StubTasks do not do anything on their own. They can be configured to complete immediately upon execution <i>or</i> to wait for external code to instruct them to complete. For example:
 		</p>
 		
 		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/stubtask.txt"></pre>
@@ -422,7 +422,7 @@
 		</h4>
 		
 		<p>
-			Several reusable tasks are included within the Task Manager library. Even so your program will likely require additional tasks for custom operations. You can extend Task to define your own custom tasks (as described in a later section of this tutorial) but sometimes that can be too heavyweight, especially in the case of synchronous tasks that do not need to support interruptibility. In those cases the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/TaskWithClosure.html" target="_blank">TaskWithClosure</a> task can be useful. For example:
+			Several reusable tasks are included within the Task Manager library. Even so your program will likely require additional tasks for custom operations. You can extend Task to define your own custom tasks (as described in a later section of this tutorial) but sometimes that can be too heavyweight, especially in the case of synchronous tasks that do not need to support interruptibility. In those cases the <a href="asdocs/com/rosettastone/library/taskmanager/TaskWithClosure.html" target="asdocs">TaskWithClosure</a> task can be useful. For example:
 		</p>
 		
 		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/taskwithclosure.txt"></pre>
@@ -436,7 +436,7 @@
 		</h4>
 
 		<p>
-			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/URLRequestTask.html">URLRequestTask</a> loads a URLRequest and exposes any loaded data upon complete.
+			The <a href="asdocs/com/rosettastone/library/taskmanager/URLRequestTask.html" target="asdocs">URLRequestTask</a> loads a URLRequest and exposes any loaded data upon complete.
 			This task-type handles all of the various error event types dispatched by a URLLoader.
 		</p>
 		
@@ -445,7 +445,7 @@
 		</h4>
 		
 		<p>
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/WaitTask.html" target="_blank">WaitTask</a> can be used to delay a composite task for a predetermined amount of time. For example:
+			<a href="asdocs/com/rosettastone/library/taskmanager/WaitTask.html" target="asdocs">WaitTask</a> can be used to delay a composite task for a predetermined amount of time. For example:
 		</p>
 		
 		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/waittask.txt"></pre>
@@ -496,7 +496,7 @@ For example:</p>
 		
 		<p>
 			If your composite needs to support (or enforce) interruptibility you should use the
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/InterruptibleCompositeTask.html">InterruptibleCompositeTask</a>.
+			<a href="asdocs/com/rosettastone/library/taskmanager/InterruptibleCompositeTask.html" target="asdocs">InterruptibleCompositeTask</a>.
 			It only works with tasks that are either interruptible or synchronous.
 			Interrupting or resuming a composite task will automatically interrupt or resume all children.
 		</p>
@@ -515,19 +515,19 @@ For example:</p>
 		<p>The first question we should ask ourselves is: should this new Task handle interruptions? At a high level there are 2 types of tasks: those that can be interrupted/resumed and those that cannot. How do you decide which type to create? Perhaps you know ahead of time that your application needs to be interruptible. If so then your choice is an easy one. Even if your application does not have such a requirement it may still be worth considering supporting interruptibility. A little more work is involved in implementing that functionality initially but your code will be in a better state if requirements should change.</p>
 		
 		<p>
-			To create a basic task all you need to do is extend extend the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html">Task</a> base class and override the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#customRun()" target="_blank">customRun</a> method.
-			Once the task completes your code should execute the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#taskComplete()" target="_blank">taskComplete</a> method helper method.
-			(If your task should error the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#taskError()" target="_blank">taskError</a> method should be called instead.)
+			To create a basic task all you need to do is extend extend the <a href="asdocs/com/rosettastone/library/taskmanager/Task.html" target="asdocs">Task</a> base class and override the <a href="asdocs/com/rosettastone/library/taskmanager/Task.html#customRun()" target="asdocs">customRun</a> method.
+			Once the task completes your code should execute the <a href="asdocs/com/rosettastone/library/taskmanager/Task.html#taskComplete()" target="asdocs">taskComplete</a> method helper method.
+			(If your task should error the <a href="asdocs/com/rosettastone/library/taskmanager/Task.html#taskError()" target="asdocs">taskError</a> method should be called instead.)
 			These helper methods will update internal task state and dispatch the appropriate state-change events.
 		</p>
 		
 		<p>	
-			If you want your task to support interruptibility you should extend the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/InterruptibleTask.html">InterruptibleTask</a> base class instead.
-			You'll need to override both the customRun and <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/InterruptibleTask.html#customInterrupt()" target="_blank">customInterrupt</a> methods.
+			If you want your task to support interruptibility you should extend the <a href="asdocs/com/rosettastone/library/taskmanager/InterruptibleTask.html" target="asdocs">InterruptibleTask</a> base class instead.
+			You'll need to override both the customRun and <a href="asdocs/com/rosettastone/library/taskmanager/InterruptibleTask.html#customInterrupt()" target="asdocs">customInterrupt</a> methods.
 		</p>
 		
 		<p>	
-			You may also choose to create a synchronous task by extending the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/SynchronousTask.html">SynchronousTask</a> base class and overriding its customRun method.
+			You may also choose to create a synchronous task by extending the <a href="asdocs/com/rosettastone/library/taskmanager/SynchronousTask.html" target="asdocs">SynchronousTask</a> base class and overriding its customRun method.
 		</p>
 
 		<p>
@@ -585,10 +585,10 @@ For example:</p>
 		
 		<p>
 			Closures may be attached to tasks using the following methods:
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html#withStartedHandler()">withStartedHandler</a>,
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/IInterruptibleTask.html#withInterruptionHandler()">withInterruptionHandler</a>,
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html#withErrorHandler()">withErrorHandler</a>, and
-			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html#withCompleteHandler()">withCompleteHandler</a>.
+			<a href="asdocs/com/rosettastone/library/taskmanager/ITask.html#withStartedHandler()" target="asdocs">withStartedHandler</a>,
+			<a href="asdocs/com/rosettastone/library/taskmanager/IInterruptibleTask.html#withInterruptionHandler()" target="asdocs">withInterruptionHandler</a>,
+			<a href="asdocs/com/rosettastone/library/taskmanager/ITask.html#withErrorHandler()" target="asdocs">withErrorHandler</a>, and
+			<a href="asdocs/com/rosettastone/library/taskmanager/ITask.html#withCompleteHandler()" target="asdocs">withCompleteHandler</a>.
 		</p>
 
 		<p>
