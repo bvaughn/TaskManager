@@ -1,0 +1,213 @@
+package {
+	import flash.display.DisplayObject;
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.MouseEvent;
+	import flash.events.SecurityErrorEvent;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	
+	import mx.effects.Effect;
+	import mx.events.EffectEvent;
+	
+	import spark.components.Button;
+	
+	public class SampleController_4_NoTaskManager {
+		
+		private var _animation:Effect;
+		private var _button:Button;
+		private var _interrupted:Boolean;
+		private var _sound:Sound;
+		private var _soundChannel:SoundChannel;
+		private var _soundChannelStoppedAtTime:Number;
+		private var _soundFailedToLoad:Boolean;
+		private var _urlLoader:URLLoader;
+		private var _urlLoaderFailedForURL:String
+		private var _urlRequest:URLRequest;
+		
+		public function SampleController_4_NoTaskManager( button:Button, animation:Effect; ) {
+			_button = button;
+			_animation = animation;
+		}
+		
+		public function start():void {
+			_interrupted = false;
+			
+			_button.addEventListener( MouseEvent.CLICK, onButtonClick );
+			
+			if ( _soundFailedToLoad ) {
+				loadSound();
+				
+			} else if ( _urlLoaderFailedForURL != null ) {
+				_urlLoader = new URLLoader();
+				
+				addURLLoaderEventListeners();
+				
+				_urlLoader.load( new URLRequest( _urlLoaderFailedForURL ) );
+				
+				_urlLoaderFailedForURL = null;
+				
+			} else if ( _sound ) {
+				_soundChannel = _sound.play( _soundChannelStoppedAtTime );
+				_soundChannel.addEventListener( Event.SOUND_COMPLETE, onSoundChannelSoundComplete );
+				
+				_animation.addEventListener( EffectEvent.EFFECT_END, onAnimationEffectEnd );
+				_animation.play();
+			}
+		}
+		
+		public function stop():void {
+			_interrupted = true;
+			
+			_button.removeEventListener( MouseEvent.CLICK, onButtonClick );
+			
+			// We cannot actually interrupt a loading URLLoader.
+			// We could remove event listeners from it, but that might result in our logging the event twice.
+			// Instead we should set an "interrupted" flag and trust our event-handlers to observe it.
+			
+			if ( _soundChannel ) {
+				_soundChannelStoppedAtTime = _soundChannel.position;
+				
+				_soundChannel.stop();
+				_soundChannel.removeEventListener( Event.SOUND_COMPLETE, onSoundChannelSoundComplete );
+				_soundChannel = null;
+			}
+			
+			// Stop our animation; we'll ignore this for now (though it would need to be done in a real application)
+		}
+		
+		// Helper methods
+		
+		private function addURLLoaderEventListeners():void {
+			_urlLoader.addEventListener( Event.COMPLETE, onURLLoaderComplete, false, 0, true );
+			_urlLoader.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onURLLoaderSecurityError, false, 0, true );
+			_urlLoader.addEventListener( IOErrorEvent.IO_ERROR, onURLLoaderIOError, false, 0, true );
+			_urlLoader.addEventListener( IOErrorEvent.NETWORK_ERROR, onURLLoaderIOError, false, 0, true );
+			_urlLoader.addEventListener( IOErrorEvent.VERIFY_ERROR, onURLLoaderIOError, false, 0, true );
+			_urlLoader.addEventListener( IOErrorEvent.DISK_ERROR, onURLLoaderIOError, false, 0, true );
+		}
+		
+		private function checkForCompletionOfSoundAndAnimation():void {
+			if ( !_animation && !_soundChannel ) {
+				_urlLoader = new URLLoader();
+				
+				addURLLoaderEventListeners();
+				
+				_urlRequest = new URLRequest( "fake_url_for_sound_finished" );
+				_urlLoader.load( _urlRequest );
+			}
+		}
+		
+		private function loadSound():void {
+			_sound = new Sound();
+			_sound.addEventListener( Event.COMPLETE, onSoundComplete );
+			_sound.addEventListener( IOErrorEvent.IO_ERROR, onSoundIOError );
+			_sound.load( new URLRequest( "fake_sound_url" ) );
+		}
+		
+		private function removeURLLoaderEventListeners():void {
+			_urlLoader.removeEventListener( SecurityErrorEvent.SECURITY_ERROR, onURLLoaderSecurityError, false, 0, true );
+			_urlLoader.removeEventListener( IOErrorEvent.IO_ERROR, onURLLoaderIOError, false, 0, true );
+			_urlLoader.removeEventListener( IOErrorEvent.NETWORK_ERROR, onURLLoaderIOError, false, 0, true );
+			_urlLoader.removeEventListener( IOErrorEvent.VERIFY_ERROR, onURLLoaderIOError, false, 0, true );
+			_urlLoader.removeEventListener( IOErrorEvent.DISK_ERROR, onURLLoaderIOError, false, 0, true );
+		}
+		
+		// Event handlers
+		
+		private function onAnimationEffectEnd( event:EffectEvent ):void {
+			_animation.addEventListener( EffectEvent.EFFECT_END, onAnimationEffectEnd );
+			_animation = null;
+			
+			if ( _interrupted ) return;
+			
+			checkForCompletionOfSoundAndAnimation();
+		}
+		
+		private function onButtonClick( event:MouseEvent ):void {
+			_button.enabled = false;
+			
+			loadSound();
+		}
+		
+		private function onSoundIOError( event:IOErrorEvent ):void {
+			_sound.removeEventListener( Event.COMPLETE, onSoundComplete );
+			_sound.removeEventListener( IOErrorEvent.IO_ERROR, onSoundIOError );
+			
+			if ( _interrupted ) {
+				_soundFailedToLoad = true;
+			} else {
+				// Handle error
+			}
+		}
+		
+		private function onSoundComplete( event:Event ):void {
+			_sound.removeEventListener( Event.COMPLETE, onSoundComplete );
+			_sound.removeEventListener( IOErrorEvent.IO_ERROR, onSoundIOError );
+			
+			_soundFailedToLoad = false;
+			
+			if ( _interrupted ) return;
+			
+			_urlLoader = new URLLoader();
+			
+			addURLLoaderEventListeners();
+			
+			_urlRequest = new URLRequest( "fake_url_for_sound_start" );
+			_urlLoader.load( _urlRequest );
+		}
+		
+		private function onURLLoaderSecurityError( event:SecurityErrorEvent ):void {
+			removeURLLoaderEventListeners();
+			
+			if ( _interrupted ) {
+				_urlLoaderFailedForURL = _urlRequest.url;
+			} else {
+				// Handle error
+			}
+		}
+		
+		private function onURLLoaderIOError( event:IOErrorEvent ):void {
+			removeURLLoaderEventListeners();
+			
+			if ( _interrupted ) {
+				_urlLoaderFailedForURL = _urlRequest.url;
+			} else {
+				// Handle error
+			}
+		}
+		
+		private function onURLLoaderComplete( event:Event ):void {
+			removeURLLoaderEventListeners();
+			
+			_urlLoader = null;
+			_urlRequest = null;
+			
+			if ( _interrupted ) return;
+			
+			// HACK: This is a dirty HACK to reuse event handlers.
+			
+			if ( _sound ) {
+				_soundChannel = _sound.play();
+				_soundChannel.addEventListener( Event.SOUND_COMPLETE, onSoundChannelSoundComplete );
+				
+				_animation.addEventListener( EffectEvent.EFFECT_END, onAnimationEffectEnd );
+				_animation.play();
+				
+			} else {
+				_button.enabled = true;
+			}
+		}
+		
+		private function onSoundChannelSoundComplete( event:Event ):void {
+			_soundChannel.removeEventListener( Event.SOUND_COMPLETE, onSoundChannelSoundComplete );
+			_soundChannel = null;
+			
+			_sound = null;
+			
+			checkForCompletionOfSoundAndAnimation();
+		}
+	}
+}

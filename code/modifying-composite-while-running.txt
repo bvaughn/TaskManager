@@ -1,0 +1,15 @@
+// Define showUserPrompt, getUserInputTask, continueToNextPromptTask, exitApplicationTask, & continueToNextPromptTask tasks shown below
+
+getUserInputTask.withCompleteHandler(
+	function( message:String = "", data:* = null ):void {
+		if ( data == false ) {
+			compositeTask.addTask( exitApplicationTask );
+			compositeTask.removeTask( continueToNextPromptTask );
+		}
+	} );
+
+var compositeTask:CompositeTask = new CompositeTask( null, false );
+compositeTask.addTask( showUserPrompt );
+compositeTask.addFunction( getUserInputTask );
+compositeTask.addTask( continueToNextPromptTask );
+compositeTask.run();

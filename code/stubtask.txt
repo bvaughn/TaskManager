@@ -1,0 +1,30 @@
+class SuperClass {
+	
+	private var _button:Button;
+	
+	public function SuperClass( button:Button ) {
+		_button = button;
+		_button.addEventListener( MouseEvent.CLICK, onButtonClick );
+	}
+	
+	protected function createTaskThatHandlesButtonClick():Task {
+		return new StubTask( true );
+	}
+	
+	private function onButtonClick( event:MouseEvent ):void {
+		_button.enabled = false;
+		
+		var task:Task = createTaskThatHandlesButtonClick();
+		task.withCompleteHandler(
+			function():void {
+				_button.enabled = true;
+			} );
+		task.run();
+	}
+}
+
+class SubClass extends SuperClass {
+	override function createTaskThatHandlesButtonClick():Task {
+		return new TaskThatDoesSomethingCustom();
+	}
+}

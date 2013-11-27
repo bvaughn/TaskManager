@@ -1,0 +1,37 @@
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application applicationComplete="onApplicationComplete()"
+               xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"&gt;
+	
+	&lt;fx:Script&gt;
+		&lt;![CDATA[
+			import air.net.URLMonitor;
+			
+			private var _applicationTask:MyApplicationTask;
+			private var _urlMonitor:URLMonitor;
+			
+			private function onApplicationComplete():void {
+				_urlMonitor = new URLMonitor( new URLRequest( "http://www.google.com" ) );
+				_urlMonitor.addEventListener( Event.ACTIVATE, onURLMonitorActivate );
+				_urlMonitor.addEventListener( Event.DEACTIVATE, onURLMonitorDeactivate );
+				_urlMonitor.start();
+				
+				_applicationTask = new MyApplicationTask();
+				_applicationTask.run();
+			}
+			
+			private function onURLMonitorActivate( event:Event ):void {
+				if ( _applicationTask && _applicationTask.isInterrupted ) ) {
+					_applicationTask.run();
+				}
+			}
+			
+			private function onURLMonitorDeactivate( event:Event ):void {
+				if ( _applicationTask && _applicationTask.running ) ) {
+					_applicationTask.interrupt();
+				}
+			}
+		]]&gt;
+	&lt;/fx:Script&gt;
+	
+&lt;/s:Application&gt;

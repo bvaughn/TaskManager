@@ -1,0 +1,4 @@
+var initialTask:Task = new MyTask();
+var parallelTask:Task = new MyTask();
+
+initialTask.and( parallelTask ).run();

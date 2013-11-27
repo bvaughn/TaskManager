@@ -1,0 +1,16 @@
+var urlRequestTask:URLRequestTask = new URLRequestTask( new URLRequest( "url-that-returns-xml" ) );
+
+var compositeTask:CompositeTask = new CompositeTask( null, false );
+compositeTask.addTask( urlRequestTask );
+compositeTask.addTask(
+	new FactoryTask(
+		function():Task {
+			var xml:XML = XML( urlRequestTask.data );
+			
+			if ( xml.@attribute == "foo" ) {
+				return new MyFooTask();
+			} else {
+				return new MyBarTask();
+			}
+		} ) );
+compositeTask.run();

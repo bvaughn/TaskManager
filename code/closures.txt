@@ -1,0 +1,10 @@
+var task:URLRequestTask = new URLRequestTask( new URLRequest( "path-to-text-file" ) );
+task.withCompleteHandler(
+	function( message:String = "", data:* = null ):void {
+		// Handle completion
+	} );
+task.withErrorHandler(
+	function( message:String = "", data:* = null ):void {
+		// Handle failure
+	} );
+task.run();

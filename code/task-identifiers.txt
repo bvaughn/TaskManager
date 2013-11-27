@@ -1,0 +1,2 @@
+var loadXMLTask:URLRequestTask = new URLRequestTask( new URLRequest( "path-to-xml" ), "Loads app XML" );
+var playLoadingCompleteSoundTask:PlaySoundTask = new PlaySoundTask( aSound, true, "Plays sound indicating that app XML loading has completed" );

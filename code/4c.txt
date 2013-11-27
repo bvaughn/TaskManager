@@ -1,0 +1,84 @@
+package {
+	import com.rosettastone.library.taskmanager.EventHandlingTask;
+	import com.rosettastone.library.taskmanager.PlaySoundTask;
+	import com.rosettastone.library.taskmanager.Task;
+	import com.rosettastone.library.taskmanager.TaskManager;
+	import com.rosettastone.library.taskmanager.URLRequestTask;
+	
+	import flash.events.MouseEvent;
+	import flash.media.Sound;
+	import flash.net.URLRequest;
+	
+	import mx.effects.Effect;
+	import mx.events.EffectEvent;
+	
+	import spark.components.Button;
+	
+	public class SampleController_4_WithTaskManager {
+		
+		private var _animation:Effect;
+		private var _button:Button;
+		private var _taskManager:TaskManager;
+		
+		public function SampleController_4_WithTaskManager( button:Button, animation:Effect; ) {
+			_button = button;
+			_animation = animation;
+		}
+		
+		public function start():void {
+			_button.addEventListener( MouseEvent.CLICK, onButtonClick );
+			
+			if ( _taskManager && !_taskManager.running ) {
+				_taskManager.run();
+			}
+		}
+		
+		public function stop():void {
+			_button.removeEventListener( MouseEvent.CLICK, onButtonClick );
+			
+			if ( _taskManager && _taskManager.running ) {
+				_taskManager.interrupt();
+			}
+		}
+		
+		private function onButtonClick( event:MouseEvent ):void {
+			_button.enabled = false;
+			
+			var logStartTask:URLRequestTask =
+				new URLRequestTask(
+					new URLRequest( "fake_url_for_sound_start" ) );
+			
+			var playSoundTask:PlaySoundTask =
+				new PlaySoundTask(
+					new Sound(
+						new URLRequest( "fake_sound_url" ) ) );
+			
+			var playAnimationTask:EventHandlingTask =
+				new EventHandlingTask( _animation, EffectEvent.EFFECT_END );
+			
+			playAnimationTask.withStartedHandler(
+				function():void {
+					_animation.play();
+				} );
+			
+			var logFinishTask:URLRequestTask =
+				new URLRequestTask(
+					new URLRequest( "fake_url_for_sound_finished" ) );
+			
+			_taskManager = new TaskManager( true );
+			_taskManager.addTask( logStartTask );
+			_taskManager.addTask( playAnimationTask, [ logStartTask ] );
+			_taskManager.addTask( playSoundTask, [ logStartTask ] );
+			_taskManager.addTask( logFinishTask, [ playAnimationTask, playSoundTask ] );
+			_taskManager.withCompleteHandler(
+				function():void {
+					_button.enabled = true;
+				} );
+			_taskManager.withErrorHandler(
+				function():void {
+					// Handle error
+				} );
+			_taskManager.run();
+		}
+	}
+}

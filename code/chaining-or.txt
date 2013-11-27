@@ -1,0 +1,4 @@
+var initialTask:Task = new MyTask();
+var fallbackTask:Task = new MyTask();
+
+initialTask.or( fallbackTask ).run();

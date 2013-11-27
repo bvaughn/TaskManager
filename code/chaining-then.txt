@@ -1,0 +1,4 @@
+var firstTask:Task = new MyTask();
+var secondTask:Task = new MyTask();
+
+firstTask.then( secondTask ).run();

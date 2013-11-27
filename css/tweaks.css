@@ -1,0 +1,82 @@
+#header {
+	padding-bottom: 2px;
+	padding-left: 18px;
+}
+#header *[class^="icon-"] {
+	padding-top: 8px;
+}
+
+.alert-info a {
+	color: #226C90;
+	text-decoration: underline;
+}
+.alert-info a:hover {
+	text-decoration: none;
+}
+
+.alert-info {
+	border-color: #8FC3DC;
+}
+
+.add-on,
+.input-prepend .add-on {
+	color: #3385B2;
+	border-color: #BCE8F1;
+	border-color: #8FC3DC;
+	border-color: #CCC;
+	
+	background-color: #D8EDF6;
+	background-color: #EEE;
+	
+	color: #333;
+}
+
+.page-header {
+	padding: 0px;
+	margin: 0px;
+	border: 0;
+}
+.prettyprint {
+	font-size: 75%;
+	line-height: 13px;
+}
+
+.modal {
+    position: fixed; 
+    top: 3%; 
+    right: 3%; 
+    left: 3%; 
+    width: auto; 
+    margin: 0; 
+	padding: 5px;
+}
+.modal-body { 
+    height: 60%;
+	white-space: pre;
+    max-height: 350px;
+    padding: 0;
+	margin: 0;
+    overflow-y: auto; 
+    -webkit-overflow-scrolling: touch; 
+}
+.modal pre {
+	margin: 0;
+}
+.modal-header {
+	margin: 0;
+	padding: 5px;
+}
+
+pre.prettyprint {
+	width: auto;
+	display: inline-block;
+	padding: 8px;
+}
+.modal pre.prettyprint {
+	display: block;
+}
+
+#modal-related-label a {
+	cursor: hand;
+	cursor: pointer;
+}

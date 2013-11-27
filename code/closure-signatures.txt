@@ -1,0 +1,12 @@
+/**
+ * This type of closure is supported for started, interrupted, errored, and completed states.
+ */
+function():void;
+
+/**
+ * This type of closure is supported for interrupted, errored, and completed states.
+ * 
+ * @param message - Human-readable message describing the results of the Task invocation.
+ * @param data - Object containing loaded data (or Error information).
+ */
+function( message:String = "", data:* = null ):void;

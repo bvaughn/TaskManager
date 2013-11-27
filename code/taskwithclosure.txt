@@ -1,0 +1,11 @@
+var taskWithClosure:TaskWithClosure =
+	new TaskWithClosure(
+		function():void {
+			// Do stuff here
+		}, true );
+
+var compositeTask:CompositeTask = new CompositeTask( null, false );
+compositeTask.addTask( new PlaySoundTask( mySound ) );
+compositeTask.addTask( taskWithClosure );
+compositeTask.addTask( new PlaySoundTask( anotherSound ) );
+compositeTask.run();

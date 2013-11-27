@@ -1,0 +1,9 @@
+&lt;fx:Declarations&gt;
+	&lt;s:TraceTarget level="0" includeDate="true" includeTime="true" includeCategory="true" includeLevel="true"&gt;
+		&lt;s:filters&gt;
+			&lt;fx:Array&gt;
+				&lt;fx:String&gt;com.rosettastone.library.taskmanager.*&lt;/fx:String&gt;
+			&lt;/fx:Array&gt;
+		&lt;/s:filters&gt;
+	&lt;/s:TraceTarget&gt;
+&lt;/fx:Declarations&gt;

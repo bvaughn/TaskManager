@@ -1,0 +1,61 @@
+package {
+	import com.rosettastone.library.taskmanager.InterruptibleTask;
+	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	import flash.utils.getTimer;
+	
+	public class PropertyChangingTask extends InterruptibleTask {
+		
+		private var _deltaAtTimeOfLastInterruption:int;
+		private var _duration:int;
+		private var _fromValue:Number;
+		private var _property:String;
+		private var _startTime:int;
+		private var _target:Object;
+		private var _toValue:Number;
+		private var _timer:Timer;
+		
+		public function PropertyChangingTask( target:Object, property:String, fromValue:Number, toValue:Number, duration:int ) {
+			_duration = duration;
+			_fromValue = fromValue;
+			_property = property;
+			_target = target;
+			_toValue = toValue;
+			_deltaAtTimeOfLastInterruption = 0;
+		}
+		
+		override protected function customRun():void {
+			_startTime = getTimer();
+			
+			if ( _deltaAtTimeOfLastInterruption == 0 ) {
+				_target[ _property ] = _fromValue;
+			}
+			
+			_timer = new Timer( 100, 0 );
+			_timer.addEventListener( TimerEvent.TIMER, onTimer );
+			_timer.start();
+		}
+		
+		override protected function customInterrupt():void {
+			_deltaAtTimeOfLastInterruption += getTimer() - _startTime;
+			
+			_timer.stop();
+		}
+		
+		private function onTimer( event:TimerEvent ):void {
+			var ellapsedTime:int = getTimer() - _startTime + _deltaAtTimeOfLastInterruption;
+			
+			_target[ _property ] = _fromValue + ( _toValue - _fromValue ) * ( ellapsedTime / _duration );
+			
+			if ( ellapsedTime >= _duration ) {
+				_timer.removeEventListener( TimerEvent.TIMER, onTimer );
+				_timer.stop();
+				
+				_target[ _property ] = _toValue;
+				
+				taskComplete();
+			}
+		}
+	}
+}

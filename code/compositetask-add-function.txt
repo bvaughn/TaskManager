@@ -1,0 +1,9 @@
+var closure:Function =
+	function():void {
+		// Some synchronous operation
+	};
+
+var compositeTask:CompositeTask = new CompositeTask( null, false );
+compositeTask.addTask( taskOne );
+compositeTask.addFunction( closure );
+compositeTask.addTask( taskTwo );

@@ -1,0 +1,8 @@
+class MyComposite extends CompositeTask {
+	
+	override protected function addTasksBeforeRun():void {
+		addTask( taskOne );
+		addTask( taskTwo );
+		addTask( taskThree );
+	}
+}

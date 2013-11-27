@@ -1,0 +1,5 @@
+var compositeTask:CompositeTask = new CompositeTask( null, false );
+compositeTask.addTask( new PlaySoundTask( mySound ) );
+compositeTask.addTask( new WaitTask( 500 ) );
+compositeTask.addTask( new PlaySoundTask( anotherSound ) );
+compositeTask.run();

@@ -1,1 +1,767 @@
-My GitHub Page
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  
+  <title>Task Manager</title>
+  
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1038.36">
+
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.css" type="text/css">
+	<link rel="stylesheet" href="css/tweaks.css" type="text/css">
+  
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http:////netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js" type="text/javascript"></script>
+</head>
+
+<body onload="prettyPrint()">
+	<div class="container-fluid">
+		<div id="header" class="alert alert-info" style="margin-top: 15px;">
+			<i class="icon-tasks icon-4x pull-left"></i>
+			<p>
+				<div style="font-size: 30px; padding-bottom: 5px; font-weight: bold;">
+					An Introduction to Task Manager 2.0
+				</div>
+				
+				Written by <a href="http://people.lan.flt/folks/bvaughn">Brian Vaughn</a>.
+			</p>
+		</div>
+		<p>
+			Task Manager is an ActionScript library designed to simplify the implementation of asynchronous processes. This article is an introduction-to (and overview-of) the library.
+		</p>
+		
+		<hr />
+		
+		<div class="page-header">
+			<h3>
+				<i class="icon-list icon-large"></i>
+				Table of Contents
+			</h3>
+			<ul class="unstyled">
+				<li>
+					<i class="icon-bar-chart"></i>
+					<a href="#comparing_implementations">Comparing implementations: With and without Task Manager</a>
+				</li>
+				<li>
+					<i class="icon-refresh"></i>
+					<a href="#task_life_cycle">The lifecycle of a Task</a>
+				</li>
+				<li>
+					<i class="icon-leaf"></i>
+					<a href="#reusable_tasks">Reusable Task Manager tasks</a>
+				</li>
+				<li>
+					<i class="icon-eye-open"></i>
+					<a href="#composite_task">A closer look at CompositeTask</a>
+				</li>
+				<li>
+					<i class="icon-edit"></i>
+					<a href="#custom_tasks">Creating custom Tasks</a>
+				</li>
+				<li>
+					<i class="icon-tasks"></i>
+					<a href="#event_handlers_and_closures">Event handlers and closures</a>
+				</li>
+				<li>
+					<i class="icon-magic"></i>
+					<a href="#syntactic_sugar">Syntactic sugar</a>
+				</li>
+				<li>
+					<i class="icon-dashboard"></i>
+					<a href="#building_a_task_manager_app">Building an application on top of Task Manager</a>
+				</li>
+				<li>
+					<i class="icon-question-sign"></i>
+					<a href="#tips_for_debugging">Tips for debugging</a>
+				</li>
+				<li>
+					<i class="icon-question-sign"></i>
+					<a href="#tips_for_debugging">ActionScript documentation</a>
+				</li>
+			</ul>
+		</div>
+		
+		<hr />
+		
+		<a name="comparing_implementations"></a>
+		<h3>
+			<i class="icon-bar-chart icon-large"></i>
+			Comparing implementations
+			<small>With and without Task Manager</small>
+		</h3>
+		
+		<p>
+			Before we dive deep on its features let's take a look at some code samples- one written without the Task Manager and the other with.
+			For this example our code needs to listen to a Button for a click event and then load and play a Sound.
+		</p>
+		
+		<ul class="unstyled">
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 1A</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-1a-link"
+				   data-modal-trigger="true" data-title="Version 1A: Standard Event-handling" data-remote-body="code/1a.txt"
+				   data-related-id="code-1b-link" data-related-label="See Task-based">Standard Event-handling</a>
+			</li>
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 1B</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-1b-link"
+				   data-modal-trigger="true" data-title="Version 1B: Task-based" data-remote-body="code/1b.txt"
+				   data-related-id="code-1a-link" data-related-label="See Event-based">Task-based</a>
+			</li>
+		</ul>
+		
+		<p>
+			At first glance it may seem like there's not a lot of difference between the two controllers above.
+			The sample that uses Task Manager adds some syntactic sugar in place of event handlers but this could be accomplished without Task Manager if we were willing to write a custom model.
+			Code pertaining to Sound loading and playback has been abstracted away from our specific controller into a more reusable format.
+			This improvement is also something that we could accomplish without the use of the Task Manager library.
+			Let's take the example a little further though. What if we wanted to log an event to a server indicating the beginning and end of the Sound playback? Let's take another look at our two controllers:
+		</p>
+		
+		<ul class="unstyled">
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 2A</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-2a-link"
+				   data-modal-trigger="true" data-title="Version 2A: Standard Event-handling" data-remote-body="code/2a.txt"
+				   data-related-id="code-2b-link" data-related-label="See Task-based">Standard Event-handling</a>
+			</li>
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 2B</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-2b-link"
+				   data-modal-trigger="true" data-title="Version 2B: Task-based" data-remote-body="code/2b.txt"
+				   data-related-id="code-2a-link" data-related-label="See Event-based">Task-based</a>
+			</li>
+		</ul>
+		
+		<p>
+			Now our Task Manager based implementation looks a lot smaller than the alternative thanks to the use of
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/CompositeTask.html" target="_blank">CompositeTask</a>.
+			As the name suggests, CompositeTask is a task comprised of other tasks.
+			These other tasks can be run in parallel or in serial; (in this example they are run in serial).
+			In the non-Task Manager implementation above we are forced to handle errors dispatched from both Sound and URLLoader objects, but in the second example we only listen for an error on the CompositeTask.
+			This is because the CompositeTask bucket brigades any errors dispatched by its children.
+			This results in controller code that is better organized and more readable.
+		</p>
+		
+		<p>
+			Let's take this example one step further.
+			Assume that we are writing this code for a mobile platform and our controller needs to be able to handle external interruptions.
+		</p>
+		
+		<ul class="unstyled">
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 3A</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-3a-link"
+				   data-modal-trigger="true" data-title="Version 3A: Standard Event-handling" data-remote-body="code/3a.txt"
+				   data-related-id="code-3b-link" data-related-label="See Task-based">Standard Event-handling</a>
+			</li>
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 3B</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-3b-link"
+				   data-modal-trigger="true" data-title="Version 3B: Task-based" data-remote-body="code/3b.txt"
+				   data-related-id="code-3a-link" data-related-label="See Event-based">Task-based</a>
+			</li>
+		</ul>
+		
+		<p>
+			At this point the Task Manager implementation is beginning to show several clear advantages:
+		</p>
+
+		<ol>
+			<li>It's significantly more compact and easier to read.</li>
+			<li>Its interruption handling is simpler and more robust.</li>
+		</ol>
+
+		<p>
+			As a program's complexity increases so do the advantages to using a component like Task Manager.
+			Let's take our example one step further and introduce a few more of Task Manager's built-in components along the way. Let's modify our program to:
+		</p>
+
+		<ol>
+			<li>Start an animation at the same time as our Sound starts playing.</li>
+			<li>Re-enable our Button only once both the Sound and our animation have completed.</li>
+		</ol>
+
+		<p>
+			For simplicity's sake in this example, let's assume our animation is defined by one of the Flex effects classes.
+		</p>
+		
+		<ul class="unstyled">
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 4A</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-4a-link"
+				   data-modal-trigger="true" data-title="Version 4A: Standard Event-handling" data-remote-body="code/4a.txt"
+				   data-related-id="code-4b-link" data-related-label="See Task-based">Standard Event-handling</a>
+			</li>
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 4B</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-4b-link"
+				   data-modal-trigger="true" data-title="Version 4B: Task-based" data-remote-body="code/4b.txt"
+				   data-related-id="code-4c-link" data-related-label="See TaskManager-based">Task-based</a>
+			</li>
+		</ul>
+		
+		<p>
+			At this point our first implementation is beginning to get brittle.
+			It meets the requirements but it does so by spreading state across the controller in a way that is not very reusable or adaptable.
+			On the other hand, the Task Manager implementation is still tidy; each operation is abstracted away into its own Task and the flow could very easily be re-arranged if requirements change.
+		</p>
+		
+		<p>
+			To implement the dependencies introduced by the latest round of requirements we made use of an additional Task Manager component:
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/EventHandlingTask.html" target="_blank">EventHandlingTask</a>. EventHandlingTask listens for 2 categories of events- success/completion and failure/error. If a completion event type is dispatched EventHandlingTask will complete itself. If an error type is dispatched it will error. In our case we are only concerned with a single event type, EffectEvent.EFFECT_END, so we do not need to provide any error types.
+		</p>
+		
+		<p>
+			Alternately, we could have achieved this same result using the
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/TaskManager.html" target="_blank">TaskManager class</a> (see below).
+			TaskManager is a composite task capable of handling complex task dependencies.
+			It can be configured to execute an arbitrary sequence of child tasks.
+			Each of its children can have dependencies on other children.
+			TaskManager coordinates the execution of its children to ensure that no single child gets executed until all of the Tasks it depends on have completed.
+			Like CompositeTask, TaskManager will bucket-brigade any Task-errors so that we only need listen to it for completion or error.
+			Furthermore interrupting TaskManager will automatically interrupt any of its children that are running (and subsequent calls to its run() method will automatically resume any interrupted children).
+		</p>
+		
+		<ul class="unstyled">
+			<li>
+				<i class="icon-caret-right"></i>
+				<strong>Version 4C</strong>:
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-4c-link"
+				   data-modal-trigger="true" data-title="Version 4C: TaskManager-based" data-remote-body="code/4c.txt"
+				   data-related-id="code-4a-link" data-related-label="See Event-based">Using the TaskManager component</a>
+			</li>
+		</ul>
+		
+		<hr />
+		
+		<a name="task_life_cycle"></a>
+		<h3>
+			<i class="icon-refresh icon-large"></i>
+			The lifecycle of a Task
+			<small>Events and State</small>
+		</h3>
+		
+		<p>
+			Before we go any further let's take a quick look at the lifecycle of a Task.
+			Tasks have 5 basic states.
+			When a Task is first created it's in the default state.
+			From this state a task may enter a running state.
+			From there it may enter an errored state or a completed state.
+			(Some tasks may also enter an interrupted state but we'll talk more about that later.)
+			As a task changes state it notifies external code by dispatching a
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/events/TaskEvent.html" target="_blank">TaskEvent</a>.
+			<a href="#event_handlers_and_closures">Closures</a> may be used in place of Events if you prefer.
+		</p>
+		
+		<p>
+			<img src="images/lifecycle.png" border="0" />
+		</p>
+		
+		<p>
+			Tasks can be synchronous or asynchronous.
+			Synchronous tasks complete their work immediately (before returning control to the caller).
+			Asynchronous tasks take an indeterminate amount of time to complete.
+			Some tasks that are asynchronous are also interruptible- meaning that it is safe to pause and resume them.
+		</p>
+		
+		<p>
+			Task behavior is represented by 3 interfaces:
+		</p>
+		
+		<dl class="dl-horizontal">
+			<dt>
+				<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html">ITask</a>
+			</dt>
+			<dd>
+				This is the highest-level interface.
+				It defines methods for starting a task and for listening for task-completion.
+				All tasks must implement this interface.
+			</dd>
+			<dt>
+				<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ISynchronousTask.html">ISynchronousTask</a>
+			</dt>
+			<dd>
+				Tasks that complete immediately after being run should implement this interface.
+				These tasks are still executed in the same way and dispatch all of the same TaskEvents.
+			</dd>
+			<dt>
+				<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/IInterruptibleTask.html">IInterruptibleTask</a>
+			</dt>
+			<dd>
+				This type of task can be safely paused and resumed.
+				To pause a running task use the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/IInterruptibleTask.html#interrupt()">interrupt()</a> method.
+				To resume it once it has been interrupted invoke the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html#run()">run()</a> method again.
+			</dd>
+		</dl>
+		
+		<p>
+			In addition to dispatching events a Task also exposes several properties that can be used to determine which state it is currently in.
+			These include:
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#isComplete" target="_blank">isComplete</a>,
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#isErrored" target="_blank">isErrored</a>,
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#isInterrupted" target="_blank">isInterrupted</a>,
+			and
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#running" target="_blank">running</a>.
+		</p>
+		
+		<hr />
+		
+		<a name="reusable_tasks"></a>
+		<h3>
+			<i class="icon-leaf icon-large"></i>
+			Reusable Task Manager tasks
+			<small></small>
+		</h3>
+
+		<p>
+			In addition to the types of tasks we've already seen, there are several other reusable tasks provided by Task Manager.
+			Let's take a brief look at a couple of them and discuss some of their potential uses.
+		</p>
+		
+		<h4>
+			FactoryTask
+		</h4>
+		
+		<p>
+			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/FactoryTask.html" target="_blank">FactoryTask</a> is typically used within a larger composite task.
+			It serves as as placeholder in the event that we do not yet know which type of task to create <i>or</i> when the task creation relies on an object that has not yet been initialized. For example:
+		</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/factorytask.txt"></pre>
+		
+		<p>
+			In this example we define a sequence of tasks that loads external XML data and then performs some operations based on a value defined within the loaded XML.
+			At the time our program is defining this sequence we do not yet know which operations we will need to perform and so we use a FactoryTask.
+			The FactoryTask constructor accepts a closer that returns an object of type Task.
+			When the FactoryTask is executed it invokes this function and then runs the task returned.
+			When this newly-created task finishes or fails the FactoryTask bubbles the behavior by finishing or failing itself.
+		</p>
+		
+		<h4>
+			ObserverTask
+		</h4>
+		
+		<p>
+			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ObserverTask.html" target="_blank">ObserverTask</a> can be used to monitor a set of tasks and record their completion. Tasks can be added to or removed from the observer at runtime. It can be useful when an application needs to monitor a queue of tasks for completion. It is particularly helpful in the case of task interruptions. Tasks can be interrupted and resumed manually (using the interrupt() and run() methods). They can also be interrupted <i>for</i> other tasks. In that event the task that is being interrupted listens to the interrupting task for completion and then automatically resumes itself.
+		</p>
+		
+		<p>
+			Let's look at an example:
+		</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/observertask.txt"></pre>
+
+		<p>
+			The above example shows an ObserverTask being used to interrupt URL request while a sound is played and the application sleeps for 500ms. Once both the sound has finished playing and 500ms have passed- the ObserverTask will dispatch a complete event and the URL request will resume where it was interrupted.
+		</p>
+		
+		<h4>
+			PlaySoundTask
+		</h4>
+		
+		<p>
+			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/PlaySoundTask.html">PlaySoundTask</a> can be used to play a sound and notify of its completion.
+			This tasks supports interruptibility- meaning that sound playback can be paused and resumed.
+		</p>
+		
+		<h4>
+			RetryOnFailureDecoratorTask
+		</h4>
+		
+		<p>
+			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/RetryOnFailureDecoratorTask.html">RetryOnFailureDecoratorTask</a> is a special decorator task.
+			It can be used to decorate other tasks and retry them in the event of a failure.
+			(This can be useful for Tasks that rely on an internet connection in order to complete.)
+			This task allows its decorated Task to fail a couple of times before bubbling the error.
+		</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/retryonfailure.txt"></pre>
+		
+		<h4>
+			SleepTask
+		</h4>
+		
+		<p>
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/SleepTask.html" target="_blank">SleepTask</a> can be useful when a place holder of indeterminate time is required within a composite task. A SleepTask will never complete unless manually instructed to by external code. For example if our application needs to display a EULA and wait for the user to click "accept" before proceeding, we could use a SleepTask.
+		</p>
+		
+		<h4>
+			StubTask
+		</h4>
+
+		<p>
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/StubTask.html" target="_blank">StubTask</a> is primarily intended for automated tests but can also be useful in factory situations when a default behavior of nothing is desired. StubTasks do not do anything on their own. They can be configured to complete immediately upon execution <i>or</i> to wait for external code to instruct them to complete. For example:
+		</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/stubtask.txt"></pre>
+		
+		<p>
+			In the above example the parent class uses a StubTask as a placeholder to be executed in the event of a button-click. By default, no action will be taken if the user clicks the button; the StubTask will complete synchronously and the button will be re-enabled. A sub-class can override this factory method though if it wishes to perform any specific actions.
+		</p>
+		
+		<h4>
+			TaskWithClosure
+		</h4>
+		
+		<p>
+			Several reusable tasks are included within the Task Manager library. Even so your program will likely require additional tasks for custom operations. You can extend Task to define your own custom tasks (as described in a later section of this tutorial) but sometimes that can be too heavyweight, especially in the case of synchronous tasks that do not need to support interruptibility. In those cases the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/TaskWithClosure.html" target="_blank">TaskWithClosure</a> task can be useful. For example:
+		</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/taskwithclosure.txt"></pre>
+		
+		<p>
+			The above example illustrates a simple, synchronous custom task created with the TaskWithClosure method. The code defined within the closure passed to the task will not be executed until the task itself is executed. Within our example this means that a sound will first be played, then our custom code will be executed, then another sound will play.
+		</p>
+
+		<h4>
+			URLRequestTask
+		</h4>
+
+		<p>
+			The <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/URLRequestTask.html">URLRequestTask</a> loads a URLRequest and exposes any loaded data upon complete.
+			This task-type handles all of the various error event types dispatched by a URLLoader.
+		</p>
+		
+		<h4>
+			WaitTask
+		</h4>
+		
+		<p>
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/WaitTask.html" target="_blank">WaitTask</a> can be used to delay a composite task for a predetermined amount of time. For example:
+		</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/waittask.txt"></pre>
+		
+		<p>
+			The above composite task plays a sound and then delays for half a second before playing another one.
+		</p>
+		
+		<a name="composite_task"></a>
+		<h3>
+			<i class="icon-eye-open icon-large"></i>
+			A closer look at CompositeTask
+			<small></small>
+		</h3>
+
+		<p>We've already discussed CompositeTask at a high level but it is such a useful reusable task that it warrants a closer look.</p>
+		
+		<h4>Adding functions into the sequence</h4>
+
+		<p>Sometimes it is useful to perform a small, synchronous operation within a sequence of tasks. The TaskWithClosure could be used for this purpose but CompositeTask also exposes a convenience method to make things even easier: addFunction.</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/compositetask-add-function.txt"></pre>
+
+		<p>The above code will execute our synchronous function in between two asynchronous tasks.</p>
+
+		<h4>Adding and removing tasks at runtime</h4>
+
+		<p>All of the CompositeTask examples we've looked at so far have been configured before being run, but a composite's sequence can also be modified while it's running.
+For example:</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/modifying-composite-while-running.txt"></pre>
+
+		<p>The above example shows a sequence of tasks that can be modified under certain conditions based on user input. The syntax for this is pretty straight forward but there is one potential pitfall worth pointing out. The task we are removing happens to be the last task within the sequence we've defined. Because of this the CompositeTask may consider itself completed once that task has been removed. To prevent that we add the new task before removing the preexisting task. An alternative approach would be to interrupt the composite before making our adjustments.</p>
+
+			<p>It is worth pointing out that for some types of dynamic composites a FactoryTask may be simpler and easier to use. This is true if the only things changing within the composite are the types of individual tasks being run. If the overall sequence is being modified however, as in this example, using addTask() and removeTask() is the way to go.</p>
+
+		<h4>Extending to create a custom composite</h4>
+
+			<p>Sometimes it is useful to bundle a sequence of tasks for reuse rather than defining the same composite in multiple places. CompositeTask can be subclassed in this event:</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/extending-composite-task.txt"></pre>
+
+		<p>As the above example shows, all that's required to create a reusable composite is to extend CompositeTask and override the addTasksBeforeRun() method. This method will only be invoked the first time the sequence is run; it will not be executed again if the composite is interrupted and re-run.</p>
+		
+		<h4>
+			Handling interruptions
+		</h4>
+		
+		<p>
+			If your composite needs to support (or enforce) interruptibility you should use the
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/InterruptibleCompositeTask.html">InterruptibleCompositeTask</a>.
+			It only works with tasks that are either interruptible or synchronous.
+			Interrupting or resuming a composite task will automatically interrupt or resume all children.
+		</p>
+
+		<hr />
+
+		<a name="custom_tasks"></a>
+		<h3>
+			<i class="icon-edit icon-large"></i>
+			Creating custom Tasks
+			<small></small>
+		</h3>
+
+		<p>So far we have taken a look at Tasks that are included with the Task Manager library, but how complicated would it be if we wanted to create our own Task?</p>
+
+		<p>The first question we should ask ourselves is: should this new Task handle interruptions? At a high level there are 2 types of tasks: those that can be interrupted/resumed and those that cannot. How do you decide which type to create? Perhaps you know ahead of time that your application needs to be interruptible. If so then your choice is an easy one. Even if your application does not have such a requirement it may still be worth considering supporting interruptibility. A little more work is involved in implementing that functionality initially but your code will be in a better state if requirements should change.</p>
+		
+		<p>
+			To create a basic task all you need to do is extend extend the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html">Task</a> base class and override the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#customRun()" target="_blank">customRun</a> method.
+			Once the task completes your code should execute the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#taskComplete()" target="_blank">taskComplete</a> method helper method.
+			(If your task should error the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/Task.html#taskError()" target="_blank">taskError</a> method should be called instead.)
+			These helper methods will update internal task state and dispatch the appropriate state-change events.
+		</p>
+		
+		<p>	
+			If you want your task to support interruptibility you should extend the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/InterruptibleTask.html">InterruptibleTask</a> base class instead.
+			You'll need to override both the customRun and <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/InterruptibleTask.html#customInterrupt()" target="_blank">customInterrupt</a> methods.
+		</p>
+		
+		<p>	
+			You may also choose to create a synchronous task by extending the <a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/SynchronousTask.html">SynchronousTask</a> base class and overriding its customRun method.
+		</p>
+
+		<p>
+			Let's create one of each of the above Task-types to show how it's done.
+			For this example we'll create a task that changes a numeric property of an object from one value to another.
+			Our asynchronous implementations will gradually change this value over a period of time.
+		</p>
+		
+		<ul class="unstyled">
+			<li>
+				<i class="icon-caret-right"></i>
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-custom-task"
+				   data-modal-trigger="true" data-title="Basic (non-interruptible) custom Task" data-remote-body="code/customtask.txt"
+				   data-related-id="code-custom-interruptible-task" data-related-label="See interruptible Task">Basic (non-interruptible) custom Task</a>
+			</li>
+			<li>
+				<i class="icon-caret-right"></i>
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-custom-interruptible-task"
+				   data-modal-trigger="true" data-title="Interruptible custom Task" data-remote-body="code/custominterruptibletask.txt"
+				   data-related-id="code-custom-synchronous-task" data-related-label="See synchronous Task">Interruptible custom Task</a>
+			</li>
+			<li>
+				<i class="icon-caret-right"></i>
+				<i class="icon-zoom-in"></i>
+				<a href="#" id="code-custom-synchronous-task"
+				   data-modal-trigger="true" data-title="Synchronous custom Task" data-remote-body="code/customsynchronoustask.txt"
+				   data-related-id="code-custom-task" data-related-label="See Task">Synchronous custom Task</a>
+			</li>
+		</ul>
+		
+		<p>As you can see there is not a lot more involved in supporting interruptibility within a custom task- a few more lines of code and a little thought into how to gracefully stop and resume your operation and you're there. In terms of reusability interruptible tasks are the way to go because they can be used both in contexts that require interruptibility as well as those that do not.</p>
+		
+		<hr />
+
+		<a name="event_handlers_and_closures"></a>
+		<h3>
+			<i class="icon-tasks icon-large"></i>
+			Event handlers and closures
+			<small></small>
+		</h3>
+		
+		<p>A task is any operation that can be started at one point in time and will later complete or error. Completion or failure of a task is signaled by the dispatch of a TaskEvent (either TaskEvent.COMPLETE or TaskEvent.ERROR). This means that we can listen to a Task using regular ActionScript event handlers:</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/eventhandlers.txt"></pre>
+
+		<p>The above example should look familiar to Flash developers. There are times when event handlers feel too heavy-weight to accomplish simple operations. For this purpose the Task Manager library supports closures for notification of task state-changes. The above code could be re-written as follows:</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/closures.txt"></pre>
+
+		<p>
+			The only advantage to using closures over event handlers is that it requires fewer lines of code by eliminating the need to manage event-listener cleanup.
+		</p>
+		
+		<p>
+			Closures may be attached to tasks using the following methods:
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html#withStartedHandler()">withStartedHandler</a>,
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/IInterruptibleTask.html#withInterruptionHandler()">withInterruptionHandler</a>,
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html#withErrorHandler()">withErrorHandler</a>, and
+			<a href="http://ci.lan.flt/job/Components-TaskManager/javadoc/com/rosettastone/library/taskmanager/ITask.html#withCompleteHandler()">withCompleteHandler</a>.
+		</p>
+
+		<p>
+			Closures must have one of the following signatures:
+		</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/closure-signatures.txt"></pre>
+		
+		<p>
+			Like event handlers, multiple closures can be attached to a single task (although their order of execution is not guaranteed).
+		</p>
+
+		<hr />
+
+		<a name="syntactic_sugar"></a>
+		<h3>
+			<i class="icon-magic icon-large"></i>
+			Syntactic sugar
+			<small></small>
+		</h3>
+
+		<p>Task types like CompositeTask and TaskManager are intended for use in production code due to their flexibility and robustness. For simple scripting operations however it can sometimes be easier to chain tasks together manually. The Task Manager library offers a couple of convenience methods for doing this. Let's take a look at a few (admittedly contrived) examples to illustrate these methods:</p>
+
+		<p>The and() method executes multiple tasks in parallel:</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/chaining-and.txt"></pre>
+		
+		<p>The then() method executes multiple tasks in sequence:</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/chaining-then.txt"></pre>
+		
+		<p>The or() method executes a fallback task in the event that the primary task fails:</p>
+		
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/chaining-or.txt"></pre>
+
+		<hr />
+
+		<a name="building_a_task_manager_app"></a>
+		<h3>
+			<i class="icon-dashboard icon-large"></i>
+			Building an application on top of Task Manager
+			<small></small>
+		</h3>
+
+		<p>This article previously asserted that the benefit of using the Task Manager library is greater the larger and more complex a system gets. This assertion presumes that the Task Manager framework is being used <i>throughout</i> the system, but what does that mean? Taken to an extreme it could mean that the entire application is a single, large composite task. For example:</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/sample-application.txt"></pre>
+
+		<p>The sample above shows what a mobile application could look like if the entirety of its application code resided within a composite task, MyApplicationTask. One of the advantages to this approach is illustrated by the application's handling of lost internet connectivity. If connectivity is lost the entire application is paused; the application is then resumed when connectivity is restored.</p>
+
+		<p>Building on top of the Task Manager library you could create such an application from scratch. It may be better to use the App Skeleton framework for this purpose though. It offers the same application interruptibility as well as many shared initialization tasks. It is also structured in such a way as to encourage application design that is easily programmatically testable.</p>
+
+		<hr />
+
+		<a name="tips_for_debugging"></a>
+		<h3>
+			<i class="icon-question-sign icon-large"></i>
+			Tips for debugging
+			<small></small>
+		</h3>
+		
+		<h4>
+			Logging
+		</h4>
+
+		<p>The Task Manager library uses the mx.logging.ILogger to print debug information to the console. Apps can easily control what level of debug information they want to receive using the TraceTarget<span class="Apple-converted-space">  </span>component.</p>
+
+		<p>For example, to log all levels of information along with time, category, and a low-level label use the following TraceTarget configuration:</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/logging-configuration.txt"></pre>
+
+		<h4>
+			Task identifiers
+		</h4>
+
+		<p>Each Task is automatically assigned a unique, numeric instance identifier. It can be difficult to debug within a context of multiple, nested tasks using these identifiers alone however. Tasks support an additional attribute- taskIdentifier- for this purpose. It is recommended that you assign a human-readable identifier to every task you create to help in the event that debugging is required. For example:</p>
+
+		<pre class="prettyprint languague-actionscript" data-autoload="true" data-remote="code/task-identifiers.txt"></pre>
+
+		<p>Both of the above tasks have been assigned task identifiers. If either task should error a log message in the following format will be printed to the console:</p>
+
+		<pre class="prettyprint">11/6/2012 09:46:11.984 [ERROR] com.rosettastone.library.taskmanager.URLRequestTask Task errored [id: 305, taskIdentifier: "Loads app XML"] at 31717 ms</pre>
+
+		<p>The id above is a unique instance id. The task identifier is also included (if we've provided one) to assist in locating the offending task.</p>
+	
+	</div>
+	
+	<!-- Reusable JavaScript modal popup -->
+	<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="btn btn-inverse pull-right" data-dismiss="modal" aria-hidden="true">×</button>
+
+			<h4 style="color: #000;" style="z-index:-1;">
+				<span id="modal-title"></span>
+				<small id="modal-related-label">
+					<i class="icon-circle-arrow-right"></i>
+					<a id="modal-related-anchor"></a>
+				</small>
+			</h4>
+		</div>
+
+		<pre id="modal-body-pre" class="prettyprint languague-actionscript"><div id="modal-body" class="modal-body"></div></pre>
+	</div>
+
+	<script type="text/javascript">
+		// Syntax highlight loaded code samples
+		//$('.modal-body').bind( 'complete', prettyPrint );
+		
+		// Cycle between related code snippets
+		$('#modal-related-anchor').click(
+			function() {
+				id = '#' + $('#modal-related-anchor').data( 'related-id' );
+				
+				if ( $(id) ) {
+					$(id).trigger( 'click' );
+				}
+			} );
+		
+		// Setup modal popups
+		jQuery.each(
+			$("a[data-modal-trigger='true']"),
+			function( i, object ) {
+				$(object).click(
+					function() {
+						$.ajax( {
+							url : $(object).data( "remote-body" ),
+							dataType: "text",
+							success : function ( data ) {
+								$('#modal-title').text( $(object).data( "title" ) );
+								$('#modal-related-anchor').text( $(object).data( "related-label" ) );
+								$('#modal-body').text( data );
+								
+								label = $('#modal-related-label')
+								anchor = $('#modal-related-anchor');
+								
+								if ( $(object).data( "related-id" ) != null ) {
+									label.show( "fast" );
+									
+									anchor.data( 'related-id', $(object).data( "related-id" ) );
+									
+								} else {
+									label.hide( "fast" );
+								}
+								
+								$('#modal').modal( {} );
+								
+								prettyPrint();
+								
+								// TODO: Auto scroll to top
+							}
+						} );
+						
+						// Don't jump to the top of the page
+						return false;
+					} );
+			} );
+		
+		// Load external code samples
+		jQuery.each(
+			$("pre[data-autoload='true']"),
+			function( i, object ) {
+				$.ajax( {
+					url : $(object).data( "remote" ),
+					dataType: "text",
+					success : function ( data ) {
+						$(object).html( data );
+					}
+				} );
+			} );
+	</script>
+</body>
+</html>

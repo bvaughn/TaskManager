@@ -1,0 +1,22 @@
+package {
+	import com.rosettastone.library.taskmanager.SynchronousTask;
+	
+	public class PropertyChangingTask extends SynchronousTask {
+		
+		private var _property:String;
+		private var _target:Object;
+		private var _toValue:Number;
+		
+		public function PropertyChangingTask( target:Object, property:String, toValue:Number ) {
+			_property = property;
+			_target = target;
+			_toValue = toValue;
+		}
+		
+		override protected function customRun():void {
+			_target[ _property ] = _toValue;
+			
+			taskComplete();
+		}
+	}
+}

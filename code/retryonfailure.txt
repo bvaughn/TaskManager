@@ -1,0 +1,3 @@
+var decoratorTask:RetryOnFailureDecoratorTask =
+	new RetryOnFailureDecoratorTask( taskThatReliesOnAnInternetConnection );
+decoratorTask.run();

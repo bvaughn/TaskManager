@@ -1,0 +1,9 @@
+var urlRequestTask:URLRequestTask = new URLRequestTask( new URLRequest( "a-url" ) );
+urlRequestTask.run();
+
+var observerTask:ObserverTask = new ObserverTask();
+observerTask.observeTask( new PlaySoundTask( aSound ).run() );
+
+urlRequestTask.interruptForTask( observerTask.run() );
+
+observerTask.observeTask( new WaitTask( 500 ).run() );

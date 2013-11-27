@@ -1,0 +1,20 @@
+var onTaskComplete:Function =
+	function( event:TaskEvent ):void {
+		task.removeEventListener( TaskEvent.COMPLETE, onTaskComplete );
+		task.removeEventListener( TaskEvent.ERROR, onTaskError );
+		
+		// Handle completion
+	};
+
+var onTaskError:Function =
+	function( event:TaskEvent ):void {
+		task.removeEventListener( TaskEvent.COMPLETE, onTaskComplete );
+		task.removeEventListener( TaskEvent.ERROR, onTaskError );
+		
+		// Handle failure
+	};
+
+var task:URLRequestTask = new URLRequestTask( new URLRequest( "path-to-text-file" ) );
+task.addEventListener( TaskEvent.COMPLETE, onTaskComplete );
+task.addEventListener( TaskEvent.ERROR, onTaskError );
+task.run();
