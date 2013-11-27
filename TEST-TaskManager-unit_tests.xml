@@ -1,0 +1,112 @@
+<testsuites>
+  <testsuite>
+    <testcase classname="com.rosettastone.library.taskmanager::TestFactoryTask" name="testBasicOperation" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestFactoryTask" name="testScopeWithThisOperatorAndOptionalMethodParameters" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestFactoryTask" name="testScopeWithoutThisOperator" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskWithTimeout" name="testTaskCompletesBeforeTimeOut" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskWithTimeout" name="testTaskDoesNotCompleteBeforeTimeOut" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testCyclicDependenciesMutualReference" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testInvalidDependenciesDisconnectedReference" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testRedundantCompleteTaskEventsOnlyTriggerOneTaskManagerEvent" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testInvalidJumbledUpDependencies" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testNonCyclicButRedundantDependencies" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testRedundantInterruptedTaskEventsOnlyTriggerOneTaskManagerEvent" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testNoTasks" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testCyclicDependenciesSelfReference" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testParallelTasks" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testSerialTasks" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testInterruptibleTask" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskManager" name="testRedundantErrorTaskEventsOnlyTriggerOneTaskManagerEvent" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestWaitTask" name="testWaitTaskWaitsForTheSpecifiedTime" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestWaitTask" name="testPauseAndResumeWithoutRestartWaitTask" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestWaitTask" name="testPauseAndResumeWithRestartWaitTask" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskWithClosure" name="testWithoutAutoComplete" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskWithClosure" name="testAutoComplete" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskWithClosure" name="testAutoCompleteWithErrorDispatched" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTaskWithClosure" name="testAutoCompleteWithErrorThrown" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestInnocuousTaskDecorator" name="testDecoratedTaskCompletes" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestInnocuousTaskDecorator" name="testDecoratedTaskFails" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestCompositeTask" name="testErrorSerialFlow" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestCompositeTask" name="testNormalSerialFlow" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestCompositeTask" name="testInterruption" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestCompositeTask" name="testNormalParallelFlow" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestCompositeTask" name="testEmptyTask" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestCompositeTask" name="testErrorParallelFlow" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestEventHandlingTask" name="testCompleteEventHandled" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestEventHandlingTask" name="testFailureEventIgnoredIfNotSpecified" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestEventHandlingTask" name="testFailureEventHandled" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestEventHandlingTask" name="testNoEventListenersAreAddedUntilTaskIsRun" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestInterruptibleCompositeTask" name="testInterruptibleCompositeTaskErrorsIfGivenNonInterruptibleChildTasks" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestInterruptibleCompositeTask" name="testInterruptibleCompositeTaskHandlesSynchronousChildTasks" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestInterruptibleCompositeTask" name="testInterruptibleCompositeTaskHandlesPauseAndResumeWhenSomeTasksHaveCompleted" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestInterruptibleCompositeTask" name="testInterruptibleCompositeTaskHandlesSimplePauseAndResume" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestPlaySoundTask" name="testNullSoundCausesError" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestPlaySoundTask" name="testEmptySoundCausesError" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestPlaySoundTask" name="testPlaySound" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestPlaySoundTask" name="testPlaySoundWithInterruptAndRestart" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestPlaySoundTask" name="testPlaySoundWithInterruptAndRestartFromBeginning" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testTaskWithNoOperationsThrowsError" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testMultipleCompletesOnlyDispatchOneEvent" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testNonRunningTaskDoesNotDispatchEvents" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testMultipleErrorsOnlyDispatchOneEvent" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testWithCompleteHandler" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testMultipleInterruptionsOnlyDispatchOneEvent" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testWithErrorHandler" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testWithErrorHandlerNoParametersAccepted" status="success" time="0.0">
+    </testcase>
+    <testcase classname="com.rosettastone.library.taskmanager::TestTask" name="testWithInterruptionHandler" status="success" time="0.0">
+    </testcase>
+  </testsuite>
+</testsuites>

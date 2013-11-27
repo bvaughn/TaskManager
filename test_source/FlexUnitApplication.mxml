@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This is an auto generated file and is not intended for modification. -->
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:flexui="flexunit.flexui.*"
+			   minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
+	<fx:Script>
+		<![CDATA[
+			import com.rosettastone.library.taskmanager.AbstractTaskTestCase;
+			import com.rosettastone.library.taskmanager.TestCompositeTask;
+			import com.rosettastone.library.taskmanager.TestEventHandlingTask;
+			import com.rosettastone.library.taskmanager.TestFactoryTask;
+			import com.rosettastone.library.taskmanager.TestInnocuousTaskDecorator;
+			import com.rosettastone.library.taskmanager.TestInterruptibleCompositeTask;
+			import com.rosettastone.library.taskmanager.TestObserverTask;
+			import com.rosettastone.library.taskmanager.TestPlaySoundTask;
+			import com.rosettastone.library.taskmanager.TestRetryOnFailureDecoratorTask;
+			import com.rosettastone.library.taskmanager.TestTask;
+			import com.rosettastone.library.taskmanager.TestTaskManager;
+			import com.rosettastone.library.taskmanager.TestTaskWithClosure;
+			import com.rosettastone.library.taskmanager.TestTaskWithTimeout;
+			import com.rosettastone.library.taskmanager.TestURLRequestTask;
+			import com.rosettastone.library.taskmanager.TestWaitForUIInitialization;
+			import com.rosettastone.library.taskmanager.TestWaitTask;
+			
+			import unittests.TaskManagerTestSuite;
+			
+			public function currentRunTestSuite():Array
+			{
+				var testsToRun:Array = new Array();
+				testsToRun.push(unittests.TaskManagerTestSuite);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestTaskManager);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestFactoryTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestInterruptibleCompositeTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestTaskWithClosure);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestCompositeTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.AbstractTaskTestCase);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestURLRequestTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestWaitForUIInitialization);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestPlaySoundTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestInnocuousTaskDecorator);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestObserverTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestRetryOnFailureDecoratorTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestWaitTask);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestTaskWithTimeout);
+				testsToRun.push(com.rosettastone.library.taskmanager.TestEventHandlingTask);
+				return testsToRun;
+			}
+			
+			
+			private function onCreationComplete():void
+			{
+				testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "Components-TaskManager");
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<flexui:FlexUnitTestRunnerUI id="testRunner" portNumber="8765">
+	</flexui:FlexUnitTestRunnerUI>
+</s:Application>
