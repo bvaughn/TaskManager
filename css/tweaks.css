@@ -42,29 +42,24 @@
 }
 
 .modal {
-    position: fixed; 
-    top: 3%; 
-    right: 3%; 
-    left: 3%; 
-    width: auto; 
-    margin: 0; 
-	padding: 5px;
+  position: fixed; 
+  top: 3%; 
+  right: 3%; 
+  left: 3%; 
+  width: auto;
 }
 .modal-body { 
-    height: 60%;
-	white-space: pre;
-    max-height: 350px;
-    padding: 0;
+	height: 60%;
+	max-height: 350px;
+	padding: 0;
 	margin: 0;
-    overflow-y: auto; 
-    -webkit-overflow-scrolling: touch; 
+	overflow-y: auto; 
+	-webkit-overflow-scrolling: touch; 
 }
 .modal pre {
 	margin: 0;
 }
 .modal-header {
-	margin: 0;
-	padding: 5px;
 }
 
 pre.prettyprint {

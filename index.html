@@ -37,7 +37,7 @@
 				<i class="fa fa-list fa-large pull-left"></i>
 				Table of Contents
 			</h3>
-			<ul class="unstyled">
+			<ul class="list-unstyled">
 				<li>
 					<i class="fa fa-bar-chart-o"></i>
 					<a href="#comparing_implementations">Comparing implementations: With and without Task Manager</a>
@@ -95,7 +95,7 @@
 			For this example our code needs to listen to a Button for a click event and then load and play a Sound.
 		</p>
 		
-		<ul class="unstyled">
+		<ul class="list-unstyled">
 			<li>
 				<i class="fa fa-caret-right"></i>
 				<strong>Version 1A</strong>:
@@ -122,7 +122,7 @@
 			Let's take the example a little further though. What if we wanted to log an event to a server indicating the beginning and end of the Sound playback? Let's take another look at our two controllers:
 		</p>
 		
-		<ul class="unstyled">
+		<ul class="list-unstyled">
 			<li>
 				<i class="fa fa-caret-right"></i>
 				<strong>Version 2A</strong>:
@@ -156,7 +156,7 @@
 			Assume that we are writing this code for a mobile platform and our controller needs to be able to handle external interruptions.
 		</p>
 		
-		<ul class="unstyled">
+		<ul class="list-unstyled">
 			<li>
 				<i class="fa fa-caret-right"></i>
 				<strong>Version 3A</strong>:
@@ -198,7 +198,7 @@
 			For simplicity's sake in this example, let's assume our animation is defined by one of the Flex effects classes.
 		</p>
 		
-		<ul class="unstyled">
+		<ul class="list-unstyled">
 			<li>
 				<i class="fa fa-caret-right"></i>
 				<strong>Version 4A</strong>:
@@ -239,7 +239,7 @@
 			Furthermore interrupting TaskManager will automatically interrupt any of its children that are running (and subsequent calls to its run() method will automatically resume any interrupted children).
 		</p>
 		
-		<ul class="unstyled">
+		<ul class="list-unstyled">
 			<li>
 				<i class="fa fa-caret-right"></i>
 				<strong>Version 4C</strong>:
@@ -536,7 +536,7 @@ For example:</p>
 			Our asynchronous implementations will gradually change this value over a period of time.
 		</p>
 		
-		<ul class="unstyled">
+		<ul class="list-unstyled">
 			<li>
 				<i class="fa fa-caret-right"></i>
 				<i class="fa fa-zoom-in"></i>
@@ -677,20 +677,26 @@ For example:</p>
 	</div>
 	
 	<!-- Reusable JavaScript modal popup -->
-	<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="btn btn-inverse pull-right" data-dismiss="modal" aria-hidden="true">×</button>
+	<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+  	  	<div class="modal-header">
+  			  <i class="fa fa-times-circle fa-2x pull-right" data-dismiss="modal" aria-hidden="true"></i>
 
-			<h4 style="color: #000;" style="z-index:-1;">
-				<span id="modal-title"></span>
-				<small id="modal-related-label">
-					<i class="fa fa-circle-arrow-right"></i>
-					<a id="modal-related-anchor"></a>
-				</small>
-			</h4>
+    			<h4 style="color: #000;" style="z-index:-1;">
+    				<span id="modal-title"></span>
+    				<small id="modal-related-label">
+    					<i class="fa fa-circle-arrow-right"></i>
+    					<a id="modal-related-anchor"></a>
+    				</small>
+    			</h4>
+    		</div>
+
+        <div class="modal-body">
+    		  <pre class="prettyprint languague-actionscript"><div id="modal-body"></div></pre>
+    		</div>
+  		</div>
 		</div>
-
-		<pre id="modal-body-pre" class="prettyprint languague-actionscript"><div id="modal-body" class="modal-body"></div></pre>
 	</div>
 
 	<script type="text/javascript">
@@ -733,7 +739,7 @@ For example:</p>
 									label.hide( "fast" );
 								}
 								
-								$('#modal').modal( {} );
+								$('#modal').modal('show');
 								
 								prettyPrint();
 								
