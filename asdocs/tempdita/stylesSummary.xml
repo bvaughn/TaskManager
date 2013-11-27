@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allClasses>
+   <apiPackage id="com.rosettastone.library.taskmanager.events">
+      <apiName>com.rosettastone.library.taskmanager.events</apiName>
+      <apiClassifier id="com.rosettastone.library.taskmanager.events:TaskEvent">
+         <apiName>TaskEvent</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>flash.events:Event</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager.events:TaskManagerEvent">
+         <apiName>TaskManagerEvent</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>flash.events:Event</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+   </apiPackage>
+   <apiPackage id="com.rosettastone.library.taskmanager">
+      <apiName>com.rosettastone.library.taskmanager</apiName>
+      <apiClassifier id="com.rosettastone.library.taskmanager:IInterruptibleTask">
+         <apiName>IInterruptibleTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:TaskWithTimeout">
+         <apiName>TaskWithTimeout</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:IDecoratorTask">
+         <apiName>IDecoratorTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:URLRequestTask">
+         <apiName>URLRequestTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:SynchronousTaskWithClosure">
+         <apiName>SynchronousTaskWithClosure</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ISynchronousTask</apiBaseInterface>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:TaskWithClosure</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:AbstractTaskManager">
+         <apiName>AbstractTaskManager</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask">
+         <apiName>InterruptibleCompositeTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractCompositeTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:WaitTask">
+         <apiName>WaitTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:ISynchronousTask">
+         <apiName>ISynchronousTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:TaskManager">
+         <apiName>TaskManager</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractTaskManager</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleTaskManager">
+         <apiName>InterruptibleTaskManager</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractTaskManager</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:TaskManagerComponentInfo">
+         <apiName>TaskManagerComponentInfo</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:CompositeTask">
+         <apiName>CompositeTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractCompositeTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask">
+         <apiName>RetryOnFailureDecoratorTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleTask">
+         <apiName>InterruptibleTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:PlaySoundTask">
+         <apiName>PlaySoundTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:WaitForUIInitialization">
+         <apiName>WaitForUIInitialization</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:StubTask">
+         <apiName>StubTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:AbstractCompositeTask">
+         <apiName>AbstractCompositeTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:ITask">
+         <apiName>ITask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>flash.events:IEventDispatcher</apiBaseInterface>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:SleepTask">
+         <apiName>SleepTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:FactoryTask">
+         <apiName>FactoryTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator">
+         <apiName>InnocuousTaskDecorator</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:Task">
+         <apiName>Task</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface>
+               <apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:EventHandlingTask">
+         <apiName>EventHandlingTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:ObserverTask">
+         <apiName>ObserverTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleStubTask">
+         <apiName>InterruptibleStubTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:SynchronousTask">
+         <apiName>SynchronousTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ISynchronousTask</apiBaseInterface>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:TaskWithClosure">
+         <apiName>TaskWithClosure</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask">
+         <apiName>InterruptibleDecoratorTask</apiName>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+         </apiClassifierDetail>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+      </apiClassifier>
+   </apiPackage>
+</allClasses>

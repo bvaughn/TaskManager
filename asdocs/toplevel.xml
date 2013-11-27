@@ -1,0 +1,2380 @@
+<asdoc>
+
+<classRec name='TaskManagerComponentInfo' fullname='com.rosettastone.library.taskmanager:TaskManagerComponentInfo' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/TaskManagerComponentInfo.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='Object' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Used for retrieving information about the TaskManager component.
+	 ]]></description>
+</classRec>
+<method name='getBuildVersion' fullname='com.rosettastone.library.taskmanager:TaskManagerComponentInfo/getBuildVersion' isStatic='true' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Returns the build version number of this component.
+		 ]]></description>
+</method>
+<method name='getMajorVersion' fullname='com.rosettastone.library.taskmanager:TaskManagerComponentInfo/getMajorVersion' isStatic='true' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Returns the major version number of this component.
+		 ]]></description>
+</method>
+<method name='getMinorVersion' fullname='com.rosettastone.library.taskmanager:TaskManagerComponentInfo/getMinorVersion' isStatic='true' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Returns the minor version number of this component.
+		 ]]></description>
+</method>
+<method name='getVersionString' fullname='com.rosettastone.library.taskmanager:TaskManagerComponentInfo/getVersionString' isStatic='true' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+		 Returns a string with the three version numbers, seperated by
+		 '.' - e.g. 3.1.2 or 0.1.23
+		 ]]></description>
+</method>
+<field name='buildVersion' fullname='com.rosettastone.library.taskmanager:TaskManagerComponentInfo/private:buildVersion' type='int' isStatic='true' isConst='true' defaultValue='0' >
+</field>
+<field name='majorVersion' fullname='com.rosettastone.library.taskmanager:TaskManagerComponentInfo/private:majorVersion' type='int' isStatic='true' isConst='true' defaultValue='0' >
+</field>
+<field name='minorVersion' fullname='com.rosettastone.library.taskmanager:TaskManagerComponentInfo/private:minorVersion' type='int' isStatic='true' isConst='true' defaultValue='0' >
+</field>
+<interfaceRec name='ITask' fullname='com.rosettastone.library.taskmanager:ITask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/ITask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseClasses='flash.events:IEventDispatcher' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 A Task represents a job.
+	 This job can be synchronous or asynchronous.
+	 It can be a simple operation or a composite of other Tasks.
+	 This interface defines the minimum API that must be implemented by a Task within the Task Manager framework.
+	 ]]></description>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:ITask' name='progress' type='flash.events.ProgressEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:ITask' name='taskEventStarted' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:ITask' name='taskEventFinal' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:ITask' name='taskEventError' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:ITask' name='taskEventComplete' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+</interfaceRec>
+<method name='and' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:and' isStatic='false' isFinal='false' isOverride='false'  param_names='chainedTasks' param_types='restParam' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Executes the specified tasks when the current task is executed.
+		 If the current task has already been started the new tasks will be executed immediately.
+		 Failures or interruptions in the current task will not affect the chained tasks.
+		 
+		 ]]></description>
+<includeExample><![CDATA[TaskAndExample.as
+		 
+		 ]]></includeExample>
+<param><![CDATA[chainedTasks One or more tasks
+		 
+		 ]]></param>
+<throws><![CDATA[Error if any parameter is not a task
+		 ]]></throws>
+</method>
+<method name='or' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:or' isStatic='false' isFinal='false' isOverride='false'  param_names='chainedTasks' param_types='restParam' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Executes the specified tasks if the current task fails.
+		 
+		 ]]></description>
+<includeExample><![CDATA[TaskOrExample.as
+		 
+		 ]]></includeExample>
+<param><![CDATA[chainedTasks One or more tasks
+		 
+		 ]]></param>
+<throws><![CDATA[Error if any parameter is not a task
+		 ]]></throws>
+</method>
+<method name='reset' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:reset' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 Resets the task to it's pre-run state.
+		 This allows it to be re-run.
+		 This method can only be called on non-running tasks.
+		 ]]></description>
+</method>
+<method name='run' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:run' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Starts a task.
+		 This method will dispatch a TaskEvent.STARTED to indicate that the task has begun.
+		 
+		 This method may also be used to retry/resume an errored task.
+		 ]]></description>
+</method>
+<method name='then' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:then' isStatic='false' isFinal='false' isOverride='false'  param_names='chainedTasks' param_types='restParam' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Executes the specified tasks once the current task has completed successfully.
+		 
+		 ]]></description>
+<includeExample><![CDATA[TaskThenExample.as
+		 
+		 ]]></includeExample>
+<param><![CDATA[chainedTasks One or more tasks
+		 
+		 ]]></param>
+<throws><![CDATA[Error if any parameter is not a task
+		 ]]></throws>
+</method>
+<method name='withCompleteHandler' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:withCompleteHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='completeHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Although tasks dispatch TaskEvents to indicate completion, this method may also be used for notification purposes.
+		 The provided function will be invoked only upon successful completion of the task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once when the task completes.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 		 ]]></description>
+<param><![CDATA[completeHandler Function
+		 ]]></param>
+</method>
+<method name='withErrorHandler' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:withErrorHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='errorHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Although tasks dispatch TaskEvents to indicate failure, this method may also be used for notification purposes.
+		 The provided function will be invoked only upon failure of the task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once if the tasks errors.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 		 ]]></description>
+<param><![CDATA[errorHandler Function
+		 ]]></param>
+</method>
+<method name='withFinalHandler' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:withFinalHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='finalHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 This handler is invoked upon either success or failure of the Task.
+		 It can be used for cleanup that must be done regardless of Task-status.
+		 
+		 <p>
+		 This method may be called multiple times safely.
+		 Each unique function specified will be executed once when the task is ready for cleanup.
+		 </p>
+		 
+		 <p>
+		 This type of closure should implement the following signature:
+		 <pre>function():void</pre>
+		 </p>
+		 ]]></description>
+</method>
+<method name='withStartedHandler' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:withStartedHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='startedHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Although tasks dispatch TaskEvents to indicate starting, this method may also be used for notification purposes.
+		 The provided function will be invoked each time the task is started (or re-started).
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once when the task starts.
+		 
+		 <p>
+		 It should have the following signature:
+		 <pre>function():void</pre>
+		 </p>
+		 		 ]]></description>
+<param><![CDATA[startedHandler Function
+		 ]]></param>
+</method>
+<method name='data' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:data/get' isStatic='false' isFinal='false' isOverride='false'  result_type='*'>
+<description><![CDATA[
+		 Optional data parameter passed to the Task complete/error/interruption method.
+		 ]]></description>
+</method>
+<method name='id' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:id/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Number'>
+<description><![CDATA[
+		 ]]></description>
+<private><![CDATA[]]></private>
+</method>
+<method name='isComplete' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:isComplete/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 The current task has successfully completed execution.
+		 ]]></description>
+</method>
+<method name='isErrored' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:isErrored/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 The current task failed.
+		 ]]></description>
+</method>
+<method name='isRunning' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:isRunning/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 ]]></description>
+</method>
+<method name='message' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:message/get' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+		 Optional message parameter passed to the task complete/error/interruption method.
+		 ]]></description>
+</method>
+<method name='numInternalOperationsCompleted' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:numInternalOperationsCompleted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value > 1;
+		 ]]></description>
+</method>
+<method name='numInternalOperationsPending' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:numInternalOperationsPending/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of internal operations not yet completed.
+		 ]]></description>
+</method>
+<method name='numInternalOperations' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:numInternalOperations/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value > 1;
+		 
+		 If value > 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 ]]></description>
+</method>
+<method name='numTimesCompleted' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:numTimesCompleted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of times this task has completed.
+		 ]]></description>
+</method>
+<method name='numTimesErrored' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:numTimesErrored/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of times this task has errored.
+		 ]]></description>
+</method>
+<method name='numTimesInterrupted' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:numTimesInterrupted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of times this task has been interrupted.
+		 ]]></description>
+</method>
+<method name='numTimesReset' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:numTimesReset/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of times this task has been reset.
+		 This is the only counter that is not reset by the reset() method.
+		 ]]></description>
+</method>
+<method name='numTimesStarted' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:numTimesStarted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of times this task has been started.
+		 ]]></description>
+</method>
+<method name='running' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:running/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 ]]></description>
+</method>
+<method name='synchronous' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:synchronous/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 The current task can be executed synchronously.
+		 ]]></description>
+</method>
+<method name='taskIdentifier' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:taskIdentifier/get' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+		 (Optional) human-readable label for task.
+		 ]]></description>
+</method>
+<method name='uniqueID' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:uniqueID/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Number'>
+<description><![CDATA[
+		 Unique ID for a task.
+		 ]]></description>
+</method>
+<method name='taskIdentifier' fullname='com.rosettastone.library.taskmanager:ITask/com.rosettastone.library.taskmanager:ITask:taskIdentifier/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='String' param_defaults='undefined' result_type='void'>
+</method>
+<interfaceRec name='IInterruptibleTask' fullname='com.rosettastone.library.taskmanager:IInterruptibleTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/IInterruptibleTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseClasses='com.rosettastone.library.taskmanager:ITask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 An interruptible Task can be paused and resumed after being run.
+	 
+	 Pausing a non-running Task should have no effect.
+	 Resuming a non-interrupted Task should have no effect.
+	 ]]></description>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:IInterruptibleTask' name='taskEventInterrupted' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+</interfaceRec>
+<method name='disconnectFromInterruptingTask' fullname='com.rosettastone.library.taskmanager:IInterruptibleTask/com.rosettastone.library.taskmanager:IInterruptibleTask:disconnectFromInterruptingTask' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 If an interrupting-Task has been provided (via interruptForTask) this Task will automatically resume when it completes.
+		 This method to cancels that behavior by removing references and event listeners.
+		 ]]></description>
+</method>
+<method name='interruptForTask' fullname='com.rosettastone.library.taskmanager:IInterruptibleTask/com.rosettastone.library.taskmanager:IInterruptibleTask:interruptForTask' isStatic='false' isFinal='false' isOverride='false'  param_names='interruptingTask' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='Boolean'>
+<description><![CDATA[
+		 Interrupts the current Task to wait on the Task specified.
+		 Once this Task dispatches a TaskEvent.COMPLETE event, this Task will resume.
+		 If the specified Task dispatches a TaskEvent.ERROR event this Task will also error.
+		 TaskEvent.INTERRUPTED events are ignored.
+		 
+		 If this method is called once with a Task and then called again before that Task has completed,
+		 Event listeners will be removed from the first Task and added to the second one.
+		 There can only be 1 active interrupting Task at a time.
+		 If this Task should be interrupted by more than one Task, a CompositeTask or ObserverTask should be used.
+		 
+		 If the specified interrupting Task is already running this method will simply add event listeners.
+		 If it is not running this method will add event listeners but will rely on external code to run the interrupter.
+		 
+		 ]]></description>
+<param><![CDATA[interruptingTask Task
+		 
+		 ]]></param>
+<return><![CDATA[TRUE if the Task has been successfully interrupted
+		 ]]></return>
+</method>
+<method name='interrupt' fullname='com.rosettastone.library.taskmanager:IInterruptibleTask/com.rosettastone.library.taskmanager:IInterruptibleTask:interrupt' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 Interrupt the current Task.
+		 Interruptions should be handled in such a way as to allow a subsequent call to run() to resume gracefully.
+		 
+		 This mehtod should trigger an event of type TaskEvent.INTERRUPTED.
+		 
+		 ]]></description>
+<return><![CDATA[TRUE if the Task has been successfully interrupted
+		 ]]></return>
+</method>
+<method name='withInterruptionHandler' fullname='com.rosettastone.library.taskmanager:IInterruptibleTask/com.rosettastone.library.taskmanager:IInterruptibleTask:withInterruptionHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='interruptionHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Although Tasks dispatch TaskEvents to indicate interruption this method may also be used for notification purposes.
+		 The provided function will be invoked only upon interruption of the Task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once if the task interrupts.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 
+		 ]]></description>
+<param><![CDATA[interruptionHandler Function
+		 ]]></param>
+</method>
+<method name='interruptingTask' fullname='com.rosettastone.library.taskmanager:IInterruptibleTask/com.rosettastone.library.taskmanager:IInterruptibleTask:interruptingTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 The Task currently interrupting the this Task's execution (or NULL if no such Task exists).
+		 ]]></description>
+</method>
+<method name='isInterrupted' fullname='com.rosettastone.library.taskmanager:IInterruptibleTask/com.rosettastone.library.taskmanager:IInterruptibleTask:isInterrupted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 The task has been interrupted and has not yet resumed.
+		 ]]></description>
+</method>
+<interfaceRec name='IDecoratorTask' fullname='com.rosettastone.library.taskmanager:IDecoratorTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/IDecoratorTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseClasses='com.rosettastone.library.taskmanager:ITask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Special interface for tasks that decorate other tasks.
+	 This interface can assist external code in getting to the lowest-level failing task in the event of an error.
+	 ]]></description>
+</interfaceRec>
+<method name='decoratedTask' fullname='com.rosettastone.library.taskmanager:IDecoratorTask/com.rosettastone.library.taskmanager:IDecoratorTask:decoratedTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Inner (decorated) Task.
+		 ]]></description>
+</method>
+<interfaceRec name='ISynchronousTask' fullname='com.rosettastone.library.taskmanager:ISynchronousTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/ISynchronousTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseClasses='com.rosettastone.library.taskmanager:ITask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 A synchronous Task is one that completes immediately upon being run.
+	 
+	 ]]></description>
+<internal><![CDATA[This interface is a useful placeholder even though it does not define any additional API methods.
+	 ]]></internal>
+</interfaceRec>
+<classRec name='Task' fullname='com.rosettastone.library.taskmanager:Task' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/Task.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='flash.events:EventDispatcher' interfaces='com.rosettastone.library.taskmanager:ITask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 This class is meant to encapsulate a single, self-contained job.
+	 Each instance can have 0+ dependencies in the form of other tasks.
+	 
+	 To create a usable Task, extend this class and override the customRun() method.
+	 Your Task should call taskComplete() or taskError() when it has completed or failed.
+	 ]]></description>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:Task' name='progress' type='flash.events.ProgressEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:Task' name='taskEventInterrupted' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:Task' name='taskEventStarted' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:Task' name='taskEventFinal' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:Task' name='taskEventError' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:Task' name='taskEventComplete' type='com.rosettastone.library.taskmanager.events.TaskEvent' >
+	</Event>
+</metadata>
+</classRec>
+<method name='Task' fullname='com.rosettastone.library.taskmanager:Task/Task' isStatic='false' isFinal='false' isOverride='false'  param_names='taskIdentifier' param_types='String' param_defaults='null' result_type='*'>
+<description><![CDATA[
+		 Constructor
+		 
+		 ]]></description>
+<param><![CDATA[taskIdentifier Human-friendly ID string useful for debugging purposes only.
+		 ]]></param>
+</method>
+<method name='and' fullname='com.rosettastone.library.taskmanager:Task/and' isStatic='false' isFinal='false' isOverride='false'  param_names='chainedTasks' param_types='restParam' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Executes the specified tasks when the current task is executed.
+		 If the current task has already been started the new tasks will be executed immediately.
+		 Failures or interruptions in the current task will not affect the chained tasks.
+		 
+		 ]]></description>
+<param><![CDATA[chainedTasks One or more tasks
+		 
+		 ]]></param>
+</method>
+<method name='customReset' fullname='com.rosettastone.library.taskmanager:Task/protected:customReset' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 Override this method to perform any custom reset operations.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:Task/protected:customRun' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='disconnectFromInterruptingTask' fullname='com.rosettastone.library.taskmanager:Task/disconnectFromInterruptingTask' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 ]]></description>
+<inheritDoc><![CDATA[]]></inheritDoc>
+</method>
+<method name='dispatchProgressEvent' fullname='com.rosettastone.library.taskmanager:Task/protected:dispatchProgressEvent' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='doTaskComplete' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:doTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+</method>
+<method name='doTaskError' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:doTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+</method>
+<method name='doTaskInterrupted' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:doTaskInterrupted' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+</method>
+<method name='getLoggerString' fullname='com.rosettastone.library.taskmanager:Task/protected:getLoggerString' isStatic='false' isFinal='false' isOverride='false'  param_names='string' param_types='String' param_defaults='undefined' result_type='String'>
+<description><![CDATA[
+		 Returns a string for logging the specified task-state event.
+		 
+		 ]]></description>
+<param><![CDATA[string String to append to log
+		 ]]></param>
+</method>
+<method name='interruptForTask' fullname='com.rosettastone.library.taskmanager:Task/interruptForTask' isStatic='false' isFinal='false' isOverride='false'  param_names='interruptingTask' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='Boolean'>
+<description><![CDATA[
+		 Interrupts the current Task to wait on the Task specified.
+		 Once this Task dispatches a TaskEvent.COMPLETE event, this Task will resume.
+		 If the specified Task dispatches a TaskEvent.ERROR event this Task will also error.
+		 TaskEvent.INTERRUPTED events are ignored.
+		 
+		 If this method is called once with a Task and then called again before that Task has completed,
+		 Event listeners will be removed from the first Task and added to the second one.
+		 There can only be 1 active interrupting Task at a time.
+		 If this Task should be interrupted by more than one Task, a CompositeTask or ObserverTask should be used.
+		 
+		 If the specified interrupting Task is already running this method will simply add event listeners.
+		 If it is not running this method will add event listeners but will rely on external code to run the interrupter.
+		 
+		 ]]></description>
+<param><![CDATA[interruptingTask Task
+		 ]]></param>
+</method>
+<method name='interrupt' fullname='com.rosettastone.library.taskmanager:Task/interrupt' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.
+		 
+		 If they are, they should fire a TaskEvent.INTERRUPTED to indicate successful interruption of the task.
+		 
+		 If the interrupting fails at runtime, this method returns false
+		 ]]></description>
+</method>
+<method name='onInterruptingTaskComplete' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:onInterruptingTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onInterruptingTaskError' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:onInterruptingTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='or' fullname='com.rosettastone.library.taskmanager:Task/or' isStatic='false' isFinal='false' isOverride='false'  param_names='chainedTasks' param_types='restParam' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Executes the specified tasks if the current task fails.
+		 
+		 ]]></description>
+<param><![CDATA[chainedTasks One or more tasks
+		 
+		 ]]></param>
+</method>
+<method name='reset' fullname='com.rosettastone.library.taskmanager:Task/reset' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 
+		 Resets the task to it's pre-run state.
+		 This allows it to be re-run.
+		 This method can only be called on non-running tasks.
+		 ]]></description>
+</method>
+<method name='run' fullname='com.rosettastone.library.taskmanager:Task/run' isStatic='false' isFinal='true' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Starts a task.
+		 This method will dispatch a TaskEvent.STARTED to indicate that the task has begun.
+		 
+		 This method may also be used to retry/resume an errored task.
+		 ]]></description>
+</method>
+<method name='taskComplete' fullname='com.rosettastone.library.taskmanager:Task/protected:taskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 This method should be called upon Task completion.
+		 It dispatches a TaskEvent.COMPLETE event and toggles the Tasks's "running" and "complete" states.
+		 It also invokes the success handler if one has been provided.
+		 
+		 ]]></description>
+<param><![CDATA[message An (optional) message or data in string form
+		 ]]></param>
+<param><![CDATA[data Optional data object related to the Task dispatching this event.
+		 ]]></param>
+</method>
+<method name='taskError' fullname='com.rosettastone.library.taskmanager:Task/protected:taskError' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 This method should be called upon Task failure.
+		 It dispatches a TaskEvent.ERROR event and toggles the Tasks's "running" and "complete" states.
+		 It also invokes the error handler if one has been provided.
+		 
+		 ]]></description>
+<param><![CDATA[message An (optional) reason for the error
+		 ]]></param>
+<param><![CDATA[data Optional data object containing additional error information
+		 ]]></param>
+</method>
+<method name='taskInterrupted' fullname='com.rosettastone.library.taskmanager:Task/protected:taskInterrupted' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 Call this method to interrupt the currently running Task.
+		 This method dispatches a TaskEvent.INTERRUPTED and toggles the tasks's "running" state.
+		 
+		 ]]></description>
+<param><![CDATA[message An (optional) reason for the interruption
+		 ]]></param>
+</method>
+<method name='then' fullname='com.rosettastone.library.taskmanager:Task/then' isStatic='false' isFinal='false' isOverride='false'  param_names='chainedTasks' param_types='restParam' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Executes the specified tasks once the current task has completed successfully.
+		 
+		 ]]></description>
+<param><![CDATA[chainedTasks One or more tasks
+		 
+		 ]]></param>
+</method>
+<method name='throwErrorIfAnyObjectInArrayIsNotATask' fullname='com.rosettastone.library.taskmanager:Task/protected:throwErrorIfAnyObjectInArrayIsNotATask' isStatic='false' isFinal='false' isOverride='false'  param_names='tasks' param_types='Array' param_defaults='undefined' result_type='void'>
+</method>
+<method name='withCompleteHandler' fullname='com.rosettastone.library.taskmanager:Task/withCompleteHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='completeHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Although tasks dispatch TaskEvents to indicate completion, this method may also be used for notification purposes.
+		 The provided function will be invoked only upon successful completion of the task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once when the task completes.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 		 ]]></description>
+<param><![CDATA[completeHandler Function
+		 ]]></param>
+</method>
+<method name='withErrorHandler' fullname='com.rosettastone.library.taskmanager:Task/withErrorHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='errorHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Although tasks dispatch TaskEvents to indicate failure, this method may also be used for notification purposes.
+		 The provided function will be invoked only upon failure of the task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once if the tasks errors.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 		 ]]></description>
+<param><![CDATA[errorHandler Function
+		 ]]></param>
+</method>
+<method name='withFinalHandler' fullname='com.rosettastone.library.taskmanager:Task/withFinalHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='finalHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 This handler is invoked upon either success or failure of the Task.
+		 It can be used for cleanup that must be done regardless of Task-status.
+		 
+		 <p>
+		 This method may be called multiple times safely.
+		 Each unique function specified will be executed once when the task is ready for cleanup.
+		 </p>
+		 
+		 <p>
+		 This type of closure should implement the following signature:
+		 <pre>function():void</pre>
+		 </p>
+		 ]]></description>
+</method>
+<method name='withInterruptionHandler' fullname='com.rosettastone.library.taskmanager:Task/withInterruptionHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='interruptionHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 ]]></description>
+<inheritDoc><![CDATA[]]></inheritDoc>
+</method>
+<method name='withStartedHandler' fullname='com.rosettastone.library.taskmanager:Task/withStartedHandler' isStatic='false' isFinal='false' isOverride='false'  param_names='startedHandler' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Although tasks dispatch TaskEvents to indicate starting, this method may also be used for notification purposes.
+		 The provided function will be invoked each time the task is started (or re-started).
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once when the task starts.
+		 
+		 <p>
+		 It should have the following signature:
+		 <pre>function():void</pre>
+		 </p>
+		 		 ]]></description>
+<param><![CDATA[startedHandler Function
+		 ]]></param>
+</method>
+<method name='data' fullname='com.rosettastone.library.taskmanager:Task/data/get' isStatic='false' isFinal='false' isOverride='false'  result_type='*'>
+<description><![CDATA[
+		 
+		 Optional data parameter passed to the Task complete/error/interruption method.
+		 ]]></description>
+</method>
+<method name='id' fullname='com.rosettastone.library.taskmanager:Task/id/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Number'>
+<description><![CDATA[
+		 ]]></description>
+<inheritDoc><![CDATA[]]></inheritDoc>
+</method>
+<method name='interruptible' fullname='com.rosettastone.library.taskmanager:Task/interruptible/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 The current Task can be interrupted.
+		 Invoking interrupt() for a Task that is not marked as interruptible may result in an error.
+		 ]]></description>
+</method>
+<method name='interruptingTask' fullname='com.rosettastone.library.taskmanager:Task/interruptingTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 The Task currently interrupting the composite Task's execution (or NULL if no such Task exists).
+		 ]]></description>
+</method>
+<method name='isComplete' fullname='com.rosettastone.library.taskmanager:Task/isComplete/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The current task has successfully completed execution.
+		 ]]></description>
+</method>
+<method name='isErrored' fullname='com.rosettastone.library.taskmanager:Task/isErrored/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The current task failed.
+		 ]]></description>
+</method>
+<method name='isInterrupted' fullname='com.rosettastone.library.taskmanager:Task/isInterrupted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 ]]></description>
+<inheritDoc><![CDATA[]]></inheritDoc>
+</method>
+<method name='isRunning' fullname='com.rosettastone.library.taskmanager:Task/isRunning/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 ]]></description>
+</method>
+<method name='logger' fullname='com.rosettastone.library.taskmanager:Task/protected:logger/get' isStatic='false' isFinal='false' isOverride='false'  result_type='mx.logging:ILogger'>
+<description><![CDATA[
+		 Instance of ILogger to be used for any custom Task logging.
+		 ]]></description>
+</method>
+<method name='message' fullname='com.rosettastone.library.taskmanager:Task/message/get' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+		 
+		 Optional message parameter passed to the task complete/error/interruption method.
+		 ]]></description>
+</method>
+<method name='numInternalOperationsCompleted' fullname='com.rosettastone.library.taskmanager:Task/numInternalOperationsCompleted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value > 1;
+		 ]]></description>
+</method>
+<method name='numInternalOperationsPending' fullname='com.rosettastone.library.taskmanager:Task/numInternalOperationsPending/get' isStatic='false' isFinal='true' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of internal operations not yet completed.
+		 ]]></description>
+</method>
+<method name='numInternalOperations' fullname='com.rosettastone.library.taskmanager:Task/numInternalOperations/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value > 1;
+		 
+		 If value > 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 ]]></description>
+</method>
+<method name='numTimesCompleted' fullname='com.rosettastone.library.taskmanager:Task/numTimesCompleted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of times this task has completed.
+		 ]]></description>
+</method>
+<method name='numTimesErrored' fullname='com.rosettastone.library.taskmanager:Task/numTimesErrored/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of times this task has errored.
+		 ]]></description>
+</method>
+<method name='numTimesInterrupted' fullname='com.rosettastone.library.taskmanager:Task/numTimesInterrupted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of times this task has been interrupted.
+		 ]]></description>
+</method>
+<method name='numTimesReset' fullname='com.rosettastone.library.taskmanager:Task/numTimesReset/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of times this task has been reset.
+		 This is the only counter that is not reset by the reset() method.
+		 ]]></description>
+</method>
+<method name='numTimesStarted' fullname='com.rosettastone.library.taskmanager:Task/numTimesStarted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of times this task has been started.
+		 ]]></description>
+</method>
+<method name='running' fullname='com.rosettastone.library.taskmanager:Task/running/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 ]]></description>
+</method>
+<method name='synchronous' fullname='com.rosettastone.library.taskmanager:Task/synchronous/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The current task can be executed synchronously.
+		 ]]></description>
+</method>
+<method name='taskIdentifier' fullname='com.rosettastone.library.taskmanager:Task/taskIdentifier/get' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+		 
+		 (Optional) human-readable label for task.
+		 ]]></description>
+</method>
+<method name='uniqueID' fullname='com.rosettastone.library.taskmanager:Task/uniqueID/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Number'>
+<description><![CDATA[
+		 
+		 Unique ID for a task.
+		 ]]></description>
+</method>
+<method name='taskIdentifier' fullname='com.rosettastone.library.taskmanager:Task/taskIdentifier/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='String' param_defaults='undefined' result_type='void'>
+</method>
+<field name='ID' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:ID' type='Number' isStatic='true' isConst='false' defaultValue='0' >
+</field>
+<field name='_completeHandlers' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_completeHandlers' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_complete' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_complete' type='Boolean' isStatic='false' isConst='false' defaultValue='false' >
+</field>
+<field name='_data' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_data' type='' isStatic='false' isConst='false' >
+</field>
+<field name='_errorHandlers' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_errorHandlers' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_errored' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_errored' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_finalHandlers' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_finalHandlers' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_interrupted' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_interrupted' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_interruptingTask' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_interruptingTask' type='com.rosettastone.library.taskmanager:ITask' isStatic='false' isConst='false' >
+</field>
+<field name='_interruptionHandlers' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_interruptionHandlers' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_logger' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_logger' type='mx.logging:ILogger' isStatic='false' isConst='false' >
+</field>
+<field name='_message' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_message' type='String' isStatic='false' isConst='false' defaultValue='' >
+</field>
+<field name='_numTimesCompleted' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_numTimesCompleted' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_numTimesErrored' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_numTimesErrored' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_numTimesInterrupted' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_numTimesInterrupted' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_numTimesReset' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_numTimesReset' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_numTimesStarted' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_numTimesStarted' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_running' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_running' type='Boolean' isStatic='false' isConst='false' defaultValue='false' >
+</field>
+<field name='_startedHandlers' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_startedHandlers' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_taskHasBeenRunAtLeastOnce' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_taskHasBeenRunAtLeastOnce' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_taskIdentifier' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_taskIdentifier' type='String' isStatic='false' isConst='false' >
+</field>
+<field name='_uniqueID' fullname='com.rosettastone.library.taskmanager:Task/TaskPrivateNamespace:_uniqueID' type='Number' isStatic='false' isConst='false' >
+</field>
+<classRec name='ObserverTask' fullname='com.rosettastone.library.taskmanager:ObserverTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/ObserverTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:Task' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Observes (but does not execute) a collection of Tasks.
+	 This task can be used to monitor the execution of 1 or more running Tasks.
+	 Tasks can be added (or removed) while the observer is running.
+	 It will complete only once all observed Tasks has completed.
+	 
+	 If any of the observed Tasks errors, the observer will error as well if failUponError is TRUE. 
+	 In this case the observer will re-dispatch the "data" and "message" properties of the first Task to fail. 
+	 If failUponError is FALSE, observed Task errors and complets will be treated the same.
+	 
+	 If this Task is executed with no observed Tasks it will instantly complete.
+	 The same is true if all of its observed Tasks have already completed by the time it has been executed.
+	 ]]></description>
+</classRec>
+<method name='ObserverTask' fullname='com.rosettastone.library.taskmanager:ObserverTask/ObserverTask' isStatic='false' isFinal='false' isOverride='false'  param_names='tasks;failUponError;taskIdentifier' param_types='Array;Boolean;String' param_defaults='null;true;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[tasks Array of Tasks to observe
+		 ]]></param>
+<param><![CDATA[failUponError Controls behavior in the event of a Task error; see class documentation for more detail
+		 ]]></param>
+<param><![CDATA[taskIdentifier
+		 ]]></param>
+</method>
+<method name='areAllObservedTasksCompletedOrErrored' fullname='com.rosettastone.library.taskmanager:ObserverTask/protected:areAllObservedTasksCompletedOrErrored' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+</method>
+<method name='checkForAndHandleCompletion' fullname='com.rosettastone.library.taskmanager:ObserverTask/protected:checkForAndHandleCompletion' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:ObserverTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='observeTask' fullname='com.rosettastone.library.taskmanager:ObserverTask/observeTask' isStatic='false' isFinal='false' isOverride='false'  param_names='taskToObserve' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Add an additional Task to the set of Tasks being observed.
+		 ]]></description>
+</method>
+<method name='onIndividualTaskProgress' fullname='com.rosettastone.library.taskmanager:ObserverTask/private:onIndividualTaskProgress' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:ProgressEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskComplete' fullname='com.rosettastone.library.taskmanager:ObserverTask/private:onTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskError' fullname='com.rosettastone.library.taskmanager:ObserverTask/private:onTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='stopObservingTask' fullname='com.rosettastone.library.taskmanager:ObserverTask/stopObservingTask' isStatic='false' isFinal='false' isOverride='false'  param_names='taskToObserve' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Remove the specified Task from the set of Tasks being observed.
+		 ]]></description>
+</method>
+<method name='numInternalOperationsCompleted' fullname='com.rosettastone.library.taskmanager:ObserverTask/numInternalOperationsCompleted/get' isStatic='false' isFinal='false' isOverride='true'  result_type='int'>
+<description><![CDATA[
+		 
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value > 1;
+		 ]]></description>
+</method>
+<method name='numInternalOperations' fullname='com.rosettastone.library.taskmanager:ObserverTask/numInternalOperations/get' isStatic='false' isFinal='false' isOverride='true'  result_type='int'>
+<description><![CDATA[
+		 
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value > 1;
+		 
+		 If value > 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 ]]></description>
+</method>
+<method name='observedTasks' fullname='com.rosettastone.library.taskmanager:ObserverTask/TaskPrivateNamespace:observedTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+<description><![CDATA[
+		 Array of Tasks currently observed by this Task.
+		 ]]></description>
+</method>
+<field name='_failUponError' fullname='com.rosettastone.library.taskmanager:ObserverTask/protected:_failUponError' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_observedTasks' fullname='com.rosettastone.library.taskmanager:ObserverTask/protected:_observedTasks' type='Array' isStatic='false' isConst='false' >
+</field>
+<classRec name='InterruptibleTask' fullname='com.rosettastone.library.taskmanager:InterruptibleTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/InterruptibleTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:Task' interfaces='com.rosettastone.library.taskmanager:IInterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Abstract inerruptible Task.
+	 Extend this class and override the customInterrupt() method to support interruptibility.
+	 ]]></description>
+</classRec>
+<method name='InterruptibleTask' fullname='com.rosettastone.library.taskmanager:InterruptibleTask/InterruptibleTask' isStatic='false' isFinal='false' isOverride='false'  param_names='taskIdentifier' param_types='String' param_defaults='null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 ]]></description>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:InterruptibleTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='interrupt' fullname='com.rosettastone.library.taskmanager:InterruptibleTask/interrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 Interrupt the current Task.
+		 Interruptions should be handled in such a way as to allow a subsequent call to run() to resume gracefully.
+		 
+		 This mehtod should trigger an event of type TaskEvent.INTERRUPTED.
+		 
+		 ]]></description>
+<return><![CDATA[TRUE if the Task has been successfully interrupted
+		 ]]></return>
+</method>
+<method name='interruptible' fullname='com.rosettastone.library.taskmanager:InterruptibleTask/interruptible/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The current Task can be interrupted.
+		 Invoking interrupt() for a Task that is not marked as interruptible may result in an error.
+		 ]]></description>
+</method>
+<classRec name='TaskWithClosure' fullname='com.rosettastone.library.taskmanager:TaskWithClosure' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/TaskWithClosure.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:Task' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Task that invokes a specified function upon execution.
+	 The function invoked will retain the scope of where it was defined, allowing for easy access to other class/method variables.
+	 
+	 This type of Task can be asynchronous.
+	 It will not complete (or error) until specifically instructed to do so.
+	 This instruction should be triggered as a result of the custom function it executes.
+	 ]]></description>
+</classRec>
+<method name='TaskWithClosure' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/TaskWithClosure' isStatic='false' isFinal='false' isOverride='false'  param_names='customRunFunction;autoCompleteAfterRunningFunction;taskIdentifier' param_types='Function;Boolean;String' param_defaults='null;false;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[customRunFunction Function to be executed when this Task is run
+		 ]]></param>
+<param><![CDATA[autoCompleteAfterRunningFunction If TRUE this Task will complete after running custom function (unless custom function called "errorTask")
+		 ]]></param>
+<param><![CDATA[taskIdentifier Semantically meaningful task identifier (useful for automated testing or debugging)
+		 ]]></param>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='errorTask' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/errorTask' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 Instructs Task to dispatch an error event.
+		 ]]></description>
+</method>
+<method name='finishTask' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/finishTask' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 Instructs Task to complete itself.
+		 ]]></description>
+</method>
+<method name='autoCompleteAfterRunningFunction' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/autoCompleteAfterRunningFunction/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 If TRUE this Task will synchronously complete itself once it has invoked its custom run function.
+		 If an error occurs during the functions execution however the Task will not dispatch a redundant complete event.
+		 ]]></description>
+</method>
+<method name='customRunFunction' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/customRunFunction/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Function'>
+<description><![CDATA[
+		 Function to be executed when this Task is run
+		 ]]></description>
+</method>
+<method name='synchronous' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/synchronous/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 
+		 The current task can be executed synchronously.
+		 ]]></description>
+</method>
+<method name='autoCompleteAfterRunningFunction' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/autoCompleteAfterRunningFunction/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='Boolean' param_defaults='undefined' result_type='void'>
+</method>
+<method name='customRunFunction' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/customRunFunction/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='Function' param_defaults='undefined' result_type='void'>
+</method>
+<field name='_autoCompleteAfterRunningFunction' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/private:_autoCompleteAfterRunningFunction' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_customRunFunction' fullname='com.rosettastone.library.taskmanager:TaskWithClosure/private:_customRunFunction' type='Function' isStatic='false' isConst='false' >
+</field>
+<classRec name='StubTask' fullname='com.rosettastone.library.taskmanager:StubTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/StubTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:Task' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Empty Task useful primarily for unit testing.
+	 It can also be useful in factory situations when a default no-op behavior is desired.
+	 If certain implementations wish to provide behavior they can replace the placeholder Stub task with one that does work.
+	 
+	 This Task can be configured to auto-complete when it is executed.
+	 Otherwise it will not complete or error unless/until specifically told to do so.
+	 ]]></description>
+</classRec>
+<method name='StubTask' fullname='com.rosettastone.library.taskmanager:StubTask/StubTask' isStatic='false' isFinal='false' isOverride='false'  param_names='autoCompleteUponRun;taskIdentifier' param_types='Boolean;String' param_defaults='false;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[autoCompleteUponRun If TRUE Task will synchronously complete when it is run
+		 ]]></param>
+<param><![CDATA[taskIdentifier Semantically meaningful task identifier (useful for automated testing or debugging)
+		 ]]></param>
+</method>
+<method name='complete' fullname='com.rosettastone.library.taskmanager:StubTask/complete' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 Instructs Task to complete itself.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:StubTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='error' fullname='com.rosettastone.library.taskmanager:StubTask/error' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 Instructs Task to dispatch an error event.
+		 ]]></description>
+</method>
+<method name='synchronous' fullname='com.rosettastone.library.taskmanager:StubTask/synchronous/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 
+		 The current task can be executed synchronously.
+		 ]]></description>
+</method>
+<field name='_autoCompleteUponRun' fullname='com.rosettastone.library.taskmanager:StubTask/private:_autoCompleteUponRun' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<classRec name='AbstractCompositeTask' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/AbstractCompositeTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:Task' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 This is an abstract class and should not be instantiated directly.
+	 Instead use one of the following sub-classes: CompositeTask, InterruptibleCompositeTask
+	 ]]></description>
+</classRec>
+<method name='AbstractCompositeTask' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/AbstractCompositeTask' isStatic='false' isFinal='false' isOverride='false'  param_names='tasksOrFunctions;executeTaskInParallel;taskIdentifier' param_types='Array;Boolean;String' param_defaults='null;true;null' result_type='*'>
+<description><![CDATA[
+		 ]]></description>
+<private><![CDATA[]]></private>
+</method>
+<method name='addFunction' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/addFunction' isStatic='false' isFinal='false' isOverride='false'  param_names='closure;closureIdentifier' param_types='Function;String' param_defaults='undefined;null' result_type='com.rosettastone.library.taskmanager:TaskWithClosure'>
+<description><![CDATA[
+		 Adds a function to the queue of Tasks by wrapping it inside of a TaskWithClosure.
+		 Functions added this way must be synchronous.
+		 This method is simply a convenience method for creating a TaskWithClosure and calling addTask().
+		 
+		 ]]></description>
+<param><![CDATA[closure Function to be executed
+		 ]]></param>
+<param><![CDATA[closureIdentifier Unique identifier for function (and its TaskWithClosure)
+		 
+		 ]]></param>
+<return><![CDATA[Newly created TaskWithClosure
+		 ]]></return>
+</method>
+<method name='addMultiple' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/addMultiple' isStatic='false' isFinal='false' isOverride='false'  param_names='tasksOrFunctions' param_types='restParam' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Adds multiple Tasks or Functions to the internal set.
+		 This method is a convenience mehtod for calling addTask() or addFunction() multiple times.
+		 
+		 ]]></description>
+<param><![CDATA[tasksOrFunctions Task or Function objects
+		 
+		 ]]></param>
+<throws><![CDATA[Error if any of the specified parameters is not a Task or a Function
+		 ]]></throws>
+</method>
+<method name='addTaskEventListeners' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:addTaskEventListeners' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Convenience method for adding TaskEvent listeners to a Task.
+		 ]]></description>
+</method>
+<method name='addTaskHelper' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:addTaskHelper' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Adds another task to the internal set that this class will execute.
+		 Additional tasks may be safely at any time (including while the CompositeTask is executing).
+		 Tasks are added to the end, so in serial tasks, tasks added later will not be run if an earlier one fails.
+		 ]]></description>
+</method>
+<method name='addTasksBeforeRun' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:addTasksBeforeRun' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 Sub-classes may override this method to J.I.T. add child Tasks before the composite Task is run.
+		 ]]></description>
+</method>
+<method name='checkForTaskCompletion' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:checkForTaskCompletion' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='customReset' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:customReset' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to perform any custom reset operations.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='flushTaskQueue' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:flushTaskQueue' isStatic='false' isFinal='false' isOverride='false'  param_names='forcefullyPreventTaskFromCompleting' param_types='Boolean' param_defaults='false' result_type='void'>
+<description><![CDATA[
+		 Remove all Tasks from the queue.
+		 
+		 ]]></description>
+<param><![CDATA[forcefullyPreventTaskFromCompleting Prevent CompositeTask from completing after queue has been cleared
+		 ]]></param>
+</method>
+<method name='handleTaskCompletedOrRemoved' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:handleTaskCompletedOrRemoved' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Convenience method for handling a completed Task and executing the next.
+		 ]]></description>
+</method>
+<method name='individualTaskComplete' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:individualTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Override this method to be notified when individual Tasks have successfully completed.
+		 ]]></description>
+</method>
+<method name='individualTaskStarted' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:individualTaskStarted' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Override this method to be notified when individual Tasks are started.
+		 ]]></description>
+</method>
+<method name='interrupt' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/interrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.
+		 
+		 If they are, they should fire a TaskEvent.INTERRUPTED to indicate successful interruption of the task.
+		 
+		 If the interrupting fails at runtime, this method returns false
+		 ]]></description>
+</method>
+<method name='onIndividualTaskComplete' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/private:onIndividualTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onIndividualTaskError' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/private:onIndividualTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onIndividualTaskProgress' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/private:onIndividualTaskProgress' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:ProgressEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onIndividualTaskStarted' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/private:onIndividualTaskStarted' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='removeFunction' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/removeFunction' isStatic='false' isFinal='false' isOverride='false'  param_names='closure' param_types='Function' param_defaults='undefined' result_type='com.rosettastone.library.taskmanager:TaskWithClosure'>
+<description><![CDATA[
+		 Removes a function from the queue of Tasks by locating its corresponding TaskWithClosure.
+		 This method is simply a convenience method for locating the matching Task and calling removeTask().
+		 
+		 ]]></description>
+<param><![CDATA[closure Function to be executed
+		 
+		 ]]></param>
+<return><![CDATA[TaskWithClosure (if one found)
+		 ]]></return>
+</method>
+<method name='removeMultiple' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/removeMultiple' isStatic='false' isFinal='false' isOverride='false'  param_names='tasksOrFunctions' param_types='restParam' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Removes multiple Tasks or Functions from the internal set.
+		 This method is a convenience mehtod for calling removeTask() or removeFunction() multiple times.
+		 
+		 ]]></description>
+<param><![CDATA[tasksOrFunctions Task or Function objects
+		 
+		 ]]></param>
+<throws><![CDATA[Error if any of the specified parameters is not a Task or a Function
+		 ]]></throws>
+</method>
+<method name='removeTaskEventListeners' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:removeTaskEventListeners' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Convenience method for removing TaskEvent listeners from a Task.
+		 ]]></description>
+</method>
+<method name='removeTask' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/removeTask' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Removes a task from the internal set that this class will execute.
+		 If the specified Task has not been executed before it is removed it will not be executed by the CompositeTask.
+		 ]]></description>
+</method>
+<method name='allTasksAreCompleted' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:allTasksAreCompleted/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 No incomplete Tasks remain in the queue.
+		 ]]></description>
+</method>
+<method name='currentSerialTask' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:currentSerialTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 References the Task that is currently running (if this CompositeTask has been told to execute in serial).
+		 ]]></description>
+</method>
+<method name='errorDatas' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/errorDatas/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+<description><![CDATA[
+		 Error datas from all inner Tasks that failed during execution.
+		 This value is valid after during execution of the CompositeTask as well as upon completion (or failure).
+		 ]]></description>
+</method>
+<method name='errorMessages' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/errorMessages/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+<description><![CDATA[
+		 Unique error messages from all inner Tasks that failed during execution.
+		 This value is valid after during execution of the CompositeTask as well as upon completion (or failure).
+		 ]]></description>
+</method>
+<method name='erroredTasks' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/erroredTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+<description><![CDATA[
+		 Tasks that errored during execution.
+		 This value is valid after during execution of the CompositeTask as well as upon completion (or failure).
+		 ]]></description>
+</method>
+<method name='interruptible' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/interruptible/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The current Task can be interrupted.
+		 Invoking interrupt() for a Task that is not marked as interruptible may result in an error.
+		 ]]></description>
+</method>
+<method name='numCompletedTasks' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/numCompletedTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of inner Tasks that have successfully completed.
+		 This value is only valid while the CompositeTask is running.
+		 Upon completion (or failure) of the CompositeTask this value will be reset to 0.
+		 ]]></description>
+</method>
+<method name='numInternalOperationsCompleted' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/numInternalOperationsCompleted/get' isStatic='false' isFinal='false' isOverride='true'  result_type='int'>
+<description><![CDATA[
+		 
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value > 1;
+		 ]]></description>
+</method>
+<method name='numInternalOperations' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/numInternalOperations/get' isStatic='false' isFinal='false' isOverride='true'  result_type='int'>
+<description><![CDATA[
+		 
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value > 1;
+		 
+		 If value > 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 ]]></description>
+</method>
+<method name='numPendingTasks' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/numPendingTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of inner Tasks that have been started and have not yet completed.
+		 This value is only valid while the CompositeTask is running (or before it has been started).
+		 Upon completion (or failure) of the CompositeTask this value will be reset to 0.
+		 ]]></description>
+</method>
+<method name='numTasks' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/numTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of inner Tasks.
+		 This value is only valid while the CompositeTask is running (or before it has been started).
+		 Upon completion (or failure) of the CompositeTask this value will be reset to 0.
+		 ]]></description>
+</method>
+<method name='pendingTasks' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/pendingTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+<description><![CDATA[
+		 Tasks currently in the process of being executed.
+		 This value is only valid while the CompositeTask is running (or before it has been started).
+		 Upon completion (or failure) of the CompositeTask this value will be reset to 0.
+		 ]]></description>
+</method>
+<method name='synchronous' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/synchronous/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 
+		 The current task can be executed synchronously.
+		 ]]></description>
+</method>
+<method name='taskQueueIndex' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/TaskPrivateNamespace:taskQueueIndex/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+</method>
+<method name='taskQueue' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/TaskPrivateNamespace:taskQueue/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+</method>
+<field name='_addTasksBeforeRunInvoked' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:_addTasksBeforeRunInvoked' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_erroredTasks' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:_erroredTasks' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_executeTaskInParallel' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:_executeTaskInParallel' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_flushTaskQueueLock' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:_flushTaskQueueLock' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_interruptedTask' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:_interruptedTask' type='com.rosettastone.library.taskmanager:ITask' isStatic='false' isConst='false' >
+</field>
+<field name='_taskQueueIndex' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:_taskQueueIndex' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_taskQueue' fullname='com.rosettastone.library.taskmanager:AbstractCompositeTask/protected:_taskQueue' type='Array' isStatic='false' isConst='false' >
+</field>
+<classRec name='SynchronousTask' fullname='com.rosettastone.library.taskmanager:SynchronousTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/SynchronousTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:Task' interfaces='com.rosettastone.library.taskmanager:ISynchronousTask;com.rosettastone.library.taskmanager:IInterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Synchronous Task for convenience sub-class purposes.
+	 ]]></description>
+</classRec>
+<method name='SynchronousTask' fullname='com.rosettastone.library.taskmanager:SynchronousTask/SynchronousTask' isStatic='false' isFinal='false' isOverride='false'  param_names='taskIdentifier' param_types='String' param_defaults='null' result_type='*'>
+</method>
+<method name='customRunHook' fullname='com.rosettastone.library.taskmanager:SynchronousTask/protected:customRunHook' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 Synchronous run method.
+		 Sub-classes must override this method.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:SynchronousTask/protected:customRun' isStatic='false' isFinal='true' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='synchronous' fullname='com.rosettastone.library.taskmanager:SynchronousTask/synchronous/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The current task can be executed synchronously.
+		 ]]></description>
+</method>
+<classRec name='InnocuousTaskDecorator' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/InnocuousTaskDecorator.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' interfaces='com.rosettastone.library.taskmanager:IDecoratorTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Decorates a Task but re-dispatches both error and success events as success.
+	 This type of decorator should be used for Tasks that are required and are blocking, but should not be considered fatal in the event of a failure.
+	 ]]></description>
+</classRec>
+<method name='InnocuousTaskDecorator' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/InnocuousTaskDecorator' isStatic='false' isFinal='false' isOverride='false'  param_names='decorated;taskIdentifier' param_types='com.rosettastone.library.taskmanager:ITask;String' param_defaults='undefined;null' result_type='*'>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='interrupt' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/interrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 
+		 Interrupt the current Task.
+		 Interruptions should be handled in such a way as to allow a subsequent call to run() to resume gracefully.
+		 
+		 This mehtod should trigger an event of type TaskEvent.INTERRUPTED.
+		 
+		 ]]></description>
+<return><![CDATA[TRUE if the Task has been successfully interrupted
+		 ]]></return>
+</method>
+<method name='onDecoratedTaskComplete' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/private:onDecoratedTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onDecoratedTaskError' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/private:onDecoratedTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onDecoratedTaskInterrupted' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/private:onDecoratedTaskInterrupted' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='reset' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/reset' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Resets the task to it's pre-run state.
+		 This allows it to be re-run.
+		 This method can only be called on non-running tasks.
+		 ]]></description>
+</method>
+<method name='decoratedTask' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/decoratedTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Inner (decorated) Task.
+		 ]]></description>
+</method>
+<method name='isComplete' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/isComplete/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The current task has successfully completed execution.
+		 ]]></description>
+</method>
+<method name='running' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/running/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 ]]></description>
+</method>
+<field name='_decorated' fullname='com.rosettastone.library.taskmanager:InnocuousTaskDecorator/private:_decorated' type='com.rosettastone.library.taskmanager:ITask' isStatic='false' isConst='false' >
+</field>
+<classRec name='URLRequestTask' fullname='com.rosettastone.library.taskmanager:URLRequestTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/URLRequestTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Task that loads a URLRequest and exposes the URLLoader's "urlLoaderData" upon success.
+	 ]]></description>
+</classRec>
+<method name='URLRequestTask' fullname='com.rosettastone.library.taskmanager:URLRequestTask/URLRequestTask' isStatic='false' isFinal='false' isOverride='false'  param_names='urlRequest;taskIdentifier' param_types='flash.net:URLRequest;String' param_defaults='undefined;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[urlRequest
+		 ]]></param>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:URLRequestTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:URLRequestTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='onComplete' fullname='com.rosettastone.library.taskmanager:URLRequestTask/private:onComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:Event' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onIOError' fullname='com.rosettastone.library.taskmanager:URLRequestTask/private:onIOError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:IOErrorEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onSecurityError' fullname='com.rosettastone.library.taskmanager:URLRequestTask/private:onSecurityError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:SecurityErrorEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onStatus' fullname='com.rosettastone.library.taskmanager:URLRequestTask/private:onStatus' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:HTTPStatusEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='removeListeners' fullname='com.rosettastone.library.taskmanager:URLRequestTask/private:removeListeners' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='urlLoaderData' fullname='com.rosettastone.library.taskmanager:URLRequestTask/urlLoaderData/get' isStatic='false' isFinal='false' isOverride='false'  result_type='*'>
+<description><![CDATA[
+		 Loaded data.
+		 This should only be accessed after the Task has completed.
+		 ]]></description>
+</method>
+<field name='_urlLoader' fullname='com.rosettastone.library.taskmanager:URLRequestTask/private:_urlLoader' type='flash.net:URLLoader' isStatic='false' isConst='false' >
+</field>
+<field name='_urlRequest' fullname='com.rosettastone.library.taskmanager:URLRequestTask/private:_urlRequest' type='flash.net:URLRequest' isStatic='false' isConst='false' >
+</field>
+<classRec name='RetryOnFailureDecoratorTask' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/RetryOnFailureDecoratorTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' interfaces='com.rosettastone.library.taskmanager:IDecoratorTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Special Task decorator for Tasks that should be retried on failure.
+	 (For example, this could be useful for Tasks that rely on an internet connection in order to complete.)
+	 
+	 This task allows its decorated Task to fail a couple of times before bubbling the error.
+	 A small amount of time is allowed to pass between each retry.
+	 This delay allows time for an external monitor to detect a loss of internet connection and pause all Tasks until it is restored.
+	 It also allows for a more graceful handling of occasional HTTP failures.
+	 ]]></description>
+</classRec>
+<method name='RetryOnFailureDecoratorTask' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/RetryOnFailureDecoratorTask' isStatic='false' isFinal='false' isOverride='false'  param_names='decoratedTask;taskIdentifier' param_types='com.rosettastone.library.taskmanager:Task;String' param_defaults='undefined;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[decoratedTask Ideally this Task should be interruptible; if not it will be wrapped in a InterruptibleDecoratorTask to simulate interruptibility
+		 ]]></param>
+<param><![CDATA[taskIdentifier Optional human-readible Task ID (useful for debug purposes only)
+		 ]]></param>
+</method>
+<method name='addDecoratedTaskEventListeners' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:addDecoratedTaskEventListeners' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customReset' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/protected:customReset' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to perform any custom reset operations.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='executeDecoratedTask' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:executeDecoratedTask' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='handleComplete' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:handleComplete' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='handleError' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:handleError' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='onDecoratedTaskComplete' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:onDecoratedTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onDecoratedTaskError' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:onDecoratedTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onRetryTimerComplete' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:onRetryTimerComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:TimerEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='removeDecoratedTaskEventListeners' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:removeDecoratedTaskEventListeners' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='shouldFailedTaskBeRetried' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/protected:shouldFailedTaskBeRetried' isStatic='false' isFinal='false' isOverride='false'  param_names='failedTask' param_types='com.rosettastone.library.taskmanager:Task' param_defaults='undefined' result_type='Boolean'>
+<description><![CDATA[
+		 Sub-classes may override this method to determine of a failed Task should be retried.
+		 This decision is separate from the normal max-retry counting logic.
+		 By default this function always returns TRUE.
+		 ]]></description>
+</method>
+<method name='data' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/data/get' isStatic='false' isFinal='false' isOverride='true'  result_type='*'>
+<description><![CDATA[
+		 
+		 ]]></description>
+</method>
+<method name='decoratedTask' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/decoratedTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Inner (decorated) Task.
+		 ]]></description>
+</method>
+<method name='retryAttemptNumber' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/TaskPrivateNamespace:retryAttemptNumber/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+</method>
+<field name='DELAY_BEFORE_RETRYING_IN_MS' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/TaskPrivateNamespace:DELAY_BEFORE_RETRYING_IN_MS' type='int' isStatic='true' isConst='false' defaultValue='1000' >
+<description><![CDATA[
+		 The amount of time to delay before resetting and re-running the decorated Task.
+		 This value should probably only be overriden for unit test purposes.
+		 A value of &lt;= 0 seconds will result in a synchronous retry.
+		 ]]></description>
+</field>
+<field name='MAX_RETRY_ATTEMPTS_BEFORE_ERROR' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/TaskPrivateNamespace:MAX_RETRY_ATTEMPTS_BEFORE_ERROR' type='int' isStatic='true' isConst='false' defaultValue='5' >
+<description><![CDATA[
+		 Number of times to reset and re-run the decorated Task.
+		 This value should probably only be overriden for unit test purposes.
+		 A value of &lt;= 0 will cause a single failure to trigger a bubbled failure.
+		 ]]></description>
+</field>
+<field name='_decoratedTask' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:_decoratedTask' type='com.rosettastone.library.taskmanager:Task' isStatic='false' isConst='false' >
+</field>
+<field name='_retryAttemptNumber' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:_retryAttemptNumber' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_retryTimer' fullname='com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask/private:_retryTimer' type='flash.utils:Timer' isStatic='false' isConst='false' >
+</field>
+<classRec name='InterruptibleCompositeTask' fullname='com.rosettastone.library.taskmanager:InterruptibleCompositeTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/InterruptibleCompositeTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:AbstractCompositeTask' interfaces='com.rosettastone.library.taskmanager:IInterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Wraps a set of IInterruptibleTask (or ISynchronousTask) and executes them in parallel or serial, as specified by a boolean constructor arg.
+	 Interruptable composite task designed to be paused and resumed gracefully and automatically handles interrupting and resuming all child tasks.
+	 
+	 ]]></description>
+<throws><![CDATA[Error if given a non-interruptable, non-synchronous child Task
+	 ]]></throws>
+</classRec>
+<method name='InterruptibleCompositeTask' fullname='com.rosettastone.library.taskmanager:InterruptibleCompositeTask/InterruptibleCompositeTask' isStatic='false' isFinal='false' isOverride='false'  param_names='tasksOrFunctions;executeTaskInParallel;taskIdentifier' param_types='Array;Boolean;String' param_defaults='null;true;null' result_type='*'>
+<description><![CDATA[
+		 Constructor
+		 
+		 ]]></description>
+<param><![CDATA[tasksOrFunctions Set of Tasks and/or functions to be executed
+		 ]]></param>
+<param><![CDATA[executeTaskInParallel When TRUE, execute all tasks and report if all succeed (COMPLETE) or not (ERROR)
+		                              When FALSE, execute tasks in order.  Do not execute subsequent tasks if one fails.
+		 ]]></param>
+<throws><![CDATA[Error if tasksOrFunctions Array contains object that is not either an IInterruptibleTask, ISynchronousTask, or a Function
+		 ]]></throws>
+<para><![CDATA[taskIdentifier Human friendly identifier for Task
+		 
+		 ]]></para>
+</method>
+<method name='addSynchronousTask' fullname='com.rosettastone.library.taskmanager:InterruptibleCompositeTask/addSynchronousTask' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ISynchronousTask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Adds another task to the internal set that this class will execute.
+		 Additional tasks may be safely at any time (including while the CompositeTask is executing).
+		 Tasks are added to the end, so in serial tasks, tasks added later will not be run if an earlier one fails.
+		 ]]></description>
+</method>
+<method name='addTask' fullname='com.rosettastone.library.taskmanager:InterruptibleCompositeTask/addTask' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:IInterruptibleTask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Adds another task to the internal set that this class will execute.
+		 Additional tasks may be safely at any time (including while the CompositeTask is executing).
+		 Tasks are added to the end, so in serial tasks, tasks added later will not be run if an earlier one fails.
+		 ]]></description>
+</method>
+<classRec name='InterruptibleStubTask' fullname='com.rosettastone.library.taskmanager:InterruptibleStubTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/InterruptibleStubTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Interruptible stub Task primarily intended for use in the context of automated tests.
+	 This Task does nothing when run (nor when interrupted) other than increment the Task counter.
+	 It can be manually completed or errored at any point using the <code>complete</code> and <code>error</code> methods.
+	 ]]></description>
+</classRec>
+<method name='InterruptibleStubTask' fullname='com.rosettastone.library.taskmanager:InterruptibleStubTask/InterruptibleStubTask' isStatic='false' isFinal='false' isOverride='false'  param_names='autoCompleteUponRun;taskIdentifier' param_types='Boolean;String' param_defaults='false;null' result_type='*'>
+</method>
+<method name='complete' fullname='com.rosettastone.library.taskmanager:InterruptibleStubTask/complete' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 Instructs Task to complete itself.
+		 ]]></description>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:InterruptibleStubTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:InterruptibleStubTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='error' fullname='com.rosettastone.library.taskmanager:InterruptibleStubTask/error' isStatic='false' isFinal='false' isOverride='false'  param_names='message;data' param_types='String;*' param_defaults=';null' result_type='void'>
+<description><![CDATA[
+		 Instructs Task to dispatch an error event.
+		 ]]></description>
+</method>
+<field name='_autoCompleteUponRun' fullname='com.rosettastone.library.taskmanager:InterruptibleStubTask/private:_autoCompleteUponRun' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<classRec name='WaitTask' fullname='com.rosettastone.library.taskmanager:WaitTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/WaitTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Task that delays for a specified time before completion.
+	 
+	 This task supports interruption as well as resume.
+	 Upon resuming an interrupted Wait this Task can either re-start the Timer at the beginning or resume from the interrupted point.
+	 This behavior can be controlled via the constructor parameter "restartTimerAfterInterruption".
+	 ]]></description>
+</classRec>
+<method name='WaitTask' fullname='com.rosettastone.library.taskmanager:WaitTask/WaitTask' isStatic='false' isFinal='false' isOverride='false'  param_names='duration;restartTimerAfterInterruption;taskIdentifier' param_types='int;Boolean;String' param_defaults='0;true;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[duration Number of milliseconds Task should wait before completing
+		 ]]></param>
+<param><![CDATA[restartTimerAfterInterruption Specifies the resume-after-interruption behavior
+		 ]]></param>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:WaitTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 ]]></description>
+<inheritDocs><![CDATA[]]></inheritDocs>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:WaitTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 ]]></description>
+<inheritDocs><![CDATA[]]></inheritDocs>
+</method>
+<method name='onTimerComplete' fullname='com.rosettastone.library.taskmanager:WaitTask/private:onTimerComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:TimerEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='duration' fullname='com.rosettastone.library.taskmanager:WaitTask/duration/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of milliseconds Task should wait before completing.
+		 ]]></description>
+</method>
+<field name='_duration' fullname='com.rosettastone.library.taskmanager:WaitTask/private:_duration' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_ellapsedTimeAtPointOfInterruption' fullname='com.rosettastone.library.taskmanager:WaitTask/private:_ellapsedTimeAtPointOfInterruption' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_restartTimerAfterInterruption' fullname='com.rosettastone.library.taskmanager:WaitTask/private:_restartTimerAfterInterruption' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_timerStartTime' fullname='com.rosettastone.library.taskmanager:WaitTask/private:_timerStartTime' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_timer' fullname='com.rosettastone.library.taskmanager:WaitTask/private:_timer' type='flash.utils:Timer' isStatic='false' isConst='false' >
+</field>
+<classRec name='SleepTask' fullname='com.rosettastone.library.taskmanager:SleepTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/SleepTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Sleeps until told to complete.
+	 This Task can be inserted into a composite to block for an indeterminate amount of time.
+	 Since this Task is simple a placeholder, it supports interruptibility.
+	 ]]></description>
+</classRec>
+<method name='SleepTask' fullname='com.rosettastone.library.taskmanager:SleepTask/SleepTask' isStatic='false' isFinal='false' isOverride='false'  param_names='taskIdentifier' param_types='String' param_defaults='null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[taskIdentifier Human-friendly Task identifier
+		 ]]></param>
+</method>
+<method name='complete' fullname='com.rosettastone.library.taskmanager:SleepTask/complete' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+<description><![CDATA[
+		 Stop sleeping and complete Task.
+		 ]]></description>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:SleepTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:SleepTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<classRec name='TaskWithTimeout' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/TaskWithTimeout.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' interfaces='com.rosettastone.library.taskmanager:IDecoratorTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Decorates a Task and enforces a max-execution time limit.
+	 If specified time interval elapses before the decorated Task has complete it is considered to be an error.
+	 The decorated Task will be interrupted (if possible) in that event.
+	 ]]></description>
+</classRec>
+<method name='TaskWithTimeout' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/TaskWithTimeout' isStatic='false' isFinal='false' isOverride='false'  param_names='taskToDecorate;timeout;taskIdentifier' param_types='com.rosettastone.library.taskmanager:ITask;int;String' param_defaults='undefined;1000;null' result_type='*'>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='onDecoratedTaskComplete' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/private:onDecoratedTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onDecoratedTaskError' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/private:onDecoratedTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTimerComplete' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/private:onTimerComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:TimerEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='tearDown' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/private:tearDown' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='decoratedTask' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/decoratedTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Inner (decorated) Task.
+		 ]]></description>
+</method>
+<field name='_decoratedTask' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/private:_decoratedTask' type='com.rosettastone.library.taskmanager:IInterruptibleTask' isStatic='false' isConst='false' >
+</field>
+<field name='_timeout' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/private:_timeout' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_timer' fullname='com.rosettastone.library.taskmanager:TaskWithTimeout/private:_timer' type='flash.utils:Timer' isStatic='false' isConst='false' >
+</field>
+<classRec name='InterruptibleDecoratorTask' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/InterruptibleDecoratorTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' interfaces='com.rosettastone.library.taskmanager:IDecoratorTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Decorates a non-interruptible Task and adds interruptible-like behavior.
+	 This task does not actually stop and resume the decorated Task,
+	 But it does prevent ERROR or COMPLETE events from being dispatched when in an interrupted state.
+	 Should ERROR or COMPLETE occur while interrupted they will be re-dispatched upon resume.
+	 
+	 This Task-type also re-dispatches any ProgressEvents dispatched by the decorated Task.
+	 ]]></description>
+</classRec>
+<method name='InterruptibleDecoratorTask' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/InterruptibleDecoratorTask' isStatic='false' isFinal='false' isOverride='false'  param_names='decoratedTask;taskIdentifier' param_types='com.rosettastone.library.taskmanager:ITask;String' param_defaults='undefined;null' result_type='*'>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customReset' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/protected:customReset' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to perform any custom reset operations.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='onDecoratedTaskComplete' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/private:onDecoratedTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onDecoratedTaskError' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/private:onDecoratedTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onDecoratedTaskProgress' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/private:onDecoratedTaskProgress' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:ProgressEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='decoratedTask' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/decoratedTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Inner (decorated) Task.
+		 ]]></description>
+</method>
+<method name='numInternalOperationsCompleted' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/numInternalOperationsCompleted/get' isStatic='false' isFinal='false' isOverride='true'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value > 1;
+		 ]]></description>
+</method>
+<method name='numInternalOperations' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/numInternalOperations/get' isStatic='false' isFinal='false' isOverride='true'  result_type='int'>
+<description><![CDATA[
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value > 1;
+		 
+		 If value > 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 ]]></description>
+</method>
+<method name='taskIdentifier' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/taskIdentifier/get' isStatic='false' isFinal='false' isOverride='true'  result_type='String'>
+<description><![CDATA[
+		 
+		 (Optional) human-readable label for task.
+		 ]]></description>
+</method>
+<field name='_decoratedTaskEvent' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/private:_decoratedTaskEvent' type='com.rosettastone.library.taskmanager.events:TaskEvent' isStatic='false' isConst='false' >
+</field>
+<field name='_decoratedTask' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/private:_decoratedTask' type='com.rosettastone.library.taskmanager:ITask' isStatic='false' isConst='false' >
+</field>
+<field name='_progressEvents' fullname='com.rosettastone.library.taskmanager:InterruptibleDecoratorTask/private:_progressEvents' type='Array' isStatic='false' isConst='false' >
+</field>
+<classRec name='CompositeTask' fullname='com.rosettastone.library.taskmanager:CompositeTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/CompositeTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:AbstractCompositeTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Wraps a set of ITasks and executes them in parallel or serial, as specified by a boolean constructor arg.
+	 ]]></description>
+</classRec>
+<method name='CompositeTask' fullname='com.rosettastone.library.taskmanager:CompositeTask/CompositeTask' isStatic='false' isFinal='false' isOverride='false'  param_names='tasksOrFunctions;executeTaskInParallel;taskIdentifier' param_types='Array;Boolean;String' param_defaults='null;true;null' result_type='*'>
+<description><![CDATA[
+		 Constructor
+		 
+		 ]]></description>
+<param><![CDATA[tasksOrFunctions Set of Tasks and/or functions to be executed
+		 ]]></param>
+<param><![CDATA[executeTaskInParallel When TRUE, execute all tasks and report if all succeed (COMPLETE) or not (ERROR)
+		                              When FALSE, execute tasks in order.  Do not execute subsequent tasks if one fails.
+		 ]]></param>
+<throws><![CDATA[Error if tasksOrFunctions Array contains object that is not a Task or a Function
+		 ]]></throws>
+<para><![CDATA[taskIdentifier Human friendly identifier for Task
+		 
+		 ]]></para>
+</method>
+<method name='addTask' fullname='com.rosettastone.library.taskmanager:CompositeTask/addTask' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Adds another task to the internal set that this class will execute.
+		 Additional tasks may be safely at any time (including while the CompositeTask is executing).
+		 Tasks are added to the end, so in serial tasks, tasks added later will not be run if an earlier one fails.
+		 ]]></description>
+</method>
+<classRec name='EventHandlingTask' fullname='com.rosettastone.library.taskmanager:EventHandlingTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/EventHandlingTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Convenience Task that listens to an IEventDispatcher for either a success or failure type event.
+	 
+	 This Task can be used within a composite to block on the dispatching of an event.
+	 It saves users from creating custom Tasks just to handle event listening.
+	 
+	 This task can be interrupted, though interrupting it will not stop (or affect) the IEventDispatcher it monitors.
+	 Events dispatched while this task is in an interrupted state will be queued and handled when the task is resumed.
+	 
+	 If multiple Events are dispatched, only the first one will be responded-to / observed.
+	 
+	 Upon completion of this Task the Event that triggered the completion will be accessible via the "data" propery.
+	 ]]></description>
+</classRec>
+<method name='EventHandlingTask' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/EventHandlingTask' isStatic='false' isFinal='false' isOverride='false'  param_names='eventDispatcher;successEventTypeOrTypes;failureEventTypeOrTypes;taskIdentifier' param_types='flash.events:IEventDispatcher;*;*;String' param_defaults='undefined;undefined;null;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[eventDispatcher Event dispatcher object
+		 ]]></param>
+<param><![CDATA[successEventTypeOrTypes One or more event types indicating success (String or Array)
+		 ]]></param>
+<param><![CDATA[failureEventTypeOrTypes One or more event types indicating failure (String or Array)
+		 ]]></param>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customReset' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/protected:customReset' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to perform any custom reset operations.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='handleEvent' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/private:handleEvent' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:Event' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onSuccessOrFailure' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/private:onSuccessOrFailure' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:Event' param_defaults='undefined' result_type='void'>
+</method>
+<method name='removeEventListeners' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/private:removeEventListeners' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<field name='_eventDispatcher' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/private:_eventDispatcher' type='flash.events:IEventDispatcher' isStatic='false' isConst='false' >
+</field>
+<field name='_failureEventTypes' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/private:_failureEventTypes' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_pendingEvent' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/private:_pendingEvent' type='flash.events:Event' isStatic='false' isConst='false' >
+</field>
+<field name='_successEventTypes' fullname='com.rosettastone.library.taskmanager:EventHandlingTask/private:_successEventTypes' type='Array' isStatic='false' isConst='false' >
+</field>
+<classRec name='SynchronousTaskWithClosure' fullname='com.rosettastone.library.taskmanager:SynchronousTaskWithClosure' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/SynchronousTaskWithClosure.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:TaskWithClosure' interfaces='com.rosettastone.library.taskmanager:ISynchronousTask;com.rosettastone.library.taskmanager:IInterruptibleTask' isFinal='false' isDynamic='false' >
+</classRec>
+<method name='SynchronousTaskWithClosure' fullname='com.rosettastone.library.taskmanager:SynchronousTaskWithClosure/SynchronousTaskWithClosure' isStatic='false' isFinal='false' isOverride='false'  param_names='customRunFunction;taskIdentifier' param_types='Function;String' param_defaults='null;null' result_type='*'>
+</method>
+<classRec name='FactoryTask' fullname='com.rosettastone.library.taskmanager:FactoryTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/FactoryTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' interfaces='com.rosettastone.library.taskmanager:IDecoratorTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Decorates a Task returned by the specified factory method.
+	 This Task does not invoke the provided factory method until it is actually executed.
+	 This allows for just-in-time evaluation of data set by previous Tasks.
+	 ]]></description>
+</classRec>
+<method name='FactoryTask' fullname='com.rosettastone.library.taskmanager:FactoryTask/FactoryTask' isStatic='false' isFinal='false' isOverride='false'  param_names='taskFactoryFunction;thisObj;args;taskWillBeInterruptible;taskIdentifier' param_types='Function;*;Array;Boolean;String' param_defaults='undefined;null;null;false;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[taskFactoryFunction Returns an ITask object
+		 ]]></param>
+<param><![CDATA[thisObj Optional object to which the function is applied.
+		 ]]></param>
+<param><![CDATA[args Optional Array of parameters to be passed to the factory Function.
+		             If this value is specified a target "thisObj" must be provided as well.
+		 ]]></param>
+<param><![CDATA[taskWillBeInterruptible Task returned by facotry function is interruptible
+		 ]]></param>
+<param><![CDATA[taskIdentifier Semantically meaningful task identifier (useful for automated testing or debugging)
+		 ]]></param>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customReset' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:customReset' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to perform any custom reset operations.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='onTaskComplete' fullname='com.rosettastone.library.taskmanager:FactoryTask/private:onTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskError' fullname='com.rosettastone.library.taskmanager:FactoryTask/private:onTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskInterrupted' fullname='com.rosettastone.library.taskmanager:FactoryTask/private:onTaskInterrupted' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='setReexecuteFactoryFunctionAfterError' fullname='com.rosettastone.library.taskmanager:FactoryTask/setReexecuteFactoryFunctionAfterError' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='Boolean' param_defaults='false' result_type='com.rosettastone.library.taskmanager:FactoryTask'>
+</method>
+<method name='decoratedTask' fullname='com.rosettastone.library.taskmanager:FactoryTask/decoratedTask/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 
+		 Inner (decorated) Task.
+		 ]]></description>
+</method>
+<method name='reexecuteFactoryFunctionAfterError' fullname='com.rosettastone.library.taskmanager:FactoryTask/reexecuteFactoryFunctionAfterError/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 If this FactoryTask is re-run after an error has occurred, this attribute controls whether it:
+		 (a) Reuses the decorated Task initially created during its first run, or
+		 (b) Reexecutes the factory method to create a new decorated Task.
+		 
+		 By default this value is FALSE, meaning that the decorated task created initially will be reused.
+		 ]]></description>
+</method>
+<field name='_args' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:_args' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_recreateDecoratedTaskWhenNextRun' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:_recreateDecoratedTaskWhenNextRun' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_reexecuteFactoryFunctionAfterError' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:_reexecuteFactoryFunctionAfterError' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_taskFactoryFunction' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:_taskFactoryFunction' type='Function' isStatic='false' isConst='false' >
+</field>
+<field name='_taskWillBeInterruptible' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:_taskWillBeInterruptible' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_task' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:_task' type='com.rosettastone.library.taskmanager:IInterruptibleTask' isStatic='false' isConst='false' >
+</field>
+<field name='_thisObj' fullname='com.rosettastone.library.taskmanager:FactoryTask/protected:_thisObj' type='' isStatic='false' isConst='false' >
+</field>
+<classRec name='PlaySoundTask' fullname='com.rosettastone.library.taskmanager:PlaySoundTask' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/PlaySoundTask.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Task that plays a Sound and completes when the sound has finished playing.
+	 This Task expects that the Sound object provided has already been loaded.
+	 
+	 This task supports interruption as well as resume.
+	 Upon resuming an interrupted Sound this Task can either re-start playback at the beginning or resume from the interrupted point.
+	 This behavior can be controlled via the constructor parameter "restartSoundAfterInterruption".
+	 ]]></description>
+</classRec>
+<method name='PlaySoundTask' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/PlaySoundTask' isStatic='false' isFinal='false' isOverride='false'  param_names='sound;restartSoundAfterInterruption;taskIdentifier' param_types='flash.media:Sound;Boolean;String' param_defaults='undefined;true;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[sound Loaded Sound object to be played
+		 ]]></param>
+<param><![CDATA[restartSoundAfterInterruption Specifies the resume-after-interruption behavior
+		 ]]></param>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='onSoundComplete' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/private:onSoundComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:Event' param_defaults='undefined' result_type='void'>
+</method>
+<method name='soundChannel' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/soundChannel/get' isStatic='false' isFinal='false' isOverride='false'  result_type='flash.media:SoundChannel'>
+</method>
+<method name='sound' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/sound/get' isStatic='false' isFinal='false' isOverride='false'  result_type='flash.media:Sound'>
+</method>
+<field name='_interruptedPosition' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/protected:_interruptedPosition' type='int' isStatic='false' isConst='false' >
+</field>
+<field name='_restartSoundAfterInterruption' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/protected:_restartSoundAfterInterruption' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_soundChannel' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/protected:_soundChannel' type='flash.media:SoundChannel' isStatic='false' isConst='false' >
+</field>
+<field name='_sound' fullname='com.rosettastone.library.taskmanager:PlaySoundTask/protected:_sound' type='flash.media:Sound' isStatic='false' isConst='false' >
+</field>
+<classRec name='AbstractTaskManager' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/AbstractTaskManager.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:Task' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 This is an abstract class and should not be instantiated directly.
+	 Instead use one of the following sub-classes: TaskManager, InterruptibleTaskManager
+	 ]]></description>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:AbstractTaskManager' name='taskManagerEventInterrupted' type='com.rosettastone.library.taskmanager.events.TaskManagerEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:AbstractTaskManager' name='taskManagerEventError' type='com.rosettastone.library.taskmanager.events.TaskManagerEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:AbstractTaskManager' name='taskManagerEventComplete' type='com.rosettastone.library.taskmanager.events.TaskManagerEvent' >
+	</Event>
+</metadata>
+</classRec>
+<method name='AbstractTaskManager' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/AbstractTaskManager' isStatic='false' isFinal='false' isOverride='false'  param_names='interruptible' param_types='Boolean' param_defaults='false' result_type='*'>
+<description><![CDATA[
+		 ]]></description>
+<private><![CDATA[]]></private>
+</method>
+<method name='addTaskHelper' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/protected:addTaskHelper' isStatic='false' isFinal='false' isOverride='false'  param_names='task;dependencies' param_types='com.rosettastone.library.taskmanager:ITask;Array' param_defaults='undefined;null' result_type='void'>
+<description><![CDATA[
+		 Adds a task to the graph and set its dependencies.
+		 
+		 If TaskManager is currently running and the specified Taks has invalid dependencies, an ERROR event will be dispatched immediately.
+		 		 ]]></description>
+<param><![CDATA[task Task to add to TaskManager
+		 ]]></param>
+<param><![CDATA[dependencies Array of Tasks that newly added Task depends on
+		 
+		 ]]></param>
+<throws><![CDATA[Error if TaskManager has been configured for interruptible-mode and Task is not either interruptible or synchronous
+		 ]]></throws>
+</method>
+<method name='areAllInnerTasksCompleted' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:areAllInnerTasksCompleted' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+</method>
+<method name='atLeastOneInnerTaskIsActive' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:atLeastOneInnerTaskIsActive' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+</method>
+<method name='checkForCompletionOrRunAllReadyTasks' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:checkForCompletionOrRunAllReadyTasks' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='customReset' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/protected:customReset' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to perform any custom reset operations.
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='doesTaskHaveInvalidDependencies' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:doesTaskHaveInvalidDependencies' isStatic='false' isFinal='false' isOverride='false'  param_names='currentTask;dependencies' param_types='com.rosettastone.library.taskmanager:ITask;Array' param_defaults='undefined;undefined' result_type='Boolean'>
+</method>
+<method name='interrupt' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/interrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.
+		 
+		 If they are, they should fire a TaskEvent.INTERRUPTED to indicate successful interruption of the task.
+		 
+		 If the interrupting fails at runtime, this method returns false
+		 ]]></description>
+</method>
+<method name='markTaskComplete' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:markTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskComplete' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:onTaskComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskError' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:onTaskError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskManagerComplete' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:onTaskManagerComplete' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskManagerError' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:onTaskManagerError' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='com.rosettastone.library.taskmanager.events:TaskEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='onTaskProgress' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:onTaskProgress' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='flash.events:ProgressEvent' param_defaults='undefined' result_type='void'>
+</method>
+<method name='removeTaskHelper' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/protected:removeTaskHelper' isStatic='false' isFinal='false' isOverride='false'  param_names='taskToRemove' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Removes a task from the task manager.
+		 
+		 If the TaskManager is running and this operation unblocks any of the remaining Tasks, they will be executed as a result of this removal.
+		 		 ]]></description>
+<param><![CDATA[taskToRemove The task to remove
+		 ]]></param>
+</method>
+<method name='runAllReadyTasks' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:runAllReadyTasks' isStatic='false' isFinal='false' isOverride='false'  result_type='void'>
+</method>
+<method name='taskDependenciesAreSatisfied' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:taskDependenciesAreSatisfied' isStatic='false' isFinal='false' isOverride='false'  param_names='task' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='Boolean'>
+</method>
+<method name='completed' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/completed/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Boolean'>
+<description><![CDATA[
+		 There are no pending or active Tasks.
+		 
+		 ]]></description>
+<internal><![CDATA[This method is left around for backwards compatibility purposes only.
+		 ]]></internal>
+</method>
+<method name='errorDatas' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/errorDatas/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+<description><![CDATA[
+		 Error datas from all inner Tasks that failed during execution.
+		 ]]></description>
+</method>
+<method name='errorMessages' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/errorMessages/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+<description><![CDATA[
+		 Unique error messages from all inner Tasks that failed during execution.
+		 ]]></description>
+</method>
+<method name='erroredTasks' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/erroredTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='Array'>
+<description><![CDATA[
+		 Tasks that errored during execution.
+		 ]]></description>
+</method>
+<method name='interruptible' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/interruptible/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 The current Task can be interrupted.
+		 Invoking interrupt() for a Task that is not marked as interruptible may result in an error.
+		 ]]></description>
+</method>
+<method name='numCompletedTasks' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/numCompletedTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of Tasks that have successfully completed execution.
+		 ]]></description>
+</method>
+<method name='numInternalOperationsCompleted' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/numInternalOperationsCompleted/get' isStatic='false' isFinal='false' isOverride='true'  result_type='int'>
+<description><![CDATA[
+		 
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value > 1;
+		 ]]></description>
+</method>
+<method name='numInternalOperations' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/numInternalOperations/get' isStatic='false' isFinal='false' isOverride='true'  result_type='int'>
+<description><![CDATA[
+		 
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value > 1;
+		 
+		 If value > 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 ]]></description>
+</method>
+<method name='numTasks' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/numTasks/get' isStatic='false' isFinal='false' isOverride='false'  result_type='int'>
+<description><![CDATA[
+		 Number of Tasks to be executed by TaskManager.
+		 ]]></description>
+</method>
+<method name='synchronous' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/synchronous/get' isStatic='false' isFinal='false' isOverride='true'  result_type='Boolean'>
+<description><![CDATA[
+		 
+		 
+		 The current task can be executed synchronously.
+		 ]]></description>
+</method>
+<field name='TASK_STATUS_ACTIVE' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:TASK_STATUS_ACTIVE' type='String' isStatic='true' isConst='true' defaultValue='active' >
+</field>
+<field name='TASK_STATUS_COMPLETED' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:TASK_STATUS_COMPLETED' type='String' isStatic='true' isConst='true' defaultValue='completed' >
+</field>
+<field name='TASK_STATUS_ERRORED' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:TASK_STATUS_ERRORED' type='String' isStatic='true' isConst='true' defaultValue='errored' >
+</field>
+<field name='TASK_STATUS_INTERRUPTED' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:TASK_STATUS_INTERRUPTED' type='String' isStatic='true' isConst='true' defaultValue='interrupted' >
+</field>
+<field name='TASK_STATUS_PENDING' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:TASK_STATUS_PENDING' type='String' isStatic='true' isConst='true' defaultValue='pending' >
+</field>
+<field name='_erroredTasks' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:_erroredTasks' type='Array' isStatic='false' isConst='false' >
+</field>
+<field name='_interruptible' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:_interruptible' type='Boolean' isStatic='false' isConst='false' >
+</field>
+<field name='_taskIDToDependenciesMap' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:_taskIDToDependenciesMap' type='Object' isStatic='false' isConst='false' >
+</field>
+<field name='_tasks' fullname='com.rosettastone.library.taskmanager:AbstractTaskManager/private:_tasks' type='mx.collections:ArrayCollection' isStatic='false' isConst='false' >
+</field>
+<classRec name='InterruptibleTaskManager' fullname='com.rosettastone.library.taskmanager:InterruptibleTaskManager' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/InterruptibleTaskManager.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:AbstractTaskManager' interfaces='com.rosettastone.library.taskmanager:IInterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Manages execution of a set of IInterruptibleTasks.
+	 Tasks may specify blocking depencies on other tasks.
+	 	 This class will wrap all TaskEvents and dispatch TaskManagerEvent.COMPLETE only once all Tasks have completed.
+	 If a task errors, this class will dispatch a TaskManagerEvent.ERROR event and halt running any additional tasks.
+	 ]]></description>
+</classRec>
+<method name='InterruptibleTaskManager' fullname='com.rosettastone.library.taskmanager:InterruptibleTaskManager/InterruptibleTaskManager' isStatic='false' isFinal='false' isOverride='false'  result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 ]]></description>
+</method>
+<method name='addTask' fullname='com.rosettastone.library.taskmanager:InterruptibleTaskManager/addTask' isStatic='false' isFinal='false' isOverride='false'  param_names='task;dependencies' param_types='com.rosettastone.library.taskmanager:IInterruptibleTask;Array' param_defaults='undefined;null' result_type='void'>
+<description><![CDATA[
+		 Adds a task to the graph and set its dependencies.
+		 
+		 If TaskManager is currently running and the specified Taks has invalid dependencies, an ERROR event will be dispatched immediately.
+		 		 ]]></description>
+<param><![CDATA[task Task to add to TaskManager
+		 ]]></param>
+<param><![CDATA[dependencies Array of Tasks that newly added Task depends on
+		 
+		 ]]></param>
+<throws><![CDATA[Error if TaskManager has been configured for interruptible-mode and Task is not either interruptible or synchronous
+		 ]]></throws>
+</method>
+<method name='removeTask' fullname='com.rosettastone.library.taskmanager:InterruptibleTaskManager/removeTask' isStatic='false' isFinal='false' isOverride='false'  param_names='taskToRemove' param_types='com.rosettastone.library.taskmanager:IInterruptibleTask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Removes a task from the task manager.
+		 
+		 If the TaskManager is running and this operation unblocks any of the remaining Tasks, they will be executed as a result of this removal.
+		 		 ]]></description>
+<param><![CDATA[taskToRemove The task to remove
+		 ]]></param>
+</method>
+<classRec name='TaskManager' fullname='com.rosettastone.library.taskmanager:TaskManager' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/TaskManager.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:AbstractTaskManager' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Manages execution of a set of ITasks.
+	 Tasks may specify blocking depencies on other tasks.
+	 	 This class will wrap all TaskEvents and dispatch TaskManagerEvent.COMPLETE only once all Tasks have completed.
+	 If a task errors, this class will dispatch a TaskManagerEvent.ERROR event and halt running any additional tasks.
+	 ]]></description>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:TaskManager' name='taskManagerEventInterrupted' type='com.rosettastone.library.taskmanager.events.TaskManagerEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:TaskManager' name='taskManagerEventError' type='com.rosettastone.library.taskmanager.events.TaskManagerEvent' >
+	</Event>
+</metadata>
+<metadata>
+	<Event owner='com.rosettastone.library.taskmanager:TaskManager' name='taskManagerEventComplete' type='com.rosettastone.library.taskmanager.events.TaskManagerEvent' >
+	</Event>
+</metadata>
+</classRec>
+<method name='TaskManager' fullname='com.rosettastone.library.taskmanager:TaskManager/TaskManager' isStatic='false' isFinal='false' isOverride='false'  param_names='interruptible' param_types='Boolean' param_defaults='false' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[interruptible Consider using InterruptibleTaskManager instead of this parameter.
+		 ]]></param>
+</method>
+<method name='addTask' fullname='com.rosettastone.library.taskmanager:TaskManager/addTask' isStatic='false' isFinal='false' isOverride='false'  param_names='task;dependencies' param_types='com.rosettastone.library.taskmanager:ITask;Array' param_defaults='undefined;null' result_type='void'>
+<description><![CDATA[
+		 Adds a task to the graph and set its dependencies.
+		 
+		 If TaskManager is currently running and the specified Taks has invalid dependencies, an ERROR event will be dispatched immediately.
+		 		 ]]></description>
+<param><![CDATA[task Task to add to TaskManager
+		 ]]></param>
+<param><![CDATA[dependencies Array of Tasks that newly added Task depends on
+		 
+		 ]]></param>
+<throws><![CDATA[Error if TaskManager has been configured for interruptible-mode and Task is not either interruptible or synchronous
+		 ]]></throws>
+</method>
+<method name='removeTask' fullname='com.rosettastone.library.taskmanager:TaskManager/removeTask' isStatic='false' isFinal='false' isOverride='false'  param_names='taskToRemove' param_types='com.rosettastone.library.taskmanager:ITask' param_defaults='undefined' result_type='void'>
+<description><![CDATA[
+		 Removes a task from the task manager.
+		 
+		 If the TaskManager is running and this operation unblocks any of the remaining Tasks, they will be executed as a result of this removal.
+		 		 ]]></description>
+<param><![CDATA[taskToRemove The task to remove
+		 ]]></param>
+</method>
+<classRec name='WaitForUIInitialization' fullname='com.rosettastone.library.taskmanager:WaitForUIInitialization' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/WaitForUIInitialization.as' namespace='com.rosettastone.library.taskmanager' access='public' baseclass='com.rosettastone.library.taskmanager:InterruptibleTask' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Convenience task for waiting until a specified UIComponent has initialized.
+	 This can be useful if app initialization (business logic) also depends on UI initialization.
+	 ]]></description>
+</classRec>
+<method name='WaitForUIInitialization' fullname='com.rosettastone.library.taskmanager:WaitForUIInitialization/WaitForUIInitialization' isStatic='false' isFinal='false' isOverride='false'  param_names='uiComponent;taskIdentifier' param_types='mx.core:UIComponent;String' param_defaults='undefined;null' result_type='*'>
+<description><![CDATA[
+		 Constructor.
+		 
+		 ]]></description>
+<param><![CDATA[uiComponent Component to wait for initialization from
+		 ]]></param>
+</method>
+<method name='customInterrupt' fullname='com.rosettastone.library.taskmanager:WaitForUIInitialization/protected:customInterrupt' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 ]]></description>
+</method>
+<method name='customRun' fullname='com.rosettastone.library.taskmanager:WaitForUIInitialization/protected:customRun' isStatic='false' isFinal='false' isOverride='true'  result_type='void'>
+<description><![CDATA[
+		 
+		 Override this method to give your Task functionality.
+		 ]]></description>
+</method>
+<method name='onInitialize' fullname='com.rosettastone.library.taskmanager:WaitForUIInitialization/private:onInitialize' isStatic='false' isFinal='false' isOverride='false'  param_names='event' param_types='mx.events:FlexEvent' param_defaults='undefined' result_type='void'>
+</method>
+<field name='_uiComponent' fullname='com.rosettastone.library.taskmanager:WaitForUIInitialization/private:_uiComponent' type='mx.core:UIComponent' isStatic='false' isConst='false' >
+</field>
+<classRec name='TaskEvent' fullname='com.rosettastone.library.taskmanager.events:TaskEvent' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/events/TaskEvent.as' namespace='com.rosettastone.library.taskmanager.events' access='public' baseclass='flash.events:Event' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Dispatched by a Task to indicated a change in state.
+	 ]]></description>
+</classRec>
+<method name='TaskEvent' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/TaskEvent' isStatic='false' isFinal='false' isOverride='false'  param_names='type;message;data' param_types='String;String;*' param_defaults='undefined;;null' result_type='*'>
+</method>
+<method name='clone' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/clone' isStatic='false' isFinal='false' isOverride='true'  result_type='flash.events:Event'>
+<description><![CDATA[
+		 ]]></description>
+<inheritDoc><![CDATA[]]></inheritDoc>
+</method>
+<method name='data' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/data/get' isStatic='false' isFinal='false' isOverride='false'  result_type='*'>
+<description><![CDATA[
+		 Optional data object related to the Task dispatching this event.
+		 If the event is an error event this object may also contain more information about the error.
+		 ]]></description>
+</method>
+<method name='message' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/message/get' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+		 Optional human-readable message.
+		 ]]></description>
+</method>
+<method name='data' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/data/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='*' param_defaults='undefined' result_type='void'>
+</method>
+<method name='message' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/message/set' isStatic='false' isFinal='false' isOverride='false'  param_names='value' param_types='String' param_defaults='undefined' result_type='void'>
+</method>
+<field name='COMPLETE' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/COMPLETE' type='String' isStatic='true' isConst='true' defaultValue='taskEventComplete' >
+</field>
+<field name='ERROR' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/ERROR' type='String' isStatic='true' isConst='true' defaultValue='taskEventError' >
+</field>
+<field name='FINAL' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/FINAL' type='String' isStatic='true' isConst='true' defaultValue='taskEventFinal' >
+</field>
+<field name='INTERRUPTED' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/INTERRUPTED' type='String' isStatic='true' isConst='true' defaultValue='taskEventInterrupted' >
+</field>
+<field name='STARTED' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/STARTED' type='String' isStatic='true' isConst='true' defaultValue='taskEventStarted' >
+</field>
+<field name='_data' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/private:_data' type='' isStatic='false' isConst='false' >
+</field>
+<field name='_message' fullname='com.rosettastone.library.taskmanager.events:TaskEvent/private:_message' type='String' isStatic='false' isConst='false' >
+</field>
+<classRec name='TaskManagerEvent' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent' sourcefile='/home/user/hudson/workspace/Components-TaskManager/source/com/rosettastone/library/taskmanager/events/TaskManagerEvent.as' namespace='com.rosettastone.library.taskmanager.events' access='public' baseclass='flash.events:Event' isFinal='false' isDynamic='false' >
+<description><![CDATA[
+	 Dispatched by TaskManager to indicate a change in state.
+	 ]]></description>
+</classRec>
+<method name='TaskManagerEvent' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/TaskManagerEvent' isStatic='false' isFinal='false' isOverride='false'  param_names='type;task;message' param_types='String;com.rosettastone.library.taskmanager:ITask;String' param_defaults='undefined;null;null' result_type='*'>
+<description><![CDATA[
+		 ]]></description>
+<param><![CDATA[type Event type
+		 ]]></param>
+<param><![CDATA[task Errored task (if event type is ERROR)
+		 ]]></param>
+<param><![CDATA[message Optional message
+		 ]]></param>
+</method>
+<method name='clone' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/clone' isStatic='false' isFinal='false' isOverride='true'  result_type='flash.events:Event'>
+<description><![CDATA[
+		 ]]></description>
+<inheritDoc><![CDATA[]]></inheritDoc>
+</method>
+<method name='message' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/message/get' isStatic='false' isFinal='false' isOverride='false'  result_type='String'>
+<description><![CDATA[
+		 Optional human-readable message.
+		 ]]></description>
+</method>
+<method name='task' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/task/get' isStatic='false' isFinal='false' isOverride='false'  result_type='com.rosettastone.library.taskmanager:ITask'>
+<description><![CDATA[
+		 Task associated with error (in the event of an error).
+		 ]]></description>
+</method>
+<field name='COMPLETE' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/COMPLETE' type='String' isStatic='true' isConst='true' defaultValue='taskManagerEventComplete' >
+</field>
+<field name='ERROR' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/ERROR' type='String' isStatic='true' isConst='true' defaultValue='taskManagerEventError' >
+</field>
+<field name='INTERRUPTED' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/INTERRUPTED' type='String' isStatic='true' isConst='true' defaultValue='taskManagerEventInterrupted' >
+</field>
+<field name='_message' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/private:_message' type='String' isStatic='false' isConst='false' >
+</field>
+<field name='_task' fullname='com.rosettastone.library.taskmanager.events:TaskManagerEvent/private:_task' type='com.rosettastone.library.taskmanager:ITask' isStatic='false' isConst='false' >
+</field>
+</asdoc>

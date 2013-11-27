@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?><allClasses><apiPackage id="com.rosettastone.library.taskmanager.events"><apiName>com.rosettastone.library.taskmanager.events</apiName><apiClassifier id="com.rosettastone.library.taskmanager.events:TaskEvent"><apiName>TaskEvent</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager.events:TaskEvent:clone"><apiName>clone</apiName><shortdesc>
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="flash.events:Event"/></apiReturn></apiOperationDef><apiDesc>
+		 </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager.events:TaskEvent:TaskEvent"><apiName>TaskEvent</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/></apiParam><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiConstructorDef></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager.events:TaskManagerEvent"><apiName>TaskManagerEvent</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager.events:TaskManagerEvent:clone"><apiName>clone</apiName><shortdesc>
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="flash.events:Event"/></apiReturn></apiOperationDef><apiDesc>
+		 </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager.events:TaskManagerEvent:TaskManagerEvent"><apiName>TaskManagerEvent</apiName><shortdesc>
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>type</apiItemName><apiType value="String"/><apiDesc>Event type
+		 </apiDesc></apiParam><apiParam><apiItemName>task</apiItemName><apiData>null</apiData><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier><apiDesc>Errored task (if event type is ERROR)
+		 </apiDesc></apiParam><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>Optional message
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier></apiPackage><apiPackage id="com.rosettastone.library.taskmanager"><apiName>com.rosettastone.library.taskmanager</apiName><apiClassifier id="com.rosettastone.library.taskmanager:IInterruptibleTask"><apiName>IInterruptibleTask</apiName><apiClassifierDetail><apiClassifierDef><apiInterface/><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface><apiBaseClassifier/></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:IInterruptibleTask:com.rosettastone.library.taskmanager:IInterruptibleTask:disconnectFromInterruptingTask"><apiName>disconnectFromInterruptingTask</apiName><shortdesc>
+		 If an interrupting-Task has been provided (via interruptForTask) this Task will automatically resume when it completes.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 If an interrupting-Task has been provided (via interruptForTask) this Task will automatically resume when it completes.
+		 This method to cancels that behavior by removing references and event listeners.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:IInterruptibleTask:com.rosettastone.library.taskmanager:IInterruptibleTask:interruptForTask"><apiName>interruptForTask</apiName><shortdesc>
+		 Interrupts the current Task to wait on the Task specified.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/><apiDesc>TRUE if the Task has been successfully interrupted
+		 </apiDesc></apiReturn><apiParam><apiItemName>interruptingTask</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier><apiDesc>Task
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Interrupts the current Task to wait on the Task specified.
+		 Once this Task dispatches a TaskEvent.COMPLETE event, this Task will resume.
+		 If the specified Task dispatches a TaskEvent.ERROR event this Task will also error.
+		 TaskEvent.INTERRUPTED events are ignored.
+		 
+		 If this method is called once with a Task and then called again before that Task has completed,
+		 Event listeners will be removed from the first Task and added to the second one.
+		 There can only be 1 active interrupting Task at a time.
+		 If this Task should be interrupted by more than one Task, a CompositeTask or ObserverTask should be used.
+		 
+		 If the specified interrupting Task is already running this method will simply add event listeners.
+		 If it is not running this method will add event listeners but will rely on external code to run the interrupter.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:IInterruptibleTask:com.rosettastone.library.taskmanager:IInterruptibleTask:interrupt"><apiName>interrupt</apiName><shortdesc>
+		 Interrupt the current Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/><apiDesc>TRUE if the Task has been successfully interrupted
+		 </apiDesc></apiReturn></apiOperationDef><apiDesc>
+		 Interrupt the current Task.
+		 Interruptions should be handled in such a way as to allow a subsequent call to run() to resume gracefully.
+		 
+		 This mehtod should trigger an event of type TaskEvent.INTERRUPTED.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:IInterruptibleTask:com.rosettastone.library.taskmanager:IInterruptibleTask:withInterruptionHandler"><apiName>withInterruptionHandler</apiName><shortdesc>
+		 Although Tasks dispatch TaskEvents to indicate interruption this method may also be used for notification purposes.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>interruptionHandler</apiItemName><apiType value="Function"/><apiDesc>Function
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Although Tasks dispatch TaskEvents to indicate interruption this method may also be used for notification purposes.
+		 The provided function will be invoked only upon interruption of the Task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once if the task interrupts.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:TaskWithTimeout"><apiName>TaskWithTimeout</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:TaskWithTimeout:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:TaskWithTimeout:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:TaskWithTimeout:TaskWithTimeout"><apiName>TaskWithTimeout</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>taskToDecorate</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam><apiParam><apiItemName>timeout</apiItemName><apiType value="int"/><apiData>1000</apiData></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:IDecoratorTask"><apiName>IDecoratorTask</apiName><apiClassifierDetail><apiClassifierDef><apiInterface/><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface><apiBaseClassifier/></apiClassifierDef></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:URLRequestTask"><apiName>URLRequestTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:URLRequestTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:URLRequestTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:URLRequestTask:URLRequestTask"><apiName>URLRequestTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>urlRequest</apiItemName><apiType value="flash.net:URLRequest"/><apiDesc>	 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:SynchronousTaskWithClosure"><apiName>SynchronousTaskWithClosure</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ISynchronousTask</apiBaseInterface><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:TaskWithClosure</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiConstructor id="com.rosettastone.library.taskmanager:SynchronousTaskWithClosure:SynchronousTaskWithClosure"><apiName>SynchronousTaskWithClosure</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>customRunFunction</apiItemName><apiType value="Function"/><apiData>null</apiData></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:AbstractTaskManager"><apiName>AbstractTaskManager</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:AbstractTaskManager:protected:addTaskHelper"><apiName>addTaskHelper</apiName><shortdesc>
+		 Adds a task to the graph and set its dependencies.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiException><apiDesc>if TaskManager has been configured for interruptible-mode and Task is not either interruptible or synchronous
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier><apiDesc>Task to add to TaskManager
+		 </apiDesc></apiParam><apiParam><apiItemName>dependencies</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>Array of Tasks that newly added Task depends on
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Adds a task to the graph and set its dependencies.
+		 
+		 If TaskManager is currently running and the specified Taks has invalid dependencies, an ERROR event will be dispatched immediately.
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractTaskManager:protected:customReset"><apiName>customReset</apiName><shortdesc>
+		 
+		 Override this method to perform any custom reset operations.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to perform any custom reset operations.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractTaskManager:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractTaskManager:interrupt"><apiName>interrupt</apiName><shortdesc>
+		 
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.
+		 
+		 If they are, they should fire a TaskEvent.INTERRUPTED to indicate successful interruption of the task.
+		 
+		 If the interrupting fails at runtime, this method returns false
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractTaskManager:protected:removeTaskHelper"><apiName>removeTaskHelper</apiName><shortdesc>
+		 Removes a task from the task manager.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>taskToRemove</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier><apiDesc>The task to remove
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Removes a task from the task manager.
+		 
+		 If the TaskManager is running and this operation unblocks any of the remaining Tasks, they will be executed as a result of this removal.
+		 		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask"><apiName>InterruptibleCompositeTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractCompositeTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask:addSynchronousTask"><apiName>addSynchronousTask</apiName><shortdesc>
+		 Adds another task to the internal set that this class will execute.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ISynchronousTask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Adds another task to the internal set that this class will execute.
+		 Additional tasks may be safely at any time (including while the CompositeTask is executing).
+		 Tasks are added to the end, so in serial tasks, tasks added later will not be run if an earlier one fails.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask:addTask"><apiName>addTask</apiName><shortdesc>
+		 Adds another task to the internal set that this class will execute.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:IInterruptibleTask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Adds another task to the internal set that this class will execute.
+		 Additional tasks may be safely at any time (including while the CompositeTask is executing).
+		 Tasks are added to the end, so in serial tasks, tasks added later will not be run if an earlier one fails.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask:InterruptibleCompositeTask"><apiName>InterruptibleCompositeTask</apiName><shortdesc>
+		 Constructor
+		 
+		 </shortdesc><prolog><asCustoms><para>taskIdentifier Human friendly identifier for Task
+		 
+		 </para></asCustoms></prolog><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiException><apiDesc>if tasksOrFunctions Array contains object that is not either an IInterruptibleTask, ISynchronousTask, or a Function
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiParam><apiItemName>tasksOrFunctions</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>Set of Tasks and/or functions to be executed
+		 </apiDesc></apiParam><apiParam><apiItemName>executeTaskInParallel</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>When TRUE, execute all tasks and report if all succeed (COMPLETE) or not (ERROR)
+		                              When FALSE, execute tasks in order.  Do not execute subsequent tasks if one fails.
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 Constructor
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:WaitTask"><apiName>WaitTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:WaitTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 </shortdesc><prolog><asCustoms><inheritDocs/></asCustoms></prolog><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:WaitTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 </shortdesc><prolog><asCustoms><inheritDocs/></asCustoms></prolog><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:WaitTask:WaitTask"><apiName>WaitTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>duration</apiItemName><apiType value="int"/><apiData>0</apiData><apiDesc>Number of milliseconds Task should wait before completing
+		 </apiDesc></apiParam><apiParam><apiItemName>restartTimerAfterInterruption</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>Specifies the resume-after-interruption behavior
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:ISynchronousTask"><apiName>ISynchronousTask</apiName><apiClassifierDetail><apiClassifierDef><apiInterface/><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface><apiBaseClassifier/></apiClassifierDef></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:TaskManager"><apiName>TaskManager</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractTaskManager</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:TaskManager:addTask"><apiName>addTask</apiName><shortdesc>
+		 Adds a task to the graph and set its dependencies.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiException><apiDesc>if TaskManager has been configured for interruptible-mode and Task is not either interruptible or synchronous
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier><apiDesc>Task to add to TaskManager
+		 </apiDesc></apiParam><apiParam><apiItemName>dependencies</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>Array of Tasks that newly added Task depends on
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Adds a task to the graph and set its dependencies.
+		 
+		 If TaskManager is currently running and the specified Taks has invalid dependencies, an ERROR event will be dispatched immediately.
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:TaskManager:removeTask"><apiName>removeTask</apiName><shortdesc>
+		 Removes a task from the task manager.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>taskToRemove</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier><apiDesc>The task to remove
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Removes a task from the task manager.
+		 
+		 If the TaskManager is running and this operation unblocks any of the remaining Tasks, they will be executed as a result of this removal.
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:TaskManager:TaskManager"><apiName>TaskManager</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>interruptible</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>Consider using InterruptibleTaskManager instead of this parameter.
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleTaskManager"><apiName>InterruptibleTaskManager</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractTaskManager</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleTaskManager:addTask"><apiName>addTask</apiName><shortdesc>
+		 Adds a task to the graph and set its dependencies.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiException><apiDesc>if TaskManager has been configured for interruptible-mode and Task is not either interruptible or synchronous
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:IInterruptibleTask</apiOperationClassifier><apiDesc>Task to add to TaskManager
+		 </apiDesc></apiParam><apiParam><apiItemName>dependencies</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>Array of Tasks that newly added Task depends on
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Adds a task to the graph and set its dependencies.
+		 
+		 If TaskManager is currently running and the specified Taks has invalid dependencies, an ERROR event will be dispatched immediately.
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleTaskManager:removeTask"><apiName>removeTask</apiName><shortdesc>
+		 Removes a task from the task manager.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>taskToRemove</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:IInterruptibleTask</apiOperationClassifier><apiDesc>The task to remove
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Removes a task from the task manager.
+		 
+		 If the TaskManager is running and this operation unblocks any of the remaining Tasks, they will be executed as a result of this removal.
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:InterruptibleTaskManager:InterruptibleTaskManager"><apiName>InterruptibleTaskManager</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/></apiConstructorDef><apiDesc>
+		 Constructor.
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:TaskManagerComponentInfo"><apiName>TaskManagerComponentInfo</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:TaskManagerComponentInfo:getBuildVersion"><apiName>getBuildVersion</apiName><shortdesc>
+		 Returns the build version number of this component.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="int"/></apiReturn></apiOperationDef><apiDesc>
+		 Returns the build version number of this component.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:TaskManagerComponentInfo:getMajorVersion"><apiName>getMajorVersion</apiName><shortdesc>
+		 Returns the major version number of this component.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="int"/></apiReturn></apiOperationDef><apiDesc>
+		 Returns the major version number of this component.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:TaskManagerComponentInfo:getMinorVersion"><apiName>getMinorVersion</apiName><shortdesc>
+		 Returns the minor version number of this component.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="int"/></apiReturn></apiOperationDef><apiDesc>
+		 Returns the minor version number of this component.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:TaskManagerComponentInfo:getVersionString"><apiName>getVersionString</apiName><shortdesc>
+		 Returns a string with the three version numbers, seperated by
+		 '.' - e.g.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiStatic/><apiReturn><apiType value="String"/></apiReturn></apiOperationDef><apiDesc>
+		 Returns a string with the three version numbers, seperated by
+		 '.' - e.g. 3.1.2 or 0.1.23
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:CompositeTask"><apiName>CompositeTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractCompositeTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:CompositeTask:addTask"><apiName>addTask</apiName><shortdesc>
+		 Adds another task to the internal set that this class will execute.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Adds another task to the internal set that this class will execute.
+		 Additional tasks may be safely at any time (including while the CompositeTask is executing).
+		 Tasks are added to the end, so in serial tasks, tasks added later will not be run if an earlier one fails.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:CompositeTask:CompositeTask"><apiName>CompositeTask</apiName><shortdesc>
+		 Constructor
+		 
+		 </shortdesc><prolog><asCustoms><para>taskIdentifier Human friendly identifier for Task
+		 
+		 </para></asCustoms></prolog><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiException><apiDesc>if tasksOrFunctions Array contains object that is not a Task or a Function
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiParam><apiItemName>tasksOrFunctions</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>Set of Tasks and/or functions to be executed
+		 </apiDesc></apiParam><apiParam><apiItemName>executeTaskInParallel</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>When TRUE, execute all tasks and report if all succeed (COMPLETE) or not (ERROR)
+		                              When FALSE, execute tasks in order.  Do not execute subsequent tasks if one fails.
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 Constructor
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask"><apiName>RetryOnFailureDecoratorTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:protected:customReset"><apiName>customReset</apiName><shortdesc>
+		 
+		 Override this method to perform any custom reset operations.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to perform any custom reset operations.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:protected:shouldFailedTaskBeRetried"><apiName>shouldFailedTaskBeRetried</apiName><shortdesc>
+		 Sub-classes may override this method to determine of a failed Task should be retried.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>failedTask</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:Task</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Sub-classes may override this method to determine of a failed Task should be retried.
+		 This decision is separate from the normal max-retry counting logic.
+		 By default this function always returns TRUE.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:RetryOnFailureDecoratorTask"><apiName>RetryOnFailureDecoratorTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>decoratedTask</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:Task</apiOperationClassifier><apiDesc>Ideally this Task should be interruptible; if not it will be wrapped in a InterruptibleDecoratorTask to simulate interruptibility
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>Optional human-readible Task ID (useful for debug purposes only)
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleTask"><apiName>InterruptibleTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleTask:interrupt"><apiName>interrupt</apiName><shortdesc>
+		 
+		 Interrupt the current Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="Boolean"/><apiDesc>TRUE if the Task has been successfully interrupted
+		 </apiDesc></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Interrupt the current Task.
+		 Interruptions should be handled in such a way as to allow a subsequent call to run() to resume gracefully.
+		 
+		 This mehtod should trigger an event of type TaskEvent.INTERRUPTED.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:InterruptibleTask:InterruptibleTask"><apiName>InterruptibleTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:PlaySoundTask"><apiName>PlaySoundTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:PlaySoundTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:PlaySoundTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:PlaySoundTask:PlaySoundTask"><apiName>PlaySoundTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>sound</apiItemName><apiType value="flash.media:Sound"/><apiDesc>Loaded Sound object to be played
+		 </apiDesc></apiParam><apiParam><apiItemName>restartSoundAfterInterruption</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>Specifies the resume-after-interruption behavior
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:WaitForUIInitialization"><apiName>WaitForUIInitialization</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:WaitForUIInitialization:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:WaitForUIInitialization:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:WaitForUIInitialization:WaitForUIInitialization"><apiName>WaitForUIInitialization</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>uiComponent</apiItemName><apiType value="mx.core:UIComponent"/><apiDesc>Component to wait for initialization from
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:StubTask"><apiName>StubTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:StubTask:complete"><apiName>complete</apiName><shortdesc>
+		 Instructs Task to complete itself.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef><apiDesc>
+		 Instructs Task to complete itself.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:StubTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:StubTask:error"><apiName>error</apiName><shortdesc>
+		 Instructs Task to dispatch an error event.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef><apiDesc>
+		 Instructs Task to dispatch an error event.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:StubTask:StubTask"><apiName>StubTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>autoCompleteUponRun</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>If TRUE Task will synchronously complete when it is run
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>Semantically meaningful task identifier (useful for automated testing or debugging)
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:AbstractCompositeTask"><apiName>AbstractCompositeTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:addFunction"><apiName>addFunction</apiName><shortdesc>
+		 Adds a function to the queue of Tasks by wrapping it inside of a TaskWithClosure.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:TaskWithClosure</apiOperationClassifier><apiDesc>Newly created TaskWithClosure
+		 </apiDesc></apiReturn><apiParam><apiItemName>closure</apiItemName><apiType value="Function"/><apiDesc>Function to be executed
+		 </apiDesc></apiParam><apiParam><apiItemName>closureIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>Unique identifier for function (and its TaskWithClosure)
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Adds a function to the queue of Tasks by wrapping it inside of a TaskWithClosure.
+		 Functions added this way must be synchronous.
+		 This method is simply a convenience method for creating a TaskWithClosure and calling addTask().
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:addMultiple"><apiName>addMultiple</apiName><shortdesc>
+		 Adds multiple Tasks or Functions to the internal set.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiException><apiDesc>if any of the specified parameters is not a Task or a Function
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>tasksOrFunctions</apiItemName><apiType value="restParam"/><apiDesc>Task or Function objects
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Adds multiple Tasks or Functions to the internal set.
+		 This method is a convenience mehtod for calling addTask() or addFunction() multiple times.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:addTaskEventListeners"><apiName>addTaskEventListeners</apiName><shortdesc>
+		 Convenience method for adding TaskEvent listeners to a Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Convenience method for adding TaskEvent listeners to a Task.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:addTaskHelper"><apiName>addTaskHelper</apiName><shortdesc>
+		 Adds another task to the internal set that this class will execute.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Adds another task to the internal set that this class will execute.
+		 Additional tasks may be safely at any time (including while the CompositeTask is executing).
+		 Tasks are added to the end, so in serial tasks, tasks added later will not be run if an earlier one fails.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:addTasksBeforeRun"><apiName>addTasksBeforeRun</apiName><shortdesc>
+		 Sub-classes may override this method to J.I.T.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 Sub-classes may override this method to J.I.T. add child Tasks before the composite Task is run.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:checkForTaskCompletion"><apiName>checkForTaskCompletion</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:customReset"><apiName>customReset</apiName><shortdesc>
+		 
+		 Override this method to perform any custom reset operations.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to perform any custom reset operations.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:flushTaskQueue"><apiName>flushTaskQueue</apiName><shortdesc>
+		 Remove all Tasks from the queue.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>forcefullyPreventTaskFromCompleting</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>Prevent CompositeTask from completing after queue has been cleared
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Remove all Tasks from the queue.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:handleTaskCompletedOrRemoved"><apiName>handleTaskCompletedOrRemoved</apiName><shortdesc>
+		 Convenience method for handling a completed Task and executing the next.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Convenience method for handling a completed Task and executing the next.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:individualTaskComplete"><apiName>individualTaskComplete</apiName><shortdesc>
+		 Override this method to be notified when individual Tasks have successfully completed.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Override this method to be notified when individual Tasks have successfully completed.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:individualTaskStarted"><apiName>individualTaskStarted</apiName><shortdesc>
+		 Override this method to be notified when individual Tasks are started.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Override this method to be notified when individual Tasks are started.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:interrupt"><apiName>interrupt</apiName><shortdesc>
+		 
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.
+		 
+		 If they are, they should fire a TaskEvent.INTERRUPTED to indicate successful interruption of the task.
+		 
+		 If the interrupting fails at runtime, this method returns false
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:removeFunction"><apiName>removeFunction</apiName><shortdesc>
+		 Removes a function from the queue of Tasks by locating its corresponding TaskWithClosure.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:TaskWithClosure</apiOperationClassifier><apiDesc>TaskWithClosure (if one found)
+		 </apiDesc></apiReturn><apiParam><apiItemName>closure</apiItemName><apiType value="Function"/><apiDesc>Function to be executed
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Removes a function from the queue of Tasks by locating its corresponding TaskWithClosure.
+		 This method is simply a convenience method for locating the matching Task and calling removeTask().
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:removeMultiple"><apiName>removeMultiple</apiName><shortdesc>
+		 Removes multiple Tasks or Functions from the internal set.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiException><apiDesc>if any of the specified parameters is not a Task or a Function
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>tasksOrFunctions</apiItemName><apiType value="restParam"/><apiDesc>Task or Function objects
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Removes multiple Tasks or Functions from the internal set.
+		 This method is a convenience mehtod for calling removeTask() or removeFunction() multiple times.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:removeTaskEventListeners"><apiName>removeTaskEventListeners</apiName><shortdesc>
+		 Convenience method for removing TaskEvent listeners from a Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Convenience method for removing TaskEvent listeners from a Task.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:AbstractCompositeTask:removeTask"><apiName>removeTask</apiName><shortdesc>
+		 Removes a task from the internal set that this class will execute.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>task</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Removes a task from the internal set that this class will execute.
+		 If the specified Task has not been executed before it is removed it will not be executed by the CompositeTask.
+		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:ITask"><apiName>ITask</apiName><apiClassifierDetail><apiClassifierDef><apiInterface/><apiAccess value="public"/><apiStatic/><apiBaseInterface>flash.events:IEventDispatcher</apiBaseInterface><apiBaseClassifier/></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:and"><apiName>and</apiName><shortdesc>
+		 Executes the specified tasks when the current task is executed.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiException><apiDesc>if any parameter is not a task
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>chainedTasks</apiItemName><apiType value="restParam"/><apiDesc>One or more tasks
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Executes the specified tasks when the current task is executed.
+		 If the current task has already been started the new tasks will be executed immediately.
+		 Failures or interruptions in the current task will not affect the chained tasks.
+		 
+		 </apiDesc><example conref="TaskAndExample.as"><codeblock>var initialTask:StubTask = new StubTask();
+var parallelTask:StubTask = new StubTask();
+
+initialTask.and( parallelTask ).run();
+</codeblock><swfblock conref="TaskAndExample.swf"/></example></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:or"><apiName>or</apiName><shortdesc>
+		 Executes the specified tasks if the current task fails.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiException><apiDesc>if any parameter is not a task
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>chainedTasks</apiItemName><apiType value="restParam"/><apiDesc>One or more tasks
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Executes the specified tasks if the current task fails.
+		 
+		 </apiDesc><example conref="TaskOrExample.as"><codeblock>var initialTask:StubTask = new StubTask();
+var fallbackTask:StubTask = new StubTask();
+
+initialTask.or( fallbackTask ).run();
+</codeblock><swfblock conref="TaskOrExample.swf"/></example></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:reset"><apiName>reset</apiName><shortdesc>
+		 Resets the task to it's pre-run state.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 Resets the task to it's pre-run state.
+		 This allows it to be re-run.
+		 This method can only be called on non-running tasks.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:run"><apiName>run</apiName><shortdesc>
+		 Starts a task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 Starts a task.
+		 This method will dispatch a TaskEvent.STARTED to indicate that the task has begun.
+		 
+		 This method may also be used to retry/resume an errored task.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:then"><apiName>then</apiName><shortdesc>
+		 Executes the specified tasks once the current task has completed successfully.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiException><apiDesc>if any parameter is not a task
+		 </apiDesc><apiItemName>Error</apiItemName><apiOperationClassifier>Error</apiOperationClassifier></apiException><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>chainedTasks</apiItemName><apiType value="restParam"/><apiDesc>One or more tasks
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Executes the specified tasks once the current task has completed successfully.
+		 
+		 </apiDesc><example conref="TaskThenExample.as"><codeblock>var firstTask:StubTask = new StubTask();
+var secondTask:StubTask = new StubTask();
+
+firstTask.then( secondTask ).run();
+</codeblock><swfblock conref="TaskThenExample.swf"/></example></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:withCompleteHandler"><apiName>withCompleteHandler</apiName><shortdesc>
+		 Although tasks dispatch TaskEvents to indicate completion, this method may also be used for notification purposes.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>completeHandler</apiItemName><apiType value="Function"/><apiDesc>Function
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Although tasks dispatch TaskEvents to indicate completion, this method may also be used for notification purposes.
+		 The provided function will be invoked only upon successful completion of the task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once when the task completes.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:withErrorHandler"><apiName>withErrorHandler</apiName><shortdesc>
+		 Although tasks dispatch TaskEvents to indicate failure, this method may also be used for notification purposes.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>errorHandler</apiItemName><apiType value="Function"/><apiDesc>Function
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Although tasks dispatch TaskEvents to indicate failure, this method may also be used for notification purposes.
+		 The provided function will be invoked only upon failure of the task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once if the tasks errors.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:withFinalHandler"><apiName>withFinalHandler</apiName><shortdesc>
+		 This handler is invoked upon either success or failure of the Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>finalHandler</apiItemName><apiType value="Function"/></apiParam></apiOperationDef><apiDesc>
+		 This handler is invoked upon either success or failure of the Task.
+		 It can be used for cleanup that must be done regardless of Task-status.
+		 
+		 <p>
+		 This method may be called multiple times safely.
+		 Each unique function specified will be executed once when the task is ready for cleanup.
+		 </p>
+		 
+		 <p>
+		 This type of closure should implement the following signature:
+		 <pre>function():void</pre>
+		 </p>
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:withStartedHandler"><apiName>withStartedHandler</apiName><shortdesc>
+		 Although tasks dispatch TaskEvents to indicate starting, this method may also be used for notification purposes.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>startedHandler</apiItemName><apiType value="Function"/><apiDesc>Function
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Although tasks dispatch TaskEvents to indicate starting, this method may also be used for notification purposes.
+		 The provided function will be invoked each time the task is started (or re-started).
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once when the task starts.
+		 
+		 <p>
+		 It should have the following signature:
+		 <pre>function():void</pre>
+		 </p>
+		 		 </apiDesc></apiOperationDetail></apiOperation></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:SleepTask"><apiName>SleepTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:SleepTask:complete"><apiName>complete</apiName><shortdesc>
+		 Stop sleeping and complete Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 Stop sleeping and complete Task.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:SleepTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:SleepTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:SleepTask:SleepTask"><apiName>SleepTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>Human-friendly Task identifier
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:FactoryTask"><apiName>FactoryTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:FactoryTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:FactoryTask:protected:customReset"><apiName>customReset</apiName><shortdesc>
+		 
+		 Override this method to perform any custom reset operations.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to perform any custom reset operations.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:FactoryTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:FactoryTask:setReexecuteFactoryFunctionAfterError"><apiName>setReexecuteFactoryFunctionAfterError</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:FactoryTask</apiOperationClassifier></apiReturn><apiParam><apiItemName>value</apiItemName><apiType value="Boolean"/><apiData>false</apiData></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:FactoryTask:FactoryTask"><apiName>FactoryTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>taskFactoryFunction</apiItemName><apiType value="Function"/><apiDesc>Returns an ITask object
+		 </apiDesc></apiParam><apiParam><apiItemName>thisObj</apiItemName><apiType value="any"/><apiData>null</apiData><apiDesc>Optional object to which the function is applied.
+		 </apiDesc></apiParam><apiParam><apiItemName>args</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>Optional Array of parameters to be passed to the factory Function.
+		             If this value is specified a target "thisObj" must be provided as well.
+		 </apiDesc></apiParam><apiParam><apiItemName>taskWillBeInterruptible</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>Task returned by facotry function is interruptible
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>Semantically meaningful task identifier (useful for automated testing or debugging)
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator"><apiName>InnocuousTaskDecorator</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator:interrupt"><apiName>interrupt</apiName><shortdesc>
+		 
+		 
+		 Interrupt the current Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="Boolean"/><apiDesc>TRUE if the Task has been successfully interrupted
+		 </apiDesc></apiReturn></apiOperationDef><apiDesc>
+		 
+		 
+		 Interrupt the current Task.
+		 Interruptions should be handled in such a way as to allow a subsequent call to run() to resume gracefully.
+		 
+		 This mehtod should trigger an event of type TaskEvent.INTERRUPTED.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator:reset"><apiName>reset</apiName><shortdesc>
+		 
+		 Resets the task to it's pre-run state.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Resets the task to it's pre-run state.
+		 This allows it to be re-run.
+		 This method can only be called on non-running tasks.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator:InnocuousTaskDecorator"><apiName>InnocuousTaskDecorator</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>decorated</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:Task"><apiName>Task</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:Task:and"><apiName>and</apiName><shortdesc>
+		 
+		 Executes the specified tasks when the current task is executed.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>chainedTasks</apiItemName><apiType value="restParam"/><apiDesc>One or more tasks
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 Executes the specified tasks when the current task is executed.
+		 If the current task has already been started the new tasks will be executed immediately.
+		 Failures or interruptions in the current task will not affect the chained tasks.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:protected:customReset"><apiName>customReset</apiName><shortdesc>
+		 Override this method to perform any custom reset operations.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 Override this method to perform any custom reset operations.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:disconnectFromInterruptingTask"><apiName>disconnectFromInterruptingTask</apiName><shortdesc>
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:protected:dispatchProgressEvent"><apiName>dispatchProgressEvent</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:doTaskComplete"><apiName>doTaskComplete</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="TaskPrivateNamespace"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:doTaskError"><apiName>doTaskError</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="TaskPrivateNamespace"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:doTaskInterrupted"><apiName>doTaskInterrupted</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="TaskPrivateNamespace"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:protected:getLoggerString"><apiName>getLoggerString</apiName><shortdesc>
+		 Returns a string for logging the specified task-state event.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="String"/></apiReturn><apiParam><apiItemName>string</apiItemName><apiType value="String"/><apiDesc>String to append to log
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Returns a string for logging the specified task-state event.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:interruptForTask"><apiName>interruptForTask</apiName><shortdesc>
+		 Interrupts the current Task to wait on the Task specified.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn><apiParam><apiItemName>interruptingTask</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier><apiDesc>Task
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 Interrupts the current Task to wait on the Task specified.
+		 Once this Task dispatches a TaskEvent.COMPLETE event, this Task will resume.
+		 If the specified Task dispatches a TaskEvent.ERROR event this Task will also error.
+		 TaskEvent.INTERRUPTED events are ignored.
+		 
+		 If this method is called once with a Task and then called again before that Task has completed,
+		 Event listeners will be removed from the first Task and added to the second one.
+		 There can only be 1 active interrupting Task at a time.
+		 If this Task should be interrupted by more than one Task, a CompositeTask or ObserverTask should be used.
+		 
+		 If the specified interrupting Task is already running this method will simply add event listeners.
+		 If it is not running this method will add event listeners but will rely on external code to run the interrupter.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:interrupt"><apiName>interrupt</apiName><shortdesc>
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="Boolean"/></apiReturn></apiOperationDef><apiDesc>
+		 Interruptible tasks should override interrupt() and get interruptible() if they are interruptible.
+		 
+		 If they are, they should fire a TaskEvent.INTERRUPTED to indicate successful interruption of the task.
+		 
+		 If the interrupting fails at runtime, this method returns false
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:onInterruptingTaskComplete"><apiName>onInterruptingTaskComplete</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="TaskPrivateNamespace"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager.events:TaskEvent</apiOperationClassifier></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:onInterruptingTaskError"><apiName>onInterruptingTaskError</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="TaskPrivateNamespace"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>event</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager.events:TaskEvent</apiOperationClassifier></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:or"><apiName>or</apiName><shortdesc>
+		 
+		 Executes the specified tasks if the current task fails.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>chainedTasks</apiItemName><apiType value="restParam"/><apiDesc>One or more tasks
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 Executes the specified tasks if the current task fails.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:reset"><apiName>reset</apiName><shortdesc>
+		 
+		 Resets the task to it's pre-run state.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Resets the task to it's pre-run state.
+		 This allows it to be re-run.
+		 This method can only be called on non-running tasks.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:run"><apiName>run</apiName><shortdesc>
+		 
+		 Starts a task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiFinal/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Starts a task.
+		 This method will dispatch a TaskEvent.STARTED to indicate that the task has begun.
+		 
+		 This method may also be used to retry/resume an errored task.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:protected:taskComplete"><apiName>taskComplete</apiName><shortdesc>
+		 This method should be called upon Task completion.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/><apiDesc>An (optional) message or data in string form
+		 </apiDesc></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData><apiDesc>Optional data object related to the Task dispatching this event.
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 This method should be called upon Task completion.
+		 It dispatches a TaskEvent.COMPLETE event and toggles the Tasks's "running" and "complete" states.
+		 It also invokes the success handler if one has been provided.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:protected:taskError"><apiName>taskError</apiName><shortdesc>
+		 This method should be called upon Task failure.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/><apiDesc>An (optional) reason for the error
+		 </apiDesc></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData><apiDesc>Optional data object containing additional error information
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 This method should be called upon Task failure.
+		 It dispatches a TaskEvent.ERROR event and toggles the Tasks's "running" and "complete" states.
+		 It also invokes the error handler if one has been provided.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:protected:taskInterrupted"><apiName>taskInterrupted</apiName><shortdesc>
+		 Call this method to interrupt the currently running Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/><apiDesc>An (optional) reason for the interruption
+		 </apiDesc></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef><apiDesc>
+		 Call this method to interrupt the currently running Task.
+		 This method dispatches a TaskEvent.INTERRUPTED and toggles the tasks's "running" state.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:then"><apiName>then</apiName><shortdesc>
+		 
+		 Executes the specified tasks once the current task has completed successfully.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>chainedTasks</apiItemName><apiType value="restParam"/><apiDesc>One or more tasks
+		 
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 Executes the specified tasks once the current task has completed successfully.
+		 
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:protected:throwErrorIfAnyObjectInArrayIsNotATask"><apiName>throwErrorIfAnyObjectInArrayIsNotATask</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>tasks</apiItemName><apiType value="Array"/></apiParam></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:withCompleteHandler"><apiName>withCompleteHandler</apiName><shortdesc>
+		 
+		 Although tasks dispatch TaskEvents to indicate completion, this method may also be used for notification purposes.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>completeHandler</apiItemName><apiType value="Function"/><apiDesc>Function
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 Although tasks dispatch TaskEvents to indicate completion, this method may also be used for notification purposes.
+		 The provided function will be invoked only upon successful completion of the task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once when the task completes.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:withErrorHandler"><apiName>withErrorHandler</apiName><shortdesc>
+		 
+		 Although tasks dispatch TaskEvents to indicate failure, this method may also be used for notification purposes.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>errorHandler</apiItemName><apiType value="Function"/><apiDesc>Function
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 Although tasks dispatch TaskEvents to indicate failure, this method may also be used for notification purposes.
+		 The provided function will be invoked only upon failure of the task.
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once if the tasks errors.
+		 
+		 <p>
+		 It should have one of the following signatures:
+		 <pre>function( message:String = "", data:= null ):void</pre>
+		 <pre>function():void</pre>
+		 </p>
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:withFinalHandler"><apiName>withFinalHandler</apiName><shortdesc>
+		 
+		 This handler is invoked upon either success or failure of the Task.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>finalHandler</apiItemName><apiType value="Function"/></apiParam></apiOperationDef><apiDesc>
+		 
+		 This handler is invoked upon either success or failure of the Task.
+		 It can be used for cleanup that must be done regardless of Task-status.
+		 
+		 <p>
+		 This method may be called multiple times safely.
+		 Each unique function specified will be executed once when the task is ready for cleanup.
+		 </p>
+		 
+		 <p>
+		 This type of closure should implement the following signature:
+		 <pre>function():void</pre>
+		 </p>
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:withInterruptionHandler"><apiName>withInterruptionHandler</apiName><shortdesc>
+		 </shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>interruptionHandler</apiItemName><apiType value="Function"/></apiParam></apiOperationDef><apiDesc>
+		 </apiDesc></apiOperationDetail><apiInheritDoc/></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:Task:withStartedHandler"><apiName>withStartedHandler</apiName><shortdesc>
+		 
+		 Although tasks dispatch TaskEvents to indicate starting, this method may also be used for notification purposes.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiReturn><apiParam><apiItemName>startedHandler</apiItemName><apiType value="Function"/><apiDesc>Function
+		 </apiDesc></apiParam></apiOperationDef><apiDesc>
+		 
+		 Although tasks dispatch TaskEvents to indicate starting, this method may also be used for notification purposes.
+		 The provided function will be invoked each time the task is started (or re-started).
+		 
+		 This method may be called multiple times safely; each unique function specified will be executed once when the task starts.
+		 
+		 <p>
+		 It should have the following signature:
+		 <pre>function():void</pre>
+		 </p>
+		 		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:Task:Task"><apiName>Task</apiName><shortdesc>
+		 Constructor
+		 
+		 </shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>Human-friendly ID string useful for debugging purposes only.
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 Constructor
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:EventHandlingTask"><apiName>EventHandlingTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:EventHandlingTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:EventHandlingTask:protected:customReset"><apiName>customReset</apiName><shortdesc>
+		 
+		 Override this method to perform any custom reset operations.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to perform any custom reset operations.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:EventHandlingTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:EventHandlingTask:EventHandlingTask"><apiName>EventHandlingTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>eventDispatcher</apiItemName><apiType value="flash.events:IEventDispatcher"/><apiDesc>Event dispatcher object
+		 </apiDesc></apiParam><apiParam><apiItemName>successEventTypeOrTypes</apiItemName><apiType value="any"/><apiDesc>One or more event types indicating success (String or Array)
+		 </apiDesc></apiParam><apiParam><apiItemName>failureEventTypeOrTypes</apiItemName><apiType value="any"/><apiData>null</apiData><apiDesc>One or more event types indicating failure (String or Array)
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:ObserverTask"><apiName>ObserverTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:ObserverTask:protected:areAllObservedTasksCompletedOrErrored"><apiName>areAllObservedTasksCompletedOrErrored</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="Boolean"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ObserverTask:protected:checkForAndHandleCompletion"><apiName>checkForAndHandleCompletion</apiName><shortdesc/><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ObserverTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ObserverTask:observeTask"><apiName>observeTask</apiName><shortdesc>
+		 Add an additional Task to the set of Tasks being observed.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>taskToObserve</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Add an additional Task to the set of Tasks being observed.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:ObserverTask:stopObservingTask"><apiName>stopObservingTask</apiName><shortdesc>
+		 Remove the specified Task from the set of Tasks being observed.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>taskToObserve</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam></apiOperationDef><apiDesc>
+		 Remove the specified Task from the set of Tasks being observed.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:ObserverTask:ObserverTask"><apiName>ObserverTask</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>tasks</apiItemName><apiType value="Array"/><apiData>null</apiData><apiDesc>Array of Tasks to observe
+		 </apiDesc></apiParam><apiParam><apiItemName>failUponError</apiItemName><apiType value="Boolean"/><apiData>true</apiData><apiDesc>Controls behavior in the event of a Task error; see class documentation for more detail
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>	 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleStubTask"><apiName>InterruptibleStubTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleStubTask:complete"><apiName>complete</apiName><shortdesc>
+		 Instructs Task to complete itself.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef><apiDesc>
+		 Instructs Task to complete itself.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleStubTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleStubTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleStubTask:error"><apiName>error</apiName><shortdesc>
+		 Instructs Task to dispatch an error event.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef><apiDesc>
+		 Instructs Task to dispatch an error event.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:InterruptibleStubTask:InterruptibleStubTask"><apiName>InterruptibleStubTask</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>autoCompleteUponRun</apiItemName><apiType value="Boolean"/><apiData>false</apiData></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:SynchronousTask"><apiName>SynchronousTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ISynchronousTask</apiBaseInterface><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:SynchronousTask:protected:customRunHook"><apiName>customRunHook</apiName><shortdesc>
+		 Synchronous run method.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 Synchronous run method.
+		 Sub-classes must override this method.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:SynchronousTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiFinal/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:SynchronousTask:SynchronousTask"><apiName>SynchronousTask</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:TaskWithClosure"><apiName>TaskWithClosure</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:TaskWithClosure:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:TaskWithClosure:errorTask"><apiName>errorTask</apiName><shortdesc>
+		 Instructs Task to dispatch an error event.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef><apiDesc>
+		 Instructs Task to dispatch an error event.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:TaskWithClosure:finishTask"><apiName>finishTask</apiName><shortdesc>
+		 Instructs Task to complete itself.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="public"/><apiReturn><apiType value="void"/></apiReturn><apiParam><apiItemName>message</apiItemName><apiType value="String"/><apiData/></apiParam><apiParam><apiItemName>data</apiItemName><apiType value="any"/><apiData>null</apiData></apiParam></apiOperationDef><apiDesc>
+		 Instructs Task to complete itself.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:TaskWithClosure:TaskWithClosure"><apiName>TaskWithClosure</apiName><shortdesc>
+		 Constructor.</shortdesc><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>customRunFunction</apiItemName><apiType value="Function"/><apiData>null</apiData><apiDesc>Function to be executed when this Task is run
+		 </apiDesc></apiParam><apiParam><apiItemName>autoCompleteAfterRunningFunction</apiItemName><apiType value="Boolean"/><apiData>false</apiData><apiDesc>If TRUE this Task will complete after running custom function (unless custom function called "errorTask")
+		 </apiDesc></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData><apiDesc>Semantically meaningful task identifier (useful for automated testing or debugging)
+		 </apiDesc></apiParam></apiConstructorDef><apiDesc>
+		 Constructor.
+		 
+		 </apiDesc></apiConstructorDetail></apiConstructor></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask"><apiName>InterruptibleDecoratorTask</apiName><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef></apiClassifierDetail><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask:protected:customInterrupt"><apiName>customInterrupt</apiName><shortdesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Sub-classes should override this method to implement interruption behavior (removing event listeners, pausing objects, etc.).
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask:protected:customReset"><apiName>customReset</apiName><shortdesc>
+		 
+		 Override this method to perform any custom reset operations.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to perform any custom reset operations.
+		 </apiDesc></apiOperationDetail></apiOperation><apiOperation id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask:protected:customRun"><apiName>customRun</apiName><shortdesc>
+		 
+		 Override this method to give your Task functionality.</shortdesc><prolog/><apiOperationDetail><apiOperationDef><apiAccess value="protected"/><apiIsOverride/><apiReturn><apiType value="void"/></apiReturn></apiOperationDef><apiDesc>
+		 
+		 Override this method to give your Task functionality.
+		 </apiDesc></apiOperationDetail></apiOperation><apiConstructor id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask:InterruptibleDecoratorTask"><apiName>InterruptibleDecoratorTask</apiName><shortdesc/><prolog/><apiConstructorDetail><apiConstructorDef><apiAccess value="public"/><apiParam><apiItemName>decoratedTask</apiItemName><apiOperationClassifier>com.rosettastone.library.taskmanager:ITask</apiOperationClassifier></apiParam><apiParam><apiItemName>taskIdentifier</apiItemName><apiType value="String"/><apiData>null</apiData></apiParam></apiConstructorDef></apiConstructorDetail></apiConstructor></apiClassifier></apiPackage></allClasses>

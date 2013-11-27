@@ -1,0 +1,1205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allClasses>
+   <apiPackage id="com.rosettastone.library.taskmanager.events">
+      <apiName>com.rosettastone.library.taskmanager.events</apiName>
+      <apiDetail/>
+      <apiClassifier id="com.rosettastone.library.taskmanager.events:TaskEvent">
+         <apiName>TaskEvent</apiName>
+         <shortdesc>
+	 Dispatched by a Task to indicated a change in state.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="TaskEvent,com.rosettastone.library.taskmanager.events.TaskEvent,COMPLETE,COMPLETE,ERROR,ERROR,FINAL,INTERRUPTED,INTERRUPTED,STARTED,data,message,message,task,clone,clone"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>flash.events:Event</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Dispatched by a Task to indicated a change in state.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="flash.events:Event"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager.events:TaskManagerEvent">
+         <apiName>TaskManagerEvent</apiName>
+         <shortdesc>
+	 Dispatched by TaskManager to indicate a change in state.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="TaskManagerEvent,com.rosettastone.library.taskmanager.events.TaskManagerEvent,COMPLETE,COMPLETE,ERROR,ERROR,FINAL,INTERRUPTED,INTERRUPTED,STARTED,data,message,message,task,clone,clone"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>flash.events:Event</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Dispatched by TaskManager to indicate a change in state.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="flash.events:Event"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+   </apiPackage>
+   <apiPackage id="com.rosettastone.library.taskmanager">
+      <apiName>com.rosettastone.library.taskmanager</apiName>
+      <apiDetail/>
+      <apiClassifier id="com.rosettastone.library.taskmanager:IInterruptibleTask">
+         <apiName>IInterruptibleTask</apiName>
+         <shortdesc>
+	 An interruptible Task can be paused and resumed after being run.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="IInterruptibleTask,com.rosettastone.library.taskmanager.IInterruptibleTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+            <apiDesc>
+	 An interruptible Task can be paused and resumed after being run.
+	 
+	 Pausing a non-running Task should have no effect.
+	 Resuming a non-interrupted Task should have no effect.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface>
+                  <Interface id="com.rosettastone.library.taskmanager:ITask"/>
+                  <Interface id="flash.events:IEventDispatcher"/>
+               </BaseInterface>
+               <Inheritance>
+                  <Inherit id=""/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:ITask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors>
+                  <Implementor id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:InterruptibleTaskManager"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:SynchronousTask"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:SynchronousTaskWithClosure"/>
+               </Implementors>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:TaskWithTimeout">
+         <apiName>TaskWithTimeout</apiName>
+         <shortdesc>
+	 Decorates a Task and enforces a max-execution time limit.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="TaskWithTimeout,com.rosettastone.library.taskmanager.TaskWithTimeout,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Decorates a Task and enforces a max-execution time limit.
+	 If specified time interval elapses before the decorated Task has complete it is considered to be an error.
+	 The decorated Task will be interrupted (if possible) in that event.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:IDecoratorTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:IDecoratorTask">
+         <apiName>IDecoratorTask</apiName>
+         <shortdesc>
+	 Special interface for tasks that decorate other tasks.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="IDecoratorTask,com.rosettastone.library.taskmanager.IDecoratorTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+            <apiDesc>
+	 Special interface for tasks that decorate other tasks.
+	 This interface can assist external code in getting to the lowest-level failing task in the event of an error.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface>
+                  <Interface id="com.rosettastone.library.taskmanager:ITask"/>
+                  <Interface id="flash.events:IEventDispatcher"/>
+               </BaseInterface>
+               <Inheritance>
+                  <Inherit id=""/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:ITask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors>
+                  <Implementor id="com.rosettastone.library.taskmanager:FactoryTask"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:TaskWithTimeout"/>
+               </Implementors>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:URLRequestTask">
+         <apiName>URLRequestTask</apiName>
+         <shortdesc>
+	 Task that loads a URLRequest and exposes the URLLoader's "urlLoaderData" upon success.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="URLRequestTask,com.rosettastone.library.taskmanager.URLRequestTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Task that loads a URLRequest and exposes the URLLoader's "urlLoaderData" upon success.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:SynchronousTaskWithClosure">
+         <apiName>SynchronousTaskWithClosure</apiName>
+         <shortdesc/>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="SynchronousTaskWithClosure,com.rosettastone.library.taskmanager.SynchronousTaskWithClosure"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ISynchronousTask</apiBaseInterface>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:TaskWithClosure</apiBaseClassifier>
+            </apiClassifierDef>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:TaskWithClosure"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:ISynchronousTask"/>
+                  <Implement id="com.rosettastone.library.taskmanager:IInterruptibleTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:AbstractTaskManager">
+         <apiName>AbstractTaskManager</apiName>
+         <shortdesc>
+	 This is an abstract class and should not be instantiated directly.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="AbstractTaskManager,com.rosettastone.library.taskmanager.AbstractTaskManager,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 This is an abstract class and should not be instantiated directly.
+	 Instead use one of the following sub-classes: TaskManager, InterruptibleTaskManager
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses>
+                  <class id="com.rosettastone.library.taskmanager:TaskManager"/>
+                  <class id="com.rosettastone.library.taskmanager:InterruptibleTaskManager"/>
+               </Subclasses>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask">
+         <apiName>InterruptibleCompositeTask</apiName>
+         <shortdesc>
+	 Wraps a set of IInterruptibleTask (or ISynchronousTask) and executes them in parallel or serial, as specified by a boolean constructor arg.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="InterruptibleCompositeTask,com.rosettastone.library.taskmanager.InterruptibleCompositeTask,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractCompositeTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Wraps a set of IInterruptibleTask (or ISynchronousTask) and executes them in parallel or serial, as specified by a boolean constructor arg.
+	 Interruptable composite task designed to be paused and resumed gracefully and automatically handles interrupting and resuming all child tasks.
+	 
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:AbstractCompositeTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:IInterruptibleTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:WaitTask">
+         <apiName>WaitTask</apiName>
+         <shortdesc>
+	 Task that delays for a specified time before completion.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="WaitTask,com.rosettastone.library.taskmanager.WaitTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Task that delays for a specified time before completion.
+	 
+	 This task supports interruption as well as resume.
+	 Upon resuming an interrupted Wait this Task can either re-start the Timer at the beginning or resume from the interrupted point.
+	 This behavior can be controlled via the constructor parameter "restartTimerAfterInterruption".
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:ISynchronousTask">
+         <apiName>ISynchronousTask</apiName>
+         <shortdesc>
+	 A synchronous Task is one that completes immediately upon being run.</shortdesc>
+         <prolog>
+            <asMetadata/>
+            <asCustoms>
+               <internal>This interface is a useful placeholder even though it does not define any additional API methods.
+	 </internal>
+            </asCustoms>
+         </prolog>
+            <meta name="keywords"
+               content="ISynchronousTask,com.rosettastone.library.taskmanager.ISynchronousTask"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+            <apiDesc>
+	 A synchronous Task is one that completes immediately upon being run.
+	 
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface>
+                  <Interface id="com.rosettastone.library.taskmanager:ITask"/>
+                  <Interface id="flash.events:IEventDispatcher"/>
+               </BaseInterface>
+               <Inheritance>
+                  <Inherit id=""/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:ITask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors>
+                  <Implementor id="com.rosettastone.library.taskmanager:SynchronousTask"/>
+                  <Implementor id="com.rosettastone.library.taskmanager:SynchronousTaskWithClosure"/>
+               </Implementors>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:TaskManager">
+         <apiName>TaskManager</apiName>
+         <shortdesc>
+	 Manages execution of a set of ITasks.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="TaskManager,com.rosettastone.library.taskmanager.TaskManager,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractTaskManager</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Manages execution of a set of ITasks.
+	 Tasks may specify blocking depencies on other tasks.
+	 	 This class will wrap all TaskEvents and dispatch TaskManagerEvent.COMPLETE only once all Tasks have completed.
+	 If a task errors, this class will dispatch a TaskManagerEvent.ERROR event and halt running any additional tasks.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:AbstractTaskManager"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleTaskManager">
+         <apiName>InterruptibleTaskManager</apiName>
+         <shortdesc>
+	 Manages execution of a set of IInterruptibleTasks.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="InterruptibleTaskManager,com.rosettastone.library.taskmanager.InterruptibleTaskManager,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractTaskManager</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Manages execution of a set of IInterruptibleTasks.
+	 Tasks may specify blocking depencies on other tasks.
+	 	 This class will wrap all TaskEvents and dispatch TaskManagerEvent.COMPLETE only once all Tasks have completed.
+	 If a task errors, this class will dispatch a TaskManagerEvent.ERROR event and halt running any additional tasks.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:AbstractTaskManager"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:IInterruptibleTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:TaskManagerComponentInfo">
+         <apiName>TaskManagerComponentInfo</apiName>
+         <shortdesc>
+	 Used for retrieving information about the TaskManager component.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="TaskManagerComponentInfo,com.rosettastone.library.taskmanager.TaskManagerComponentInfo,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>Object</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Used for retrieving information about the TaskManager component.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="Object"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:CompositeTask">
+         <apiName>CompositeTask</apiName>
+         <shortdesc>
+	 Wraps a set of ITasks and executes them in parallel or serial, as specified by a boolean constructor arg.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="CompositeTask,com.rosettastone.library.taskmanager.CompositeTask,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractCompositeTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Wraps a set of ITasks and executes them in parallel or serial, as specified by a boolean constructor arg.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:AbstractCompositeTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask">
+         <apiName>RetryOnFailureDecoratorTask</apiName>
+         <shortdesc>
+	 Special Task decorator for Tasks that should be retried on failure.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="RetryOnFailureDecoratorTask,com.rosettastone.library.taskmanager.RetryOnFailureDecoratorTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Special Task decorator for Tasks that should be retried on failure.
+	 (For example, this could be useful for Tasks that rely on an internet connection in order to complete.)
+	 
+	 This task allows its decorated Task to fail a couple of times before bubbling the error.
+	 A small amount of time is allowed to pass between each retry.
+	 This delay allows time for an external monitor to detect a loss of internet connection and pause all Tasks until it is restored.
+	 It also allows for a more graceful handling of occasional HTTP failures.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:IDecoratorTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleTask">
+         <apiName>InterruptibleTask</apiName>
+         <shortdesc>
+	 Abstract inerruptible Task.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="InterruptibleTask,com.rosettastone.library.taskmanager.InterruptibleTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Abstract inerruptible Task.
+	 Extend this class and override the customInterrupt() method to support interruptibility.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:IInterruptibleTask"/>
+               </Implements>
+               <Subclasses>
+                  <class id="com.rosettastone.library.taskmanager:TaskWithTimeout"/>
+                  <class id="com.rosettastone.library.taskmanager:URLRequestTask"/>
+                  <class id="com.rosettastone.library.taskmanager:WaitTask"/>
+                  <class id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask"/>
+                  <class id="com.rosettastone.library.taskmanager:PlaySoundTask"/>
+                  <class id="com.rosettastone.library.taskmanager:WaitForUIInitialization"/>
+                  <class id="com.rosettastone.library.taskmanager:SleepTask"/>
+                  <class id="com.rosettastone.library.taskmanager:FactoryTask"/>
+                  <class id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator"/>
+                  <class id="com.rosettastone.library.taskmanager:EventHandlingTask"/>
+                  <class id="com.rosettastone.library.taskmanager:InterruptibleStubTask"/>
+                  <class id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask"/>
+               </Subclasses>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:PlaySoundTask">
+         <apiName>PlaySoundTask</apiName>
+         <shortdesc>
+	 Task that plays a Sound and completes when the sound has finished playing.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="PlaySoundTask,com.rosettastone.library.taskmanager.PlaySoundTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Task that plays a Sound and completes when the sound has finished playing.
+	 This Task expects that the Sound object provided has already been loaded.
+	 
+	 This task supports interruption as well as resume.
+	 Upon resuming an interrupted Sound this Task can either re-start playback at the beginning or resume from the interrupted point.
+	 This behavior can be controlled via the constructor parameter "restartSoundAfterInterruption".
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:WaitForUIInitialization">
+         <apiName>WaitForUIInitialization</apiName>
+         <shortdesc>
+	 Convenience task for waiting until a specified UIComponent has initialized.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="WaitForUIInitialization,com.rosettastone.library.taskmanager.WaitForUIInitialization,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Convenience task for waiting until a specified UIComponent has initialized.
+	 This can be useful if app initialization (business logic) also depends on UI initialization.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:StubTask">
+         <apiName>StubTask</apiName>
+         <shortdesc>
+	 Empty Task useful primarily for unit testing.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="StubTask,com.rosettastone.library.taskmanager.StubTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Empty Task useful primarily for unit testing.
+	 It can also be useful in factory situations when a default no-op behavior is desired.
+	 If certain implementations wish to provide behavior they can replace the placeholder Stub task with one that does work.
+	 
+	 This Task can be configured to auto-complete when it is executed.
+	 Otherwise it will not complete or error unless/until specifically told to do so.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:AbstractCompositeTask">
+         <apiName>AbstractCompositeTask</apiName>
+         <shortdesc>
+	 This is an abstract class and should not be instantiated directly.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="AbstractCompositeTask,com.rosettastone.library.taskmanager.AbstractCompositeTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 This is an abstract class and should not be instantiated directly.
+	 Instead use one of the following sub-classes: CompositeTask, InterruptibleCompositeTask
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses>
+                  <class id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask"/>
+                  <class id="com.rosettastone.library.taskmanager:CompositeTask"/>
+               </Subclasses>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:ITask">
+         <apiName>ITask</apiName>
+         <shortdesc>
+	 A Task represents a job.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="ITask,com.rosettastone.library.taskmanager.ITask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiInterface/>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>flash.events:IEventDispatcher</apiBaseInterface>
+               <apiBaseClassifier/>
+            </apiClassifierDef>
+            <apiDesc>
+	 A Task represents a job.
+	 This job can be synchronous or asynchronous.
+	 It can be a simple operation or a composite of other Tasks.
+	 This interface defines the minimum API that must be implemented by a Task within the Task Manager framework.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface>
+                  <Interface id="flash.events:IEventDispatcher"/>
+               </BaseInterface>
+               <Inheritance>
+                  <Inherit id=""/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="flash.events:IEventDispatcher"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors>
+                  <Implementor id="com.rosettastone.library.taskmanager:Task"/>
+               </Implementors>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:SleepTask">
+         <apiName>SleepTask</apiName>
+         <shortdesc>
+	 Sleeps until told to complete.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="SleepTask,com.rosettastone.library.taskmanager.SleepTask,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Sleeps until told to complete.
+	 This Task can be inserted into a composite to block for an indeterminate amount of time.
+	 Since this Task is simple a placeholder, it supports interruptibility.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:FactoryTask">
+         <apiName>FactoryTask</apiName>
+         <shortdesc>
+	 Decorates a Task returned by the specified factory method.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="FactoryTask,com.rosettastone.library.taskmanager.FactoryTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Decorates a Task returned by the specified factory method.
+	 This Task does not invoke the provided factory method until it is actually executed.
+	 This allows for just-in-time evaluation of data set by previous Tasks.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:IDecoratorTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator">
+         <apiName>InnocuousTaskDecorator</apiName>
+         <shortdesc>
+	 Decorates a Task but re-dispatches both error and success events as success.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="InnocuousTaskDecorator,com.rosettastone.library.taskmanager.InnocuousTaskDecorator,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Decorates a Task but re-dispatches both error and success events as success.
+	 This type of decorator should be used for Tasks that are required and are blocking, but should not be considered fatal in the event of a failure.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:IDecoratorTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:Task">
+         <apiName>Task</apiName>
+         <shortdesc>
+	 This class is meant to encapsulate a single, self-contained job.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="Task,com.rosettastone.library.taskmanager.Task,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface>
+               <apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 This class is meant to encapsulate a single, self-contained job.
+	 Each instance can have 0+ dependencies in the form of other tasks.
+	 
+	 To create a usable Task, extend this class and override the customRun() method.
+	 Your Task should call taskComplete() or taskError() when it has completed or failed.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:ITask"/>
+               </Implements>
+               <Subclasses>
+                  <class id="com.rosettastone.library.taskmanager:AbstractTaskManager"/>
+                  <class id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <class id="com.rosettastone.library.taskmanager:StubTask"/>
+                  <class id="com.rosettastone.library.taskmanager:AbstractCompositeTask"/>
+                  <class id="com.rosettastone.library.taskmanager:ObserverTask"/>
+                  <class id="com.rosettastone.library.taskmanager:SynchronousTask"/>
+                  <class id="com.rosettastone.library.taskmanager:TaskWithClosure"/>
+               </Subclasses>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:EventHandlingTask">
+         <apiName>EventHandlingTask</apiName>
+         <shortdesc>
+	 Convenience Task that listens to an IEventDispatcher for either a success or failure type event.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="EventHandlingTask,com.rosettastone.library.taskmanager.EventHandlingTask,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Convenience Task that listens to an IEventDispatcher for either a success or failure type event.
+	 
+	 This Task can be used within a composite to block on the dispatching of an event.
+	 It saves users from creating custom Tasks just to handle event listening.
+	 
+	 This task can be interrupted, though interrupting it will not stop (or affect) the IEventDispatcher it monitors.
+	 Events dispatched while this task is in an interrupted state will be queued and handled when the task is resumed.
+	 
+	 If multiple Events are dispatched, only the first one will be responded-to / observed.
+	 
+	 Upon completion of this Task the Event that triggered the completion will be accessible via the "data" propery.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:ObserverTask">
+         <apiName>ObserverTask</apiName>
+         <shortdesc>
+	 Observes (but does not execute) a collection of Tasks.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="ObserverTask,com.rosettastone.library.taskmanager.ObserverTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Observes (but does not execute) a collection of Tasks.
+	 This task can be used to monitor the execution of 1 or more running Tasks.
+	 Tasks can be added (or removed) while the observer is running.
+	 It will complete only once all observed Tasks has completed.
+	 
+	 If any of the observed Tasks errors, the observer will error as well if failUponError is TRUE. 
+	 In this case the observer will re-dispatch the "data" and "message" properties of the first Task to fail. 
+	 If failUponError is FALSE, observed Task errors and complets will be treated the same.
+	 
+	 If this Task is executed with no observed Tasks it will instantly complete.
+	 The same is true if all of its observed Tasks have already completed by the time it has been executed.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleStubTask">
+         <apiName>InterruptibleStubTask</apiName>
+         <shortdesc>
+	 Interruptible stub Task primarily intended for use in the context of automated tests.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="InterruptibleStubTask,com.rosettastone.library.taskmanager.InterruptibleStubTask,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Interruptible stub Task primarily intended for use in the context of automated tests.
+	 This Task does nothing when run (nor when interrupted) other than increment the Task counter.
+	 It can be manually completed or errored at any point using the <codeph>complete</codeph> and <codeph>error</codeph> methods.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:SynchronousTask">
+         <apiName>SynchronousTask</apiName>
+         <shortdesc>
+	 Synchronous Task for convenience sub-class purposes.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="SynchronousTask,com.rosettastone.library.taskmanager.SynchronousTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:ISynchronousTask</apiBaseInterface>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Synchronous Task for convenience sub-class purposes.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:ISynchronousTask"/>
+                  <Implement id="com.rosettastone.library.taskmanager:IInterruptibleTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:TaskWithClosure">
+         <apiName>TaskWithClosure</apiName>
+         <shortdesc>
+	 Task that invokes a specified function upon execution.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="TaskWithClosure,com.rosettastone.library.taskmanager.TaskWithClosure,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Task that invokes a specified function upon execution.
+	 The function invoked will retain the scope of where it was defined, allowing for easy access to other class/method variables.
+	 
+	 This type of Task can be asynchronous.
+	 It will not complete (or error) until specifically instructed to do so.
+	 This instruction should be triggered as a result of the custom function it executes.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements/>
+               <Subclasses>
+                  <class id="com.rosettastone.library.taskmanager:SynchronousTaskWithClosure"/>
+               </Subclasses>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+      <apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask">
+         <apiName>InterruptibleDecoratorTask</apiName>
+         <shortdesc>
+	 Decorates a non-interruptible Task and adds interruptible-like behavior.</shortdesc>
+         <prolog>
+            <asMetadata/>
+         </prolog>
+            <meta name="keywords"
+               content="InterruptibleDecoratorTask,com.rosettastone.library.taskmanager.InterruptibleDecoratorTask,DELAY_BEFORE_RETRYING_IN_MS,ID,MAX_RETRY_ATTEMPTS_BEFORE_ERROR,_addTasksBeforeRunInvoked,_args,_completeHandlers,_complete,_data,_errorHandlers,_errored,_erroredTasks,_executeTaskInParallel,_failUponError,_finalHandlers,_flushTaskQueueLock,_interrupted,_interruptedPosition,_interruptedTask,_interruptingTask,_interruptionHandlers,_logger,_message,_numTimesCompleted,_numTimesErrored,_numTimesInterrupted,_numTimesReset,_numTimesStarted,_observedTasks,_recreateDecoratedTaskWhenNextRun,_reexecuteFactoryFunctionAfterError,_restartSoundAfterInterruption,_running,_sound,_soundChannel,_startedHandlers,_taskFactoryFunction,_taskHasBeenRunAtLeastOnce,_taskIdentifier,_taskQueue,_taskQueueIndex,_taskWillBeInterruptible,_task,_thisObj,_uniqueID,allTasksAreCompleted,autoCompleteAfterRunningFunction,completed,currentSerialTask,customRunFunction,data,data,data,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,decoratedTask,duration,errorDatas,errorDatas,errorMessages,errorMessages,erroredTasks,erroredTasks,id,interruptible,interruptible,interruptible,interruptible,interruptingTask,interruptingTask,isComplete,isComplete,isComplete,isErrored,isErrored,isInterrupted,isInterrupted,isRunning,isRunning,logger,message,message,numCompletedTasks,numCompletedTasks,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperations,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsCompleted,numInternalOperationsPending,numInternalOperationsPending,numPendingTasks,numTasks,numTasks,numTimesCompleted,numTimesCompleted,numTimesErrored,numTimesErrored,numTimesInterrupted,numTimesInterrupted,numTimesReset,numTimesReset,numTimesStarted,numTimesStarted,observedTasks,pendingTasks,reexecuteFactoryFunctionAfterError,retryAttemptNumber,running,running,running,sound,soundChannel,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,synchronous,taskIdentifier,taskIdentifier,taskIdentifier,taskQueue,taskQueueIndex,uniqueID,uniqueID,urlLoaderData,addFunction,addMultiple,addSynchronousTask,addTask,addTask,addTask,addTask,addTaskEventListeners,addTaskHelper,addTaskHelper,addTasksBeforeRun,and,and,areAllObservedTasksCompletedOrErrored,checkForAndHandleCompletion,checkForTaskCompletion,complete,complete,complete,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customInterrupt,customReset,customReset,customReset,customReset,customReset,customReset,customReset,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRun,customRunHook,disconnectFromInterruptingTask,disconnectFromInterruptingTask,dispatchProgressEvent,doTaskComplete,doTaskError,doTaskInterrupted,error,error,errorTask,finishTask,flushTaskQueue,getBuildVersion,getLoggerString,getMajorVersion,getMinorVersion,getVersionString,handleTaskCompletedOrRemoved,individualTaskComplete,individualTaskStarted,interrupt,interrupt,interrupt,interrupt,interrupt,interrupt,interruptForTask,interruptForTask,observeTask,onInterruptingTaskComplete,onInterruptingTaskError,or,or,removeFunction,removeMultiple,removeTask,removeTask,removeTask,removeTaskEventListeners,removeTaskHelper,reset,reset,reset,run,run,setReexecuteFactoryFunctionAfterError,shouldFailedTaskBeRetried,stopObservingTask,taskComplete,taskError,taskInterrupted,then,then,throwErrorIfAnyObjectInArrayIsNotATask,withCompleteHandler,withCompleteHandler,withErrorHandler,withErrorHandler,withFinalHandler,withFinalHandler,withInterruptionHandler,withInterruptionHandler,withStartedHandler,withStartedHandler"/>
+         <apiClassifierDetail>
+            <apiClassifierDef>
+               <apiAccess value="public"/>
+               <apiStatic/>
+               <apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface>
+               <apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier>
+            </apiClassifierDef>
+            <apiDesc>
+	 Decorates a non-interruptible Task and adds interruptible-like behavior.
+	 This task does not actually stop and resume the decorated Task,
+	 But it does prevent ERROR or COMPLETE events from being dispatched when in an interrupted state.
+	 Should ERROR or COMPLETE occur while interrupted they will be re-dispatched upon resume.
+	 
+	 This Task-type also re-dispatches any ProgressEvents dispatched by the decorated Task.
+	 </apiDesc>
+            <Inheritancelist>
+               <BaseInterface/>
+               <Inheritance>
+                  <Inherit id="com.rosettastone.library.taskmanager:InterruptibleTask"/>
+                  <Inherit id="com.rosettastone.library.taskmanager:Task"/>
+                  <Inherit id="flash.events:EventDispatcher"/>
+               </Inheritance>
+               <Implements>
+                  <Implement id="com.rosettastone.library.taskmanager:IDecoratorTask"/>
+               </Implements>
+               <Subclasses/>
+               <Implementors/>
+               <Excludes/>
+            </Inheritancelist>
+         </apiClassifierDetail>
+      </apiClassifier>
+   </apiPackage>
+</allClasses>

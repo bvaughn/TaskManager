@@ -1,27 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  
   <title>Task Manager</title>
   
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1038.36">
-
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.css" type="text/css">
-	<link rel="stylesheet" href="css/tweaks.css" type="text/css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.css">
+	<link rel="stylesheet" href="css/tweaks.css">
   
-  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <script src="http:////netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js" type="text/javascript"></script>
+  <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js" type="text/javascript"></script>
 </head>
 
 <body onload="prettyPrint()">
 	<div class="container-fluid">
 		<div id="header" class="alert alert-info" style="margin-top: 15px;">
-			<i class="icon-tasks icon-4x pull-left"></i>
+			<i class="fa-tasks fa-4x pull-left"></i>
 			<p>
 				<div style="font-size: 30px; padding-bottom: 5px; font-weight: bold;">
 					An Introduction to Task Manager 2.0
@@ -38,49 +34,49 @@
 		
 		<div class="page-header">
 			<h3>
-				<i class="icon-list icon-large"></i>
+				<i class="fa-list fa-large"></i>
 				Table of Contents
 			</h3>
 			<ul class="unstyled">
 				<li>
-					<i class="icon-bar-chart"></i>
+					<i class="fa-bar-chart-o"></i>
 					<a href="#comparing_implementations">Comparing implementations: With and without Task Manager</a>
 				</li>
 				<li>
-					<i class="icon-refresh"></i>
+					<i class="fa-refresh"></i>
 					<a href="#task_life_cycle">The lifecycle of a Task</a>
 				</li>
 				<li>
-					<i class="icon-leaf"></i>
+					<i class="fa-leaf"></i>
 					<a href="#reusable_tasks">Reusable Task Manager tasks</a>
 				</li>
 				<li>
-					<i class="icon-eye-open"></i>
+					<i class="fa-eye"></i>
 					<a href="#composite_task">A closer look at CompositeTask</a>
 				</li>
 				<li>
-					<i class="icon-edit"></i>
+					<i class="fa-edit"></i>
 					<a href="#custom_tasks">Creating custom Tasks</a>
 				</li>
 				<li>
-					<i class="icon-tasks"></i>
+					<i class="fa-tasks"></i>
 					<a href="#event_handlers_and_closures">Event handlers and closures</a>
 				</li>
 				<li>
-					<i class="icon-magic"></i>
+					<i class="fa-magic"></i>
 					<a href="#syntactic_sugar">Syntactic sugar</a>
 				</li>
 				<li>
-					<i class="icon-dashboard"></i>
+					<i class="fa-dashboard"></i>
 					<a href="#building_a_task_manager_app">Building an application on top of Task Manager</a>
 				</li>
 				<li>
-					<i class="icon-question-sign"></i>
+					<i class="fa-question-circle"></i>
 					<a href="#tips_for_debugging">Tips for debugging</a>
 				</li>
 				<li>
-					<i class="icon-question-sign"></i>
-					<a href="#tips_for_debugging">ActionScript documentation</a>
+					<i class="fa-book"></i>
+					<a href="asdocs/index.html">ActionScript documentation</a>
 				</li>
 			</ul>
 		</div>
@@ -89,7 +85,7 @@
 		
 		<a name="comparing_implementations"></a>
 		<h3>
-			<i class="icon-bar-chart icon-large"></i>
+			<i class="fa-bar-chart fa-large"></i>
 			Comparing implementations
 			<small>With and without Task Manager</small>
 		</h3>
@@ -101,17 +97,17 @@
 		
 		<ul class="unstyled">
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 1A</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-1a-link"
 				   data-modal-trigger="true" data-title="Version 1A: Standard Event-handling" data-remote-body="code/1a.txt"
 				   data-related-id="code-1b-link" data-related-label="See Task-based">Standard Event-handling</a>
 			</li>
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 1B</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-1b-link"
 				   data-modal-trigger="true" data-title="Version 1B: Task-based" data-remote-body="code/1b.txt"
 				   data-related-id="code-1a-link" data-related-label="See Event-based">Task-based</a>
@@ -128,17 +124,17 @@
 		
 		<ul class="unstyled">
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 2A</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-2a-link"
 				   data-modal-trigger="true" data-title="Version 2A: Standard Event-handling" data-remote-body="code/2a.txt"
 				   data-related-id="code-2b-link" data-related-label="See Task-based">Standard Event-handling</a>
 			</li>
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 2B</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-2b-link"
 				   data-modal-trigger="true" data-title="Version 2B: Task-based" data-remote-body="code/2b.txt"
 				   data-related-id="code-2a-link" data-related-label="See Event-based">Task-based</a>
@@ -162,17 +158,17 @@
 		
 		<ul class="unstyled">
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 3A</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-3a-link"
 				   data-modal-trigger="true" data-title="Version 3A: Standard Event-handling" data-remote-body="code/3a.txt"
 				   data-related-id="code-3b-link" data-related-label="See Task-based">Standard Event-handling</a>
 			</li>
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 3B</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-3b-link"
 				   data-modal-trigger="true" data-title="Version 3B: Task-based" data-remote-body="code/3b.txt"
 				   data-related-id="code-3a-link" data-related-label="See Event-based">Task-based</a>
@@ -204,17 +200,17 @@
 		
 		<ul class="unstyled">
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 4A</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-4a-link"
 				   data-modal-trigger="true" data-title="Version 4A: Standard Event-handling" data-remote-body="code/4a.txt"
 				   data-related-id="code-4b-link" data-related-label="See Task-based">Standard Event-handling</a>
 			</li>
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 4B</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-4b-link"
 				   data-modal-trigger="true" data-title="Version 4B: Task-based" data-remote-body="code/4b.txt"
 				   data-related-id="code-4c-link" data-related-label="See TaskManager-based">Task-based</a>
@@ -245,9 +241,9 @@
 		
 		<ul class="unstyled">
 			<li>
-				<i class="icon-caret-right"></i>
+				<i class="fa-caret-right"></i>
 				<strong>Version 4C</strong>:
-				<i class="icon-zoom-in"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-4c-link"
 				   data-modal-trigger="true" data-title="Version 4C: TaskManager-based" data-remote-body="code/4c.txt"
 				   data-related-id="code-4a-link" data-related-label="See Event-based">Using the TaskManager component</a>
@@ -258,7 +254,7 @@
 		
 		<a name="task_life_cycle"></a>
 		<h3>
-			<i class="icon-refresh icon-large"></i>
+			<i class="fa-refresh fa-large"></i>
 			The lifecycle of a Task
 			<small>Events and State</small>
 		</h3>
@@ -330,7 +326,7 @@
 		
 		<a name="reusable_tasks"></a>
 		<h3>
-			<i class="icon-leaf icon-large"></i>
+			<i class="fa-leaf fa-large"></i>
 			Reusable Task Manager tasks
 			<small></small>
 		</h3>
@@ -460,7 +456,7 @@
 		
 		<a name="composite_task"></a>
 		<h3>
-			<i class="icon-eye-open icon-large"></i>
+			<i class="fa-eye fa-large"></i>
 			A closer look at CompositeTask
 			<small></small>
 		</h3>
@@ -509,7 +505,7 @@ For example:</p>
 
 		<a name="custom_tasks"></a>
 		<h3>
-			<i class="icon-edit icon-large"></i>
+			<i class="fa-edit fa-large"></i>
 			Creating custom Tasks
 			<small></small>
 		</h3>
@@ -542,22 +538,22 @@ For example:</p>
 		
 		<ul class="unstyled">
 			<li>
-				<i class="icon-caret-right"></i>
-				<i class="icon-zoom-in"></i>
+				<i class="fa-caret-right"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-custom-task"
 				   data-modal-trigger="true" data-title="Basic (non-interruptible) custom Task" data-remote-body="code/customtask.txt"
 				   data-related-id="code-custom-interruptible-task" data-related-label="See interruptible Task">Basic (non-interruptible) custom Task</a>
 			</li>
 			<li>
-				<i class="icon-caret-right"></i>
-				<i class="icon-zoom-in"></i>
+				<i class="fa-caret-right"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-custom-interruptible-task"
 				   data-modal-trigger="true" data-title="Interruptible custom Task" data-remote-body="code/custominterruptibletask.txt"
 				   data-related-id="code-custom-synchronous-task" data-related-label="See synchronous Task">Interruptible custom Task</a>
 			</li>
 			<li>
-				<i class="icon-caret-right"></i>
-				<i class="icon-zoom-in"></i>
+				<i class="fa-caret-right"></i>
+				<i class="fa-zoom-in"></i>
 				<a href="#" id="code-custom-synchronous-task"
 				   data-modal-trigger="true" data-title="Synchronous custom Task" data-remote-body="code/customsynchronoustask.txt"
 				   data-related-id="code-custom-task" data-related-label="See Task">Synchronous custom Task</a>
@@ -570,7 +566,7 @@ For example:</p>
 
 		<a name="event_handlers_and_closures"></a>
 		<h3>
-			<i class="icon-tasks icon-large"></i>
+			<i class="fa-tasks fa-large"></i>
 			Event handlers and closures
 			<small></small>
 		</h3>
@@ -609,7 +605,7 @@ For example:</p>
 
 		<a name="syntactic_sugar"></a>
 		<h3>
-			<i class="icon-magic icon-large"></i>
+			<i class="fa-magic fa-large"></i>
 			Syntactic sugar
 			<small></small>
 		</h3>
@@ -632,7 +628,7 @@ For example:</p>
 
 		<a name="building_a_task_manager_app"></a>
 		<h3>
-			<i class="icon-dashboard icon-large"></i>
+			<i class="fa-dashboard fa-large"></i>
 			Building an application on top of Task Manager
 			<small></small>
 		</h3>
@@ -649,7 +645,7 @@ For example:</p>
 
 		<a name="tips_for_debugging"></a>
 		<h3>
-			<i class="icon-question-sign icon-large"></i>
+			<i class="fa-question-circle fa-large"></i>
 			Tips for debugging
 			<small></small>
 		</h3>
@@ -688,7 +684,7 @@ For example:</p>
 			<h4 style="color: #000;" style="z-index:-1;">
 				<span id="modal-title"></span>
 				<small id="modal-related-label">
-					<i class="icon-circle-arrow-right"></i>
+					<i class="fa-circle-arrow-right"></i>
 					<a id="modal-related-anchor"></a>
 				</small>
 			</h4>

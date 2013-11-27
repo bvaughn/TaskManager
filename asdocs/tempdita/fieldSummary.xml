@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?><allClasses><apiPackage id="com.rosettastone.library.taskmanager.events"><apiName>com.rosettastone.library.taskmanager.events</apiName><apiClassifier id="com.rosettastone.library.taskmanager.events:TaskEvent"><apiName>TaskEvent</apiName><shortdesc>
+	 Dispatched by a Task to indicated a change in state.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Dispatched by a Task to indicated a change in state.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager.events:TaskEvent:COMPLETE"><apiName>COMPLETE</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>taskEventComplete</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskEvent:ERROR"><apiName>ERROR</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>taskEventError</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskEvent:FINAL"><apiName>FINAL</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>taskEventFinal</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskEvent:INTERRUPTED"><apiName>INTERRUPTED</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>taskEventInterrupted</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskEvent:STARTED"><apiName>STARTED</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>taskEventStarted</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskEvent:data:get"><apiName>data</apiName><shortdesc>
+		 Optional data object related to the Task dispatching this event.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="any"/></apiValueDef><apiDesc>
+		 Optional data object related to the Task dispatching this event.
+		 If the event is an error event this object may also contain more information about the error.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskEvent:message:get"><apiName>message</apiName><shortdesc>
+		 Optional human-readable message.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 Optional human-readable message.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager.events:TaskManagerEvent"><apiName>TaskManagerEvent</apiName><shortdesc>
+	 Dispatched by TaskManager to indicate a change in state.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>flash.events:Event</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Dispatched by TaskManager to indicate a change in state.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager.events:TaskManagerEvent:COMPLETE"><apiName>COMPLETE</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>taskManagerEventComplete</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskManagerEvent:ERROR"><apiName>ERROR</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>taskManagerEventError</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskManagerEvent:INTERRUPTED"><apiName>INTERRUPTED</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiAccess value="public"/><apiStatic/><apiData>taskManagerEventInterrupted</apiData><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskManagerEvent:message:get"><apiName>message</apiName><shortdesc>
+		 Optional human-readable message.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 Optional human-readable message.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager.events:TaskManagerEvent:task:get"><apiName>task</apiName><shortdesc>
+		 Task associated with error (in the event of an error).</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 Task associated with error (in the event of an error).
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage><apiPackage id="com.rosettastone.library.taskmanager"><apiName>com.rosettastone.library.taskmanager</apiName><apiClassifier id="com.rosettastone.library.taskmanager:IInterruptibleTask"><apiName>IInterruptibleTask</apiName><shortdesc>
+	 An interruptible Task can be paused and resumed after being run.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiInterface/><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface><apiBaseClassifier/></apiClassifierDef><apiDesc>
+	 An interruptible Task can be paused and resumed after being run.
+	 
+	 Pausing a non-running Task should have no effect.
+	 Resuming a non-interrupted Task should have no effect.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:IInterruptibleTask:com.rosettastone.library.taskmanager:IInterruptibleTask:interruptingTask:get"><apiName>interruptingTask</apiName><shortdesc>
+		 The Task currently interrupting the this Task's execution (or NULL if no such Task exists).</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 The Task currently interrupting the this Task's execution (or NULL if no such Task exists).
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:IInterruptibleTask:com.rosettastone.library.taskmanager:IInterruptibleTask:isInterrupted:get"><apiName>isInterrupted</apiName><shortdesc>
+		 The task has been interrupted and has not yet resumed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 The task has been interrupted and has not yet resumed.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:TaskWithTimeout"><apiName>TaskWithTimeout</apiName><shortdesc>
+	 Decorates a Task and enforces a max-execution time limit.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Decorates a Task and enforces a max-execution time limit.
+	 If specified time interval elapses before the decorated Task has complete it is considered to be an error.
+	 The decorated Task will be interrupted (if possible) in that event.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:TaskWithTimeout:decoratedTask:get"><apiName>decoratedTask</apiName><shortdesc>
+		 
+		 Inner (decorated) Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 Inner (decorated) Task.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:IDecoratorTask"><apiName>IDecoratorTask</apiName><shortdesc>
+	 Special interface for tasks that decorate other tasks.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiInterface/><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface><apiBaseClassifier/></apiClassifierDef><apiDesc>
+	 Special interface for tasks that decorate other tasks.
+	 This interface can assist external code in getting to the lowest-level failing task in the event of an error.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:IDecoratorTask:com.rosettastone.library.taskmanager:IDecoratorTask:decoratedTask:get"><apiName>decoratedTask</apiName><shortdesc>
+		 Inner (decorated) Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 Inner (decorated) Task.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:URLRequestTask"><apiName>URLRequestTask</apiName><shortdesc>
+	 Task that loads a URLRequest and exposes the URLLoader's "urlLoaderData" upon success.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Task that loads a URLRequest and exposes the URLLoader's "urlLoaderData" upon success.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:URLRequestTask:urlLoaderData:get"><apiName>urlLoaderData</apiName><shortdesc>
+		 Loaded data.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="any"/></apiValueDef><apiDesc>
+		 Loaded data.
+		 This should only be accessed after the Task has completed.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:SynchronousTaskWithClosure"><apiName>SynchronousTaskWithClosure</apiName><shortdesc/><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ISynchronousTask</apiBaseInterface><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:TaskWithClosure</apiBaseClassifier></apiClassifierDef></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:AbstractTaskManager"><apiName>AbstractTaskManager</apiName><shortdesc>
+	 This is an abstract class and should not be instantiated directly.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 This is an abstract class and should not be instantiated directly.
+	 Instead use one of the following sub-classes: TaskManager, InterruptibleTaskManager
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:completed:get"><apiName>completed</apiName><shortdesc>
+		 There are no pending or active Tasks.</shortdesc><prolog><asCustoms><internal>This method is left around for backwards compatibility purposes only.
+		 </internal></asCustoms></prolog><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 There are no pending or active Tasks.
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:errorDatas:get"><apiName>errorDatas</apiName><shortdesc>
+		 Error datas from all inner Tasks that failed during execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 Error datas from all inner Tasks that failed during execution.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:errorMessages:get"><apiName>errorMessages</apiName><shortdesc>
+		 Unique error messages from all inner Tasks that failed during execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 Unique error messages from all inner Tasks that failed during execution.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:erroredTasks:get"><apiName>erroredTasks</apiName><shortdesc>
+		 Tasks that errored during execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 Tasks that errored during execution.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:interruptible:get"><apiName>interruptible</apiName><shortdesc>
+		 
+		 The current Task can be interrupted.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The current Task can be interrupted.
+		 Invoking interrupt() for a Task that is not marked as interruptible may result in an error.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:numCompletedTasks:get"><apiName>numCompletedTasks</apiName><shortdesc>
+		 Number of Tasks that have successfully completed execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of Tasks that have successfully completed execution.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:numInternalOperationsCompleted:get"><apiName>numInternalOperationsCompleted</apiName><shortdesc>
+		 
+		 
+		 Number of internal operations that have completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:numInternalOperations:get"><apiName>numInternalOperations</apiName><shortdesc>
+		 
+		 
+		 Number of internal operations conducted by this task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 
+		 If value &gt; 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:numTasks:get"><apiName>numTasks</apiName><shortdesc>
+		 Number of Tasks to be executed by TaskManager.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of Tasks to be executed by TaskManager.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractTaskManager:synchronous:get"><apiName>synchronous</apiName><shortdesc>
+		 
+		 
+		 The current task can be executed synchronously.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 
+		 The current task can be executed synchronously.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleCompositeTask"><apiName>InterruptibleCompositeTask</apiName><shortdesc>
+	 Wraps a set of IInterruptibleTask (or ISynchronousTask) and executes them in parallel or serial, as specified by a boolean constructor arg.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractCompositeTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Wraps a set of IInterruptibleTask (or ISynchronousTask) and executes them in parallel or serial, as specified by a boolean constructor arg.
+	 Interruptable composite task designed to be paused and resumed gracefully and automatically handles interrupting and resuming all child tasks.
+	 
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:WaitTask"><apiName>WaitTask</apiName><shortdesc>
+	 Task that delays for a specified time before completion.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Task that delays for a specified time before completion.
+	 
+	 This task supports interruption as well as resume.
+	 Upon resuming an interrupted Wait this Task can either re-start the Timer at the beginning or resume from the interrupted point.
+	 This behavior can be controlled via the constructor parameter "restartTimerAfterInterruption".
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:WaitTask:duration:get"><apiName>duration</apiName><shortdesc>
+		 Number of milliseconds Task should wait before completing.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of milliseconds Task should wait before completing.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:ISynchronousTask"><apiName>ISynchronousTask</apiName><shortdesc>
+	 A synchronous Task is one that completes immediately upon being run.</shortdesc><prolog><asMetadata/><asCustoms><internal>This interface is a useful placeholder even though it does not define any additional API methods.
+	 </internal></asCustoms></prolog><apiClassifierDetail><apiClassifierDef><apiInterface/><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface><apiBaseClassifier/></apiClassifierDef><apiDesc>
+	 A synchronous Task is one that completes immediately upon being run.
+	 
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:TaskManager"><apiName>TaskManager</apiName><shortdesc>
+	 Manages execution of a set of ITasks.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractTaskManager</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Manages execution of a set of ITasks.
+	 Tasks may specify blocking depencies on other tasks.
+	 	 This class will wrap all TaskEvents and dispatch TaskManagerEvent.COMPLETE only once all Tasks have completed.
+	 If a task errors, this class will dispatch a TaskManagerEvent.ERROR event and halt running any additional tasks.
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleTaskManager"><apiName>InterruptibleTaskManager</apiName><shortdesc>
+	 Manages execution of a set of IInterruptibleTasks.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractTaskManager</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Manages execution of a set of IInterruptibleTasks.
+	 Tasks may specify blocking depencies on other tasks.
+	 	 This class will wrap all TaskEvents and dispatch TaskManagerEvent.COMPLETE only once all Tasks have completed.
+	 If a task errors, this class will dispatch a TaskManagerEvent.ERROR event and halt running any additional tasks.
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:TaskManagerComponentInfo"><apiName>TaskManagerComponentInfo</apiName><shortdesc>
+	 Used for retrieving information about the TaskManager component.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>Object</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Used for retrieving information about the TaskManager component.
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:CompositeTask"><apiName>CompositeTask</apiName><shortdesc>
+	 Wraps a set of ITasks and executes them in parallel or serial, as specified by a boolean constructor arg.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:AbstractCompositeTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Wraps a set of ITasks and executes them in parallel or serial, as specified by a boolean constructor arg.
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask"><apiName>RetryOnFailureDecoratorTask</apiName><shortdesc>
+	 Special Task decorator for Tasks that should be retried on failure.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Special Task decorator for Tasks that should be retried on failure.
+	 (For example, this could be useful for Tasks that rely on an internet connection in order to complete.)
+	 
+	 This task allows its decorated Task to fail a couple of times before bubbling the error.
+	 A small amount of time is allowed to pass between each retry.
+	 This delay allows time for an external monitor to detect a loss of internet connection and pause all Tasks until it is restored.
+	 It also allows for a more graceful handling of occasional HTTP failures.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:TaskPrivateNamespace:DELAY_BEFORE_RETRYING_IN_MS"><apiName>DELAY_BEFORE_RETRYING_IN_MS</apiName><shortdesc>
+		 The amount of time to delay before resetting and re-running the decorated Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiStatic/><apiData>1000</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 The amount of time to delay before resetting and re-running the decorated Task.
+		 This value should probably only be overriden for unit test purposes.
+		 A value of &lt;= 0 seconds will result in a synchronous retry.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:TaskPrivateNamespace:MAX_RETRY_ATTEMPTS_BEFORE_ERROR"><apiName>MAX_RETRY_ATTEMPTS_BEFORE_ERROR</apiName><shortdesc>
+		 Number of times to reset and re-run the decorated Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiStatic/><apiData>5</apiData><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of times to reset and re-run the decorated Task.
+		 This value should probably only be overriden for unit test purposes.
+		 A value of &lt;= 0 will cause a single failure to trigger a bubbled failure.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:data:get"><apiName>data</apiName><shortdesc>
+		 
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="any"/></apiValueDef><apiDesc>
+		 
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:decoratedTask:get"><apiName>decoratedTask</apiName><shortdesc>
+		 
+		 Inner (decorated) Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 Inner (decorated) Task.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:RetryOnFailureDecoratorTask:TaskPrivateNamespace:retryAttemptNumber:get"><apiName>retryAttemptNumber</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleTask"><apiName>InterruptibleTask</apiName><shortdesc>
+	 Abstract inerruptible Task.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Abstract inerruptible Task.
+	 Extend this class and override the customInterrupt() method to support interruptibility.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:InterruptibleTask:interruptible:get"><apiName>interruptible</apiName><shortdesc>
+		 
+		 The current Task can be interrupted.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The current Task can be interrupted.
+		 Invoking interrupt() for a Task that is not marked as interruptible may result in an error.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:PlaySoundTask"><apiName>PlaySoundTask</apiName><shortdesc>
+	 Task that plays a Sound and completes when the sound has finished playing.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Task that plays a Sound and completes when the sound has finished playing.
+	 This Task expects that the Sound object provided has already been loaded.
+	 
+	 This task supports interruption as well as resume.
+	 Upon resuming an interrupted Sound this Task can either re-start playback at the beginning or resume from the interrupted point.
+	 This behavior can be controlled via the constructor parameter "restartSoundAfterInterruption".
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:PlaySoundTask:protected:_interruptedPosition"><apiName>_interruptedPosition</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:PlaySoundTask:protected:_restartSoundAfterInterruption"><apiName>_restartSoundAfterInterruption</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:PlaySoundTask:protected:_soundChannel"><apiName>_soundChannel</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="flash.media:SoundChannel"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:PlaySoundTask:protected:_sound"><apiName>_sound</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="flash.media:Sound"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:PlaySoundTask:soundChannel:get"><apiName>soundChannel</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="flash.media:SoundChannel"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:PlaySoundTask:sound:get"><apiName>sound</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="flash.media:Sound"/></apiValueDef></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:WaitForUIInitialization"><apiName>WaitForUIInitialization</apiName><shortdesc>
+	 Convenience task for waiting until a specified UIComponent has initialized.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Convenience task for waiting until a specified UIComponent has initialized.
+	 This can be useful if app initialization (business logic) also depends on UI initialization.
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:StubTask"><apiName>StubTask</apiName><shortdesc>
+	 Empty Task useful primarily for unit testing.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Empty Task useful primarily for unit testing.
+	 It can also be useful in factory situations when a default no-op behavior is desired.
+	 If certain implementations wish to provide behavior they can replace the placeholder Stub task with one that does work.
+	 
+	 This Task can be configured to auto-complete when it is executed.
+	 Otherwise it will not complete or error unless/until specifically told to do so.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:StubTask:synchronous:get"><apiName>synchronous</apiName><shortdesc>
+		 
+		 
+		 The current task can be executed synchronously.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 
+		 The current task can be executed synchronously.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:AbstractCompositeTask"><apiName>AbstractCompositeTask</apiName><shortdesc>
+	 This is an abstract class and should not be instantiated directly.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 This is an abstract class and should not be instantiated directly.
+	 Instead use one of the following sub-classes: CompositeTask, InterruptibleCompositeTask
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:_addTasksBeforeRunInvoked"><apiName>_addTasksBeforeRunInvoked</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:_erroredTasks"><apiName>_erroredTasks</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:_executeTaskInParallel"><apiName>_executeTaskInParallel</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:_flushTaskQueueLock"><apiName>_flushTaskQueueLock</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:_interruptedTask"><apiName>_interruptedTask</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:_taskQueueIndex"><apiName>_taskQueueIndex</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:_taskQueue"><apiName>_taskQueue</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:allTasksAreCompleted:get"><apiName>allTasksAreCompleted</apiName><shortdesc>
+		 No incomplete Tasks remain in the queue.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 No incomplete Tasks remain in the queue.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:protected:currentSerialTask:get"><apiName>currentSerialTask</apiName><shortdesc>
+		 References the Task that is currently running (if this CompositeTask has been told to execute in serial).</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 References the Task that is currently running (if this CompositeTask has been told to execute in serial).
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:errorDatas:get"><apiName>errorDatas</apiName><shortdesc>
+		 Error datas from all inner Tasks that failed during execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 Error datas from all inner Tasks that failed during execution.
+		 This value is valid after during execution of the CompositeTask as well as upon completion (or failure).
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:errorMessages:get"><apiName>errorMessages</apiName><shortdesc>
+		 Unique error messages from all inner Tasks that failed during execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 Unique error messages from all inner Tasks that failed during execution.
+		 This value is valid after during execution of the CompositeTask as well as upon completion (or failure).
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:erroredTasks:get"><apiName>erroredTasks</apiName><shortdesc>
+		 Tasks that errored during execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 Tasks that errored during execution.
+		 This value is valid after during execution of the CompositeTask as well as upon completion (or failure).
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:interruptible:get"><apiName>interruptible</apiName><shortdesc>
+		 
+		 The current Task can be interrupted.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The current Task can be interrupted.
+		 Invoking interrupt() for a Task that is not marked as interruptible may result in an error.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:numCompletedTasks:get"><apiName>numCompletedTasks</apiName><shortdesc>
+		 Number of inner Tasks that have successfully completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of inner Tasks that have successfully completed.
+		 This value is only valid while the CompositeTask is running.
+		 Upon completion (or failure) of the CompositeTask this value will be reset to 0.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:numInternalOperationsCompleted:get"><apiName>numInternalOperationsCompleted</apiName><shortdesc>
+		 
+		 
+		 Number of internal operations that have completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:numInternalOperations:get"><apiName>numInternalOperations</apiName><shortdesc>
+		 
+		 
+		 Number of internal operations conducted by this task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 
+		 If value &gt; 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:numPendingTasks:get"><apiName>numPendingTasks</apiName><shortdesc>
+		 Number of inner Tasks that have been started and have not yet completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of inner Tasks that have been started and have not yet completed.
+		 This value is only valid while the CompositeTask is running (or before it has been started).
+		 Upon completion (or failure) of the CompositeTask this value will be reset to 0.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:numTasks:get"><apiName>numTasks</apiName><shortdesc>
+		 Number of inner Tasks.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of inner Tasks.
+		 This value is only valid while the CompositeTask is running (or before it has been started).
+		 Upon completion (or failure) of the CompositeTask this value will be reset to 0.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:pendingTasks:get"><apiName>pendingTasks</apiName><shortdesc>
+		 Tasks currently in the process of being executed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 Tasks currently in the process of being executed.
+		 This value is only valid while the CompositeTask is running (or before it has been started).
+		 Upon completion (or failure) of the CompositeTask this value will be reset to 0.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:synchronous:get"><apiName>synchronous</apiName><shortdesc>
+		 
+		 
+		 The current task can be executed synchronously.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 
+		 The current task can be executed synchronously.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:TaskPrivateNamespace:taskQueueIndex:get"><apiName>taskQueueIndex</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:AbstractCompositeTask:TaskPrivateNamespace:taskQueue:get"><apiName>taskQueue</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:ITask"><apiName>ITask</apiName><shortdesc>
+	 A Task represents a job.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiInterface/><apiAccess value="public"/><apiStatic/><apiBaseInterface>flash.events:IEventDispatcher</apiBaseInterface><apiBaseClassifier/></apiClassifierDef><apiDesc>
+	 A Task represents a job.
+	 This job can be synchronous or asynchronous.
+	 It can be a simple operation or a composite of other Tasks.
+	 This interface defines the minimum API that must be implemented by a Task within the Task Manager framework.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:data:get"><apiName>data</apiName><shortdesc>
+		 Optional data parameter passed to the Task complete/error/interruption method.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="any"/></apiValueDef><apiDesc>
+		 Optional data parameter passed to the Task complete/error/interruption method.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:isComplete:get"><apiName>isComplete</apiName><shortdesc>
+		 The current task has successfully completed execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 The current task has successfully completed execution.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:isErrored:get"><apiName>isErrored</apiName><shortdesc>
+		 The current task failed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 The current task failed.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:isRunning:get"><apiName>isRunning</apiName><shortdesc>
+		 The task is currently running.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:message:get"><apiName>message</apiName><shortdesc>
+		 Optional message parameter passed to the task complete/error/interruption method.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 Optional message parameter passed to the task complete/error/interruption method.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:numInternalOperationsCompleted:get"><apiName>numInternalOperationsCompleted</apiName><shortdesc>
+		 Number of internal operations that have completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:numInternalOperationsPending:get"><apiName>numInternalOperationsPending</apiName><shortdesc>
+		 Number of internal operations not yet completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of internal operations not yet completed.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:numInternalOperations:get"><apiName>numInternalOperations</apiName><shortdesc>
+		 Number of internal operations conducted by this task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 
+		 If value &gt; 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:numTimesCompleted:get"><apiName>numTimesCompleted</apiName><shortdesc>
+		 Number of times this task has completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of times this task has completed.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:numTimesErrored:get"><apiName>numTimesErrored</apiName><shortdesc>
+		 Number of times this task has errored.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of times this task has errored.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:numTimesInterrupted:get"><apiName>numTimesInterrupted</apiName><shortdesc>
+		 Number of times this task has been interrupted.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of times this task has been interrupted.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:numTimesReset:get"><apiName>numTimesReset</apiName><shortdesc>
+		 Number of times this task has been reset.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of times this task has been reset.
+		 This is the only counter that is not reset by the reset() method.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:numTimesStarted:get"><apiName>numTimesStarted</apiName><shortdesc>
+		 Number of times this task has been started.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 Number of times this task has been started.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:running:get"><apiName>running</apiName><shortdesc>
+		 The task is currently running.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:synchronous:get"><apiName>synchronous</apiName><shortdesc>
+		 The current task can be executed synchronously.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 The current task can be executed synchronously.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:taskIdentifier:get"><apiName>taskIdentifier</apiName><shortdesc>
+		 (Optional) human-readable label for task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 (Optional) human-readable label for task.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ITask:com.rosettastone.library.taskmanager:ITask:uniqueID:get"><apiName>uniqueID</apiName><shortdesc>
+		 Unique ID for a task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 Unique ID for a task.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:SleepTask"><apiName>SleepTask</apiName><shortdesc>
+	 Sleeps until told to complete.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Sleeps until told to complete.
+	 This Task can be inserted into a composite to block for an indeterminate amount of time.
+	 Since this Task is simple a placeholder, it supports interruptibility.
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:FactoryTask"><apiName>FactoryTask</apiName><shortdesc>
+	 Decorates a Task returned by the specified factory method.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Decorates a Task returned by the specified factory method.
+	 This Task does not invoke the provided factory method until it is actually executed.
+	 This allows for just-in-time evaluation of data set by previous Tasks.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:protected:_args"><apiName>_args</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:protected:_recreateDecoratedTaskWhenNextRun"><apiName>_recreateDecoratedTaskWhenNextRun</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:protected:_reexecuteFactoryFunctionAfterError"><apiName>_reexecuteFactoryFunctionAfterError</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:protected:_taskFactoryFunction"><apiName>_taskFactoryFunction</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Function"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:protected:_taskWillBeInterruptible"><apiName>_taskWillBeInterruptible</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:protected:_task"><apiName>_task</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiValueClassifier>com.rosettastone.library.taskmanager:IInterruptibleTask</apiValueClassifier></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:protected:_thisObj"><apiName>_thisObj</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value=""/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:decoratedTask:get"><apiName>decoratedTask</apiName><shortdesc>
+		 
+		 Inner (decorated) Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 Inner (decorated) Task.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:FactoryTask:reexecuteFactoryFunctionAfterError:get"><apiName>reexecuteFactoryFunctionAfterError</apiName><shortdesc>
+		 If this FactoryTask is re-run after an error has occurred, this attribute controls whether it:
+		 (a) Reuses the decorated Task initially created during its first run, or
+		 (b) Reexecutes the factory method to create a new decorated Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 If this FactoryTask is re-run after an error has occurred, this attribute controls whether it:
+		 (a) Reuses the decorated Task initially created during its first run, or
+		 (b) Reexecutes the factory method to create a new decorated Task.
+		 
+		 By default this value is FALSE, meaning that the decorated task created initially will be reused.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator"><apiName>InnocuousTaskDecorator</apiName><shortdesc>
+	 Decorates a Task but re-dispatches both error and success events as success.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Decorates a Task but re-dispatches both error and success events as success.
+	 This type of decorator should be used for Tasks that are required and are blocking, but should not be considered fatal in the event of a failure.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator:decoratedTask:get"><apiName>decoratedTask</apiName><shortdesc>
+		 
+		 Inner (decorated) Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 Inner (decorated) Task.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator:isComplete:get"><apiName>isComplete</apiName><shortdesc>
+		 
+		 The current task has successfully completed execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The current task has successfully completed execution.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:InnocuousTaskDecorator:running:get"><apiName>running</apiName><shortdesc>
+		 
+		 The task is currently running.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:Task"><apiName>Task</apiName><shortdesc>
+	 This class is meant to encapsulate a single, self-contained job.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ITask</apiBaseInterface><apiBaseClassifier>flash.events:EventDispatcher</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 This class is meant to encapsulate a single, self-contained job.
+	 Each instance can have 0+ dependencies in the form of other tasks.
+	 
+	 To create a usable Task, extend this class and override the customRun() method.
+	 Your Task should call taskComplete() or taskError() when it has completed or failed.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:ID"><apiName>ID</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiStatic/><apiData>0</apiData><apiType value="Number"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_completeHandlers"><apiName>_completeHandlers</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_complete"><apiName>_complete</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiData>false</apiData><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_data"><apiName>_data</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value=""/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_errorHandlers"><apiName>_errorHandlers</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_errored"><apiName>_errored</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_finalHandlers"><apiName>_finalHandlers</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_interrupted"><apiName>_interrupted</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_interruptingTask"><apiName>_interruptingTask</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_interruptionHandlers"><apiName>_interruptionHandlers</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_logger"><apiName>_logger</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="mx.logging:ILogger"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_message"><apiName>_message</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_numTimesCompleted"><apiName>_numTimesCompleted</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_numTimesErrored"><apiName>_numTimesErrored</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_numTimesInterrupted"><apiName>_numTimesInterrupted</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_numTimesReset"><apiName>_numTimesReset</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_numTimesStarted"><apiName>_numTimesStarted</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="int"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_running"><apiName>_running</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiData>false</apiData><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_startedHandlers"><apiName>_startedHandlers</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_taskHasBeenRunAtLeastOnce"><apiName>_taskHasBeenRunAtLeastOnce</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_taskIdentifier"><apiName>_taskIdentifier</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="String"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:TaskPrivateNamespace:_uniqueID"><apiName>_uniqueID</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiType value="Number"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:data:get"><apiName>data</apiName><shortdesc>
+		 
+		 Optional data parameter passed to the Task complete/error/interruption method.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="any"/></apiValueDef><apiDesc>
+		 
+		 Optional data parameter passed to the Task complete/error/interruption method.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:id:get"><apiName>id</apiName><shortdesc>
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 </apiDesc></apiValueDetail><apiInheritDoc/></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:interruptible:get"><apiName>interruptible</apiName><shortdesc>
+		 The current Task can be interrupted.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 The current Task can be interrupted.
+		 Invoking interrupt() for a Task that is not marked as interruptible may result in an error.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:interruptingTask:get"><apiName>interruptingTask</apiName><shortdesc>
+		 The Task currently interrupting the composite Task's execution (or NULL if no such Task exists).</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 The Task currently interrupting the composite Task's execution (or NULL if no such Task exists).
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:isComplete:get"><apiName>isComplete</apiName><shortdesc>
+		 
+		 The current task has successfully completed execution.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The current task has successfully completed execution.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:isErrored:get"><apiName>isErrored</apiName><shortdesc>
+		 
+		 The current task failed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The current task failed.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:isInterrupted:get"><apiName>isInterrupted</apiName><shortdesc>
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 </apiDesc></apiValueDetail><apiInheritDoc/></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:isRunning:get"><apiName>isRunning</apiName><shortdesc>
+		 
+		 The task is currently running.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:protected:logger:get"><apiName>logger</apiName><shortdesc>
+		 Instance of ILogger to be used for any custom Task logging.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiValueAccess value="read"/><apiType value="mx.logging:ILogger"/></apiValueDef><apiDesc>
+		 Instance of ILogger to be used for any custom Task logging.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:message:get"><apiName>message</apiName><shortdesc>
+		 
+		 Optional message parameter passed to the task complete/error/interruption method.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="String"/></apiValueDef><apiDesc>
+		 
+		 Optional message parameter passed to the task complete/error/interruption method.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:numInternalOperationsCompleted:get"><apiName>numInternalOperationsCompleted</apiName><shortdesc>
+		 
+		 Number of internal operations that have completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:numInternalOperationsPending:get"><apiName>numInternalOperationsPending</apiName><shortdesc>
+		 
+		 Number of internal operations not yet completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of internal operations not yet completed.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:numInternalOperations:get"><apiName>numInternalOperations</apiName><shortdesc>
+		 
+		 Number of internal operations conducted by this task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 
+		 If value &gt; 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:numTimesCompleted:get"><apiName>numTimesCompleted</apiName><shortdesc>
+		 
+		 Number of times this task has completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of times this task has completed.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:numTimesErrored:get"><apiName>numTimesErrored</apiName><shortdesc>
+		 
+		 Number of times this task has errored.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of times this task has errored.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:numTimesInterrupted:get"><apiName>numTimesInterrupted</apiName><shortdesc>
+		 
+		 Number of times this task has been interrupted.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of times this task has been interrupted.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:numTimesReset:get"><apiName>numTimesReset</apiName><shortdesc>
+		 
+		 Number of times this task has been reset.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of times this task has been reset.
+		 This is the only counter that is not reset by the reset() method.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:numTimesStarted:get"><apiName>numTimesStarted</apiName><shortdesc>
+		 
+		 Number of times this task has been started.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of times this task has been started.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:running:get"><apiName>running</apiName><shortdesc>
+		 
+		 The task is currently running.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The task is currently running.
+		 This value is FALSE if the task has not been run, has completed run (succesfully or due to a failure), or has been interrupted.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:synchronous:get"><apiName>synchronous</apiName><shortdesc>
+		 
+		 The current task can be executed synchronously.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The current task can be executed synchronously.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:taskIdentifier:get"><apiName>taskIdentifier</apiName><shortdesc>
+		 
+		 (Optional) human-readable label for task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 
+		 (Optional) human-readable label for task.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:Task:uniqueID:get"><apiName>uniqueID</apiName><shortdesc>
+		 
+		 Unique ID for a task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Number"/></apiValueDef><apiDesc>
+		 
+		 Unique ID for a task.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:EventHandlingTask"><apiName>EventHandlingTask</apiName><shortdesc>
+	 Convenience Task that listens to an IEventDispatcher for either a success or failure type event.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Convenience Task that listens to an IEventDispatcher for either a success or failure type event.
+	 
+	 This Task can be used within a composite to block on the dispatching of an event.
+	 It saves users from creating custom Tasks just to handle event listening.
+	 
+	 This task can be interrupted, though interrupting it will not stop (or affect) the IEventDispatcher it monitors.
+	 Events dispatched while this task is in an interrupted state will be queued and handled when the task is resumed.
+	 
+	 If multiple Events are dispatched, only the first one will be responded-to / observed.
+	 
+	 Upon completion of this Task the Event that triggered the completion will be accessible via the "data" propery.
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:ObserverTask"><apiName>ObserverTask</apiName><shortdesc>
+	 Observes (but does not execute) a collection of Tasks.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Observes (but does not execute) a collection of Tasks.
+	 This task can be used to monitor the execution of 1 or more running Tasks.
+	 Tasks can be added (or removed) while the observer is running.
+	 It will complete only once all observed Tasks has completed.
+	 
+	 If any of the observed Tasks errors, the observer will error as well if failUponError is TRUE. 
+	 In this case the observer will re-dispatch the "data" and "message" properties of the first Task to fail. 
+	 If failUponError is FALSE, observed Task errors and complets will be treated the same.
+	 
+	 If this Task is executed with no observed Tasks it will instantly complete.
+	 The same is true if all of its observed Tasks have already completed by the time it has been executed.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:ObserverTask:protected:_failUponError"><apiName>_failUponError</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Boolean"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ObserverTask:protected:_observedTasks"><apiName>_observedTasks</apiName><shortdesc/><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="protected"/><apiDynamic/><apiType value="Array"/></apiValueDef></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ObserverTask:numInternalOperationsCompleted:get"><apiName>numInternalOperationsCompleted</apiName><shortdesc>
+		 
+		 
+		 Number of internal operations that have completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ObserverTask:numInternalOperations:get"><apiName>numInternalOperations</apiName><shortdesc>
+		 
+		 
+		 Number of internal operations conducted by this task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 
+		 If value &gt; 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:ObserverTask:TaskPrivateNamespace:observedTasks:get"><apiName>observedTasks</apiName><shortdesc>
+		 Array of Tasks currently observed by this Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="TaskPrivateNamespace"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Array"/></apiValueDef><apiDesc>
+		 Array of Tasks currently observed by this Task.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleStubTask"><apiName>InterruptibleStubTask</apiName><shortdesc>
+	 Interruptible stub Task primarily intended for use in the context of automated tests.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Interruptible stub Task primarily intended for use in the context of automated tests.
+	 This Task does nothing when run (nor when interrupted) other than increment the Task counter.
+	 It can be manually completed or errored at any point using the <codeph>complete</codeph> and <codeph>error</codeph> methods.
+	 </apiDesc></apiClassifierDetail></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:SynchronousTask"><apiName>SynchronousTask</apiName><shortdesc>
+	 Synchronous Task for convenience sub-class purposes.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:ISynchronousTask</apiBaseInterface><apiBaseInterface>com.rosettastone.library.taskmanager:IInterruptibleTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Synchronous Task for convenience sub-class purposes.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:SynchronousTask:synchronous:get"><apiName>synchronous</apiName><shortdesc>
+		 
+		 The current task can be executed synchronously.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 The current task can be executed synchronously.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:TaskWithClosure"><apiName>TaskWithClosure</apiName><shortdesc>
+	 Task that invokes a specified function upon execution.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseClassifier>com.rosettastone.library.taskmanager:Task</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Task that invokes a specified function upon execution.
+	 The function invoked will retain the scope of where it was defined, allowing for easy access to other class/method variables.
+	 
+	 This type of Task can be asynchronous.
+	 It will not complete (or error) until specifically instructed to do so.
+	 This instruction should be triggered as a result of the custom function it executes.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:TaskWithClosure:autoCompleteAfterRunningFunction:get"><apiName>autoCompleteAfterRunningFunction</apiName><shortdesc>
+		 If TRUE this Task will synchronously complete itself once it has invoked its custom run function.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 If TRUE this Task will synchronously complete itself once it has invoked its custom run function.
+		 If an error occurs during the functions execution however the Task will not dispatch a redundant complete event.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:TaskWithClosure:customRunFunction:get"><apiName>customRunFunction</apiName><shortdesc>
+		 Function to be executed when this Task is run
+		 </shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="Function"/></apiValueDef><apiDesc>
+		 Function to be executed when this Task is run
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:TaskWithClosure:synchronous:get"><apiName>synchronous</apiName><shortdesc>
+		 
+		 
+		 The current task can be executed synchronously.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="Boolean"/></apiValueDef><apiDesc>
+		 
+		 
+		 The current task can be executed synchronously.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier><apiClassifier id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask"><apiName>InterruptibleDecoratorTask</apiName><shortdesc>
+	 Decorates a non-interruptible Task and adds interruptible-like behavior.</shortdesc><prolog><asMetadata/></prolog><apiClassifierDetail><apiClassifierDef><apiAccess value="public"/><apiStatic/><apiBaseInterface>com.rosettastone.library.taskmanager:IDecoratorTask</apiBaseInterface><apiBaseClassifier>com.rosettastone.library.taskmanager:InterruptibleTask</apiBaseClassifier></apiClassifierDef><apiDesc>
+	 Decorates a non-interruptible Task and adds interruptible-like behavior.
+	 This task does not actually stop and resume the decorated Task,
+	 But it does prevent ERROR or COMPLETE events from being dispatched when in an interrupted state.
+	 Should ERROR or COMPLETE occur while interrupted they will be re-dispatched upon resume.
+	 
+	 This Task-type also re-dispatches any ProgressEvents dispatched by the decorated Task.
+	 </apiDesc></apiClassifierDetail><apiValue id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask:decoratedTask:get"><apiName>decoratedTask</apiName><shortdesc>
+		 
+		 Inner (decorated) Task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiValueClassifier>com.rosettastone.library.taskmanager:ITask</apiValueClassifier></apiValueDef><apiDesc>
+		 
+		 Inner (decorated) Task.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask:numInternalOperationsCompleted:get"><apiName>numInternalOperationsCompleted</apiName><shortdesc>
+		 
+		 Number of internal operations that have completed.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of internal operations that have completed.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask:numInternalOperations:get"><apiName>numInternalOperations</apiName><shortdesc>
+		 
+		 Number of internal operations conducted by this task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="read"/><apiType value="int"/></apiValueDef><apiDesc>
+		 
+		 Number of internal operations conducted by this task.
+		 Sub-classes should override this method if containing a value &gt; 1;
+		 
+		 If value &gt; 1, task should dispatch ProgressEvent.PROGRESS events manually to indicate changes in numInternalOperationsCompleted.
+		 If value == 1, task will automatically dispatching ProgressEvent.PROGRESS events.
+		 </apiDesc></apiValueDetail></apiValue><apiValue id="com.rosettastone.library.taskmanager:InterruptibleDecoratorTask:taskIdentifier:get"><apiName>taskIdentifier</apiName><shortdesc>
+		 
+		 (Optional) human-readable label for task.</shortdesc><prolog/><apiValueDetail><apiValueDef><apiIsOverride/><apiProperty/><apiAccess value="public"/><apiDynamic/><apiValueAccess value="readwrite"/><apiType value="String"/></apiValueDef><apiDesc>
+		 
+		 (Optional) human-readable label for task.
+		 </apiDesc></apiValueDetail></apiValue></apiClassifier></apiPackage></allClasses>

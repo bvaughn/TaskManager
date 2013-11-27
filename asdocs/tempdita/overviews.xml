@@ -1,0 +1,102 @@
+
+<overviews>
+    
+<packages>
+        
+<package name="com.rosettastone.library.taskmanager">
+            
+<shortDescription>
+                
+                    The &lt;code&gt;Task Manager&lt;/code&gt; framework provides an easy mechanism for constructing and executing complex sequences of operations. 
+                
+            </shortDescription>
+            
+<description>
+                
+	                &lt;p&gt;
+	                    The &lt;code&gt;Task Manager&lt;/code&gt; framework provides an easy mechanism for constructing and executing complex sequences of operations.
+	                    Each operation is encapsulated in a &lt;code&gt;Task&lt;/code&gt; and can be associated with other operations in a variety of ways.
+	                    This framework also provides a number of useful, reusable tasks for performing common operations.
+	                    For example, here is how you could use the provided &lt;code&gt;PlaySoundTask&lt;/code&gt; to play a sound:
+                    &lt;/p&gt;
+                    &lt;div class="listing"&gt;
+                    &lt;pre&gt;
+var playSoundTask:PlaySoundTask =
+	new PlaySoundTask( aLoadedSoundObject )
+		.withCompleteHandler( completeHandler )
+		.withErrorHandler( errorHandler )
+		.run();
+                    &lt;/pre&gt;
+                    &lt;/div&gt;
+                    &lt;p&gt;
+                    	In the above example, the &lt;code&gt;completeHandler&lt;/code&gt; would be executed when the &lt;code&gt;Sound&lt;/code&gt; completed playing successfully.
+                    	If something went wrong during playback the &lt;code&gt;errorHandler&lt;/code&gt; would be called.
+                    	This is not very useful in and of itself however as the &lt;code&gt;Sound&lt;/code&gt; class already provides a pretty easy interface for playing audio.
+                    	But what if we wanted to create a chain of tasks that played a &lt;code&gt;Sound&lt;/code&gt; once a piece of UI was initialized?
+                    	This is also a bit of an arbitrary example but let's take a look at the syntax:
+                    &lt;/p&gt;
+                    &lt;div class="listing"&gt;
+                    &lt;pre&gt;
+var waitForUIInitialization:WaitForUIInitialization = new WaitForUIInitialization( uiComponent );
+var playSound:PlaySoundTask = new PlaySoundTask( loadedSound );
+
+var waitForInitializationAndPlaySoundTask:CompositeTask =
+	new CompositeTask(
+		[ waitForUIInitialization, playSound ], false )
+	.withCompleteHandler( completeHandler )
+	.withErrorHandler( errorHandler )
+	.run() as CompositeTask;
+                    &lt;/pre&gt;
+                    &lt;/div&gt;
+                    &lt;p&gt;
+                    	In the above example, our sound is not played until the previous task has completed.
+                    	If something goes wrong with the first task our &lt;code&gt;errorHandler&lt;/code&gt; will be called and our &lt;code&gt;Sound&lt;/code&gt; will not be played.
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                    	Using the &lt;code&gt;Task Manager&lt;/code&gt; (or helper its tasks) it is easy to assemble a large sequence of operations that have dependencies on each other.
+                    	One more example (although still a bit arbitrary) would be if we wanted to load an external file, wait for a &lt;code&gt;UIComponent&lt;/code&gt; to initialize, and then play a sound once both of those operations had completed.
+                    	Here's how we could set that up with &lt;code&gt;Task Manager&lt;/code&gt;:
+                    &lt;/p&gt;
+                    &lt;div class="listing"&gt;
+                    &lt;pre&gt;
+var loadFileTask:URLRequestTask = new URLRequestTask( urlRequest );
+var waitForUIInitialization:WaitForUIInitialization = new WaitForUIInitialization( uiComponent );
+var playSound:PlaySoundTask = new PlaySoundTask( loadedSound );
+
+var taskManager:TaskManager = new TaskManager();
+taskManager.addTask( loadFileTask );
+taskManager.addTask( waitForUIInitialization );
+taskManager.addTask( playSound, [ loadFileTask, waitForUIInitialization ] );
+taskManager.run();
+                    &lt;/pre&gt;
+                    &lt;/div&gt;
+                    &lt;p&gt;
+                    	In the above example, the &lt;code&gt;TaskManager&lt;/code&gt; is configured to execute the URL loading task and the &lt;code&gt;UIComponent&lt;/code&gt;-related task immediately.
+                    	The task that plays our &lt;code&gt;Sound&lt;/code&gt; however is marked as dependent upon the other 2 tasks and so the &lt;code&gt;TaskManager&lt;/code&gt; will not execute it until they have both successfully completed.
+                    	If either one fails then the &lt;code&gt;TaskManager&lt;/code&gt; will dispatch an error event and our &lt;code&gt;Sound&lt;/code&gt;-playing task will not be executed.
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                    	Although the convenience tasks provided with the &lt;code&gt;TaskManager&lt;/code&gt; are useful, the real power of this framework can be seen when you create your own operations.
+                    	This is typically done by extending &lt;code&gt;Task&lt;/code&gt; or using a generic helper task like &lt;code&gt;TaskWithClosure&lt;/code&gt;.  
+                    	Check out each of the classes below to see what kind of objects you have to build upon.
+                    &lt;/p&gt;
+                
+            </description>
+        </package>
+        
+<package name="com.rosettastone.library.taskmanager.events">
+            
+<shortDescription>
+                
+                    This package contains classes that define events used by the &lt;code&gt;Task Manager&lt;/code&gt; framework.
+                
+            </shortDescription>
+            
+<description>
+                
+                    This package contains classes that define events used by the &lt;code&gt;Task Manager&lt;/code&gt; framework.
+                
+            </description>
+        </package>
+    </packages>
+</overviews>

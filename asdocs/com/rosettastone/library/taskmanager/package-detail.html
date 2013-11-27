@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../../override.css" type="text/css"><title>com.rosettastone.library.taskmanager Summary</title></head><body><script language="javascript" type="text/javascript" src="../../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'com.rosettastone.library.taskmanager package - API Documentation';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Task Manager Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../../package-summary.html" onclick="loadClassListFrame('../../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../../class-summary.html" onclick="loadClassListFrame('../../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../../all-index-A.html" onclick="loadClassListFrame('../../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../../index.html?com/rosettastone/library/taskmanager/package-detail.html&amp;com/rosettastone/library/taskmanager/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">com.rosettastone.library.taskmanager</td><td class="titleTableSubNav" id="subNav" align="right"><a href="package-detail.html#interfaceSummary"> Interfaces </a>&nbsp;| <a href="package-detail.html#classSummary">Classes</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("com.rosettastone.library.taskmanager"); titleBar_setSubNav(false,false,false,false,false,false,false,false,false,false,false	,false,false,true,true,false);}	
+				-->
+			</script><div class="MainContent"><br><p>
+                
+	                <p>
+	                    The <code>Task Manager</code> framework provides an easy mechanism for constructing and executing complex sequences of operations.
+	                    Each operation is encapsulated in a <code>Task</code> and can be associated with other operations in a variety of ways.
+	                    This framework also provides a number of useful, reusable tasks for performing common operations.
+	                    For example, here is how you could use the provided <code>PlaySoundTask</code> to play a sound:
+                    </p>
+                    <div class="listing">
+                    <pre>
+var playSoundTask:PlaySoundTask =
+	new PlaySoundTask( aLoadedSoundObject )
+		.withCompleteHandler( completeHandler )
+		.withErrorHandler( errorHandler )
+		.run();
+                    </pre>
+                    </div>
+                    <p>
+                    	In the above example, the <code>completeHandler</code> would be executed when the <code>Sound</code> completed playing successfully.
+                    	If something went wrong during playback the <code>errorHandler</code> would be called.
+                    	This is not very useful in and of itself however as the <code>Sound</code> class already provides a pretty easy interface for playing audio.
+                    	But what if we wanted to create a chain of tasks that played a <code>Sound</code> once a piece of UI was initialized?
+                    	This is also a bit of an arbitrary example but let's take a look at the syntax:
+                    </p>
+                    <div class="listing">
+                    <pre>
+var waitForUIInitialization:WaitForUIInitialization = new WaitForUIInitialization( uiComponent );
+var playSound:PlaySoundTask = new PlaySoundTask( loadedSound );
+
+var waitForInitializationAndPlaySoundTask:CompositeTask =
+	new CompositeTask(
+		[ waitForUIInitialization, playSound ], false )
+	.withCompleteHandler( completeHandler )
+	.withErrorHandler( errorHandler )
+	.run() as CompositeTask;
+                    </pre>
+                    </div>
+                    <p>
+                    	In the above example, our sound is not played until the previous task has completed.
+                    	If something goes wrong with the first task our <code>errorHandler</code> will be called and our <code>Sound</code> will not be played.
+                    </p>
+                    <p>
+                    	Using the <code>Task Manager</code> (or helper its tasks) it is easy to assemble a large sequence of operations that have dependencies on each other.
+                    	One more example (although still a bit arbitrary) would be if we wanted to load an external file, wait for a <code>UIComponent</code> to initialize, and then play a sound once both of those operations had completed.
+                    	Here's how we could set that up with <code>Task Manager</code>:
+                    </p>
+                    <div class="listing">
+                    <pre>
+var loadFileTask:URLRequestTask = new URLRequestTask( urlRequest );
+var waitForUIInitialization:WaitForUIInitialization = new WaitForUIInitialization( uiComponent );
+var playSound:PlaySoundTask = new PlaySoundTask( loadedSound );
+
+var taskManager:TaskManager = new TaskManager();
+taskManager.addTask( loadFileTask );
+taskManager.addTask( waitForUIInitialization );
+taskManager.addTask( playSound, [ loadFileTask, waitForUIInitialization ] );
+taskManager.run();
+                    </pre>
+                    </div>
+                    <p>
+                    	In the above example, the <code>TaskManager</code> is configured to execute the URL loading task and the <code>UIComponent</code>-related task immediately.
+                    	The task that plays our <code>Sound</code> however is marked as dependent upon the other 2 tasks and so the <code>TaskManager</code> will not execute it until they have both successfully completed.
+                    	If either one fails then the <code>TaskManager</code> will dispatch an error event and our <code>Sound</code>-playing task will not be executed.
+                    </p>
+                    <p>
+                    	Although the convenience tasks provided with the <code>TaskManager</code> are useful, the real power of this framework can be seen when you create your own operations.
+                    	This is typically done by extending <code>Task</code> or using a generic helper task like <code>TaskWithClosure</code>.  
+                    	Check out each of the classes below to see what kind of objects you have to build upon.
+                    </p>
+                
+            </p><br><hr><a name="interfaceSummary"></a><div class="summaryTableTitle">Interfaces</div><table cellpadding="3" cellspacing="0" class="summaryTable"><tr><th>&nbsp;</th><th width="30%">Interface</th><th width="70%">Description</th></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="IDecoratorTask.html">IDecoratorTask</a></i></td><td class="summaryTableLastCol">
+	 Special interface for tasks that decorate other tasks.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="IInterruptibleTask.html">IInterruptibleTask</a></i></td><td class="summaryTableLastCol">
+	 An interruptible Task can be paused and resumed after being run.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="ISynchronousTask.html">ISynchronousTask</a></i></td><td class="summaryTableLastCol">
+	 A synchronous Task is one that completes immediately upon being run.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="ITask.html">ITask</a></i></td><td class="summaryTableLastCol">
+	 A Task represents a job.</td></tr></table><a name="classSummary"></a><div class="summaryTableTitle">Classes</div><table cellpadding="3" cellspacing="0" class="summaryTable"><tr><th>&nbsp;</th><th width="30%">Class</th><th width="70%">Description</th></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="AbstractCompositeTask.html">AbstractCompositeTask</a></td><td class="summaryTableLastCol">
+	 This is an abstract class and should not be instantiated directly.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="AbstractTaskManager.html">AbstractTaskManager</a></td><td class="summaryTableLastCol">
+	 This is an abstract class and should not be instantiated directly.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="CompositeTask.html">CompositeTask</a></td><td class="summaryTableLastCol">
+	 Wraps a set of ITasks and executes them in parallel or serial, as specified by a boolean constructor arg.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="EventHandlingTask.html">EventHandlingTask</a></td><td class="summaryTableLastCol">
+	 Convenience Task that listens to an IEventDispatcher for either a success or failure type event.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="FactoryTask.html">FactoryTask</a></td><td class="summaryTableLastCol">
+	 Decorates a Task returned by the specified factory method.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="InnocuousTaskDecorator.html">InnocuousTaskDecorator</a></td><td class="summaryTableLastCol">
+	 Decorates a Task but re-dispatches both error and success events as success.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="InterruptibleCompositeTask.html">InterruptibleCompositeTask</a></td><td class="summaryTableLastCol">
+	 Wraps a set of IInterruptibleTask (or ISynchronousTask) and executes them in parallel or serial, as specified by a boolean constructor arg.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="InterruptibleDecoratorTask.html">InterruptibleDecoratorTask</a></td><td class="summaryTableLastCol">
+	 Decorates a non-interruptible Task and adds interruptible-like behavior.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="InterruptibleStubTask.html">InterruptibleStubTask</a></td><td class="summaryTableLastCol">
+	 Interruptible stub Task primarily intended for use in the context of automated tests.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="InterruptibleTask.html">InterruptibleTask</a></td><td class="summaryTableLastCol">
+	 Abstract inerruptible Task.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="InterruptibleTaskManager.html">InterruptibleTaskManager</a></td><td class="summaryTableLastCol">
+	 Manages execution of a set of IInterruptibleTasks.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="ObserverTask.html">ObserverTask</a></td><td class="summaryTableLastCol">
+	 Observes (but does not execute) a collection of Tasks.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="PlaySoundTask.html">PlaySoundTask</a></td><td class="summaryTableLastCol">
+	 Task that plays a Sound and completes when the sound has finished playing.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="RetryOnFailureDecoratorTask.html">RetryOnFailureDecoratorTask</a></td><td class="summaryTableLastCol">
+	 Special Task decorator for Tasks that should be retried on failure.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="SleepTask.html">SleepTask</a></td><td class="summaryTableLastCol">
+	 Sleeps until told to complete.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="StubTask.html">StubTask</a></td><td class="summaryTableLastCol">
+	 Empty Task useful primarily for unit testing.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="SynchronousTask.html">SynchronousTask</a></td><td class="summaryTableLastCol">
+	 Synchronous Task for convenience sub-class purposes.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="SynchronousTaskWithClosure.html">SynchronousTaskWithClosure</a></td><td class="summaryTableLastCol">&nbsp;</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="Task.html">Task</a></td><td class="summaryTableLastCol">
+	 This class is meant to encapsulate a single, self-contained job.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="TaskManager.html">TaskManager</a></td><td class="summaryTableLastCol">
+	 Manages execution of a set of ITasks.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="TaskManagerComponentInfo.html">TaskManagerComponentInfo</a></td><td class="summaryTableLastCol">
+	 Used for retrieving information about the TaskManager component.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="TaskWithClosure.html">TaskWithClosure</a></td><td class="summaryTableLastCol">
+	 Task that invokes a specified function upon execution.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="TaskWithTimeout.html">TaskWithTimeout</a></td><td class="summaryTableLastCol">
+	 Decorates a Task and enforces a max-execution time limit.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="URLRequestTask.html">URLRequestTask</a></td><td class="summaryTableLastCol">
+	 Task that loads a URLRequest and exposes the URLLoader's "urlLoaderData" upon success.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="WaitForUIInitialization.html">WaitForUIInitialization</a></td><td class="summaryTableLastCol">
+	 Convenience task for waiting until a specified UIComponent has initialized.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="WaitTask.html">WaitTask</a></td><td class="summaryTableLastCol">
+	 Task that delays for a specified time before completion.</td></tr></table><p></p><div><p></p><center class="copyright"><footer></footer><br/>Tue Sep 24 2013, 09:21 AM -04:00  </center></div></div></body></html><!--<br/>Tue Sep 24 2013, 09:21 AM -04:00  -->
